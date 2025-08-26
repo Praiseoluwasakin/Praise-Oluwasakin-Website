@@ -79,8 +79,8 @@ export default function PraisePortfolio() {
   const downloadResume = () => {
     // In a real app replace with an actual file URL
     const link = document.createElement("a");
-    link.href = "/Praise_Oluwasakin_Resume.pdf"; // replace when available
-    link.download = "Praise_Oluwasakin_Resume.pdf";
+    link.href = "/resume.pdf"; // replace when available
+    link.download = "resume.pdf";
     document.body.appendChild(link);
     link.click();
     link.remove();

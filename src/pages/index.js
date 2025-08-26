@@ -31,7 +31,12 @@ import {
 export default function PraisePortfolio() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [active, setActive] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
   const sectionsRef = useRef({});
+
+  // Define which sections are "light" so header switches to dark-text/white background
+  const lightSections = new Set(["skills", "projects", "blog", "contact"]);
+  const headerLight = lightSections.has(active) || (scrolled && active === "");
 
   useEffect(() => {
     // IntersectionObserver to set active nav link
@@ -54,12 +59,21 @@ export default function PraisePortfolio() {
   }, []);
 
   useEffect(() => {
-    // close mobile when resizing to desktop
+    // close mobile when resizing to desktop and toggle simple scrolled state
     const onResize = () => {
       if (window.innerWidth > 768) setMobileOpen(false);
     };
+
+    const onScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
+
     window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   const downloadResume = () => {
@@ -80,8 +94,28 @@ export default function PraisePortfolio() {
     { id: "contact", label: "Contact" },
   ];
 
+  // Helper to compute classes based on header variant and active state
+  const navLinkClass = (id) => {
+    const isActive = active === id;
+
+    if (headerLight) {
+      return `px-3 py-2 rounded-full text-sm font-medium transition-colors ${
+        isActive
+          ? "bg-blue-50 text-[#1e73be] shadow-sm"
+          : "text-slate-700 hover:bg-slate-100"
+      }`;
+    }
+
+    // dark header (hero / gradient) - keep white text with subtle background for active
+    return `px-3 py-2 rounded-full text-sm font-medium transition-colors ${
+      isActive
+        ? "bg-white/60 text-[#1e73be] shadow-md"
+        : "text-white hover:bg-white/8"
+    }`;
+  };
+
   return (
-    <div className="min-h-screen bg-[#1e73be] font-sans text-gray-800">
+    <div className="min-h-screen bg-[#1e73be] bg-[url('/background.jpeg')] bg-cover bg-center font-sans text-gray-800">
       {/* Custom small utility styles that are easier to manage here */}
       <style>{`
         @keyframes floatY { 0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)} }
@@ -89,87 +123,120 @@ export default function PraisePortfolio() {
       `}</style>
 
       {/* NAV */}
-      <header className="fixed inset-x-0 top-4 z-50 px-4">
-        <div className="mx-auto max-w-6xl bg-white/6 backdrop-blur-md border border-white/10 rounded-2xl shadow-lg overflow-hidden">
-          <div className="flex items-center justify-between gap-6 px-4 py-3 md:py-4">
-            <a href="#home" className="flex items-center gap-3 no-underline">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-300 to-amber-400 flex items-center justify-center text-[#ccc] font-bold">
-                P
-              </div>
-              <div className="hidden md:block">
-                <div className="text-white font-semibold">
-                  Praise Oluwasakin
-                </div>
-                <div className="text-xs text-gray-300">
-                  Frontend Developer • Shopify Expert
-                </div>
-              </div>
-            </a>
-
-            <nav className="hidden md:flex gap-6 items-center">
-              {navItems.map((n) => (
-                <a
-                  key={n.id}
-                  href={`#${n.id}`}
-                  className={`px-3 py-2 rounded-full text-sm font-medium transition-colors ${
-                    active === n.id
-                      ? "bg-white/60 text-white shadow-md"
-                      : "text-[#ccc] hover:bg-white/4"
-                  }`}
-                >
-                  {n.label}
-                </a>
-              ))}
-            </nav>
-
-            <div className="flex items-center gap-3">
-              <button
-                onClick={downloadResume}
-                className="hidden sm:inline-flex items-center gap-2 bg-yellow-400 text-gray-900 px-4 py-2 rounded-full font-semibold shadow hover:scale-[1.02] transition-transform"
-              >
-                <Download className="w-4 h-4" /> Resume
-              </button>
-
-              <button
-                aria-label="Toggle menu"
-                onClick={() => setMobileOpen((s) => !s)}
-                className="md:hidden p-2 rounded-lg bg-white/6"
-              >
-                {mobileOpen ? (
-                  <X className="w-5 h-5 text-white" />
-                ) : (
-                  <Menu className="w-5 h-5 text-white" />
-                )}
-              </button>
+      <header
+        className={`fixed inset-x-0 top-4 z-50 px-4 transition-all duration-300 ease-in-out ${
+          headerLight
+            ? "mx-auto max-w-6xl bg-white/95 backdrop-blur-sm border border-slate-100 rounded-2xl shadow"
+            : "mx-auto max-w-6xl bg-white/6 backdrop-blur-md border border-white/10 rounded-2xl shadow-lg"
+        }`}
+        aria-label="Primary navigation"
+      >
+        <div className="flex items-center justify-between gap-6 px-4 py-3 md:py-4">
+          <a href="#home" className="flex items-center gap-3 no-underline">
+            <div
+              className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-colors ${
+                headerLight
+                  ? "bg-gradient-to-br from-yellow-300 to-amber-400 text-slate-800"
+                  : "bg-gradient-to-br from-yellow-300 to-amber-400 text-[#111827]"
+              }`}
+            >
+              PO
             </div>
-          </div>
+            <div className="hidden md:block">
+              <div
+                className={`${
+                  headerLight ? "text-slate-800" : "text-[#1e73be]"
+                } font-semibold`}
+              >
+                Praise Oluwasakin
+              </div>
+              <div
+                className={`${
+                  headerLight
+                    ? "text-slate-500"
+                    : "text-gray-300 text-opacity-90"
+                } text-xs`}
+              >
+                Frontend Developer • Shopify Expert
+              </div>
+            </div>
+          </a>
 
-          {/* Mobile menu */}
-          <div
-            className={`md:hidden px-4 pb-4 ${mobileOpen ? "block" : "hidden"}`}
+          <nav
+            className="hidden md:flex gap-6 items-center"
+            role="navigation"
+            aria-label="Main"
           >
-            <div className="flex flex-col gap-2">
-              {navItems.map((n) => (
-                <a
-                  key={n.id}
-                  href={`#${n.id}`}
-                  onClick={() => setMobileOpen(false)}
-                  className={`px-3 py-2 rounded-xl text-sm font-medium transition-colors ${
-                    active === n.id
-                      ? "bg-white/10 text-white"
-                      : "text-gray-200 hover:bg-white/4"
-                  }`}
-                >
-                  {n.label}
-                </a>
-              ))}
-              <button
-                onClick={downloadResume}
-                className="mt-2 w-full bg-yellow-400 text-gray-900 py-2 rounded-full font-semibold"
+            {navItems.map((n) => (
+              <a key={n.id} href={`#${n.id}`} className={navLinkClass(n.id)}>
+                {n.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={downloadResume}
+              className={`hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full font-semibold shadow hover:scale-[1.02] transition-transform ${
+                headerLight
+                  ? "bg-amber-400 text-slate-900"
+                  : "bg-yellow-400 text-gray-900"
+              }`}
+            >
+              <Download className="w-4 h-4" /> Resume
+            </button>
+
+            <button
+              aria-label="Toggle menu"
+              onClick={() => setMobileOpen((s) => !s)}
+              className={`md:hidden p-2 rounded-lg transition ${
+                headerLight
+                  ? "bg-slate-100 text-slate-700"
+                  : "bg-white/6 text-white"
+              }`}
+            >
+              {mobileOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        <div
+          className={`md:hidden px-4 pb-4 ${mobileOpen ? "block" : "hidden"}`}
+        >
+          <div className="flex flex-col gap-2">
+            {navItems.map((n) => (
+              <a
+                key={n.id}
+                href={`#${n.id}`}
+                onClick={() => setMobileOpen(false)}
+                className={`px-3 py-2 rounded-xl text-sm font-medium transition-colors ${
+                  active === n.id
+                    ? headerLight
+                      ? "bg-blue-50 text-[#1e73be]"
+                      : "bg-white/10 text-white"
+                    : headerLight
+                    ? "text-slate-700 hover:bg-slate-100"
+                    : "text-gray-200 hover:bg-white/4"
+                }`}
               >
-                <Download className="inline w-4 h-4 mr-2" /> Download Resume
-              </button>
-            </div>
+                {n.label}
+              </a>
+            ))}
+            <button
+              onClick={downloadResume}
+              className={`mt-2 w-full px-4 py-2 rounded-full font-semibold ${
+                headerLight
+                  ? "bg-amber-400 text-slate-900"
+                  : "bg-yellow-400 text-gray-900"
+              }`}
+            >
+              <Download className="inline w-4 h-4 mr-2" /> Download Resume
+            </button>
           </div>
         </div>
       </header>
@@ -265,7 +332,6 @@ export default function PraisePortfolio() {
             </div>
 
             <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
-              {/* Tech tiles */}
               {[
                 { Icon: Code, label: "HTML" },
                 { Icon: Palette, label: "CSS" },
@@ -349,22 +415,46 @@ export default function PraisePortfolio() {
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
-                  title: "Custom Shopify Store",
-                  desc: "Headless Shopify with performant storefront and custom filters.",
-                  tags: ["Shopify", "Liquid", "React"],
-                  Icon: ShoppingCart,
+                  title: "Mineuniverse Website",
+                  desc: "Built key pages (Homepage, Contact, About, Modlist) with optimized performance and responsive UI.",
+                  tags: ["React.js", "Next.js", "Tailwind CSS"],
+                  url: "https://mineuniverse.com",
+                  Icon: Globe,
                 },
                 {
-                  title: "React Admin Dashboard",
-                  desc: "Realtime analytics, charts and permissions system.",
-                  tags: ["React", "Charts", "Tailwind"],
+                  title: "Wemco Startup Website",
+                  desc: "Developed a scalable, cloud-integrated website with smooth performance and modern design.",
+                  tags: ["Next.js", "Tailwind CSS", "Azure"],
+                  url: "https://wemco.com",
                   Icon: Smartphone,
                 },
                 {
-                  title: "Portfolio Website",
-                  desc: "Clean portfolio with CMS-driven blog and animations.",
-                  tags: ["Next.js", "Accessibility"],
-                  Icon: Globe,
+                  title: "Modern-Mensch Shopify Store",
+                  desc: "Created a sleek, interactive Shopify storefront with engaging visuals and streamlined navigation.",
+                  tags: ["Shopify", "Liquid", "React"],
+                  url: "https://modern-mensch.com",
+                  Icon: ShoppingCart,
+                },
+                {
+                  title: "Chamak Society Shopify Store",
+                  desc: "Developed a user-friendly, accessible Shopify website tailored to client needs.",
+                  tags: ["Shopify", "Liquid", "CSS"],
+                  url: "https://chamaksociety.com",
+                  Icon: ShoppingCart,
+                },
+                {
+                  title: "Examplifyam Shopify Store",
+                  desc: "Designed and implemented a professional Shopify store with pixel-perfect design and Git version control.",
+                  tags: ["Shopify", "Liquid", "Git"],
+                  url: "https://examplifyam.com",
+                  Icon: ShoppingCart,
+                },
+                {
+                  title: "Tbells 4 Fresh Shopify Store",
+                  desc: "Developed a modern and scalable Shopify storefront for Tbells 4 Fresh.",
+                  tags: ["Shopify", "Liquid", "Custom Themes"],
+                  url: "https://tbells4fresh.com",
+                  Icon: ShoppingCart,
                 },
               ].map((p) => (
                 <article
@@ -457,7 +547,7 @@ export default function PraisePortfolio() {
         {/* CONTACT */}
         <section
           id="contact"
-          className="py-20 bg-gradient-to-br from-indigo-600 to-purple-700 text-white"
+          className="py-20 bg-[#1e73be] bg-[url('/background.jpeg')] text-white"
         >
           <div className="mx-auto max-w-4xl px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-bold">

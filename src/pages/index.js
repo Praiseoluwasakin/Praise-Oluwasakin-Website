@@ -47,7 +47,7 @@ export default function PraisePortfolio() {
       desc: "Developed a scalable, cloud-integrated website with smooth performance and modern design.",
       tags: ["Next.js", "Tailwind CSS", "Azure"],
       url: "https://www.wancemo.co.za/",
-      media: "/demos/wancemo.png", // fallback image
+      media: "/wancemo.png", // fallback image
       Icon: Smartphone,
     },
     {
@@ -63,7 +63,7 @@ export default function PraisePortfolio() {
       desc: "Developed a modern and scalable Shopify storefront for Tbells 4 Fresh.",
       tags: ["Shopify", "Liquid", "Custom Themes"],
       url: "https://www.tbells4freshkitchen.com/",
-      media: "/demos/tbells.png",
+      media: "https://youtu.be/n2BjwOAeDzY",
       Icon: ShoppingCart,
     },
     {

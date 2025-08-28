@@ -16,7 +16,7 @@ export default function Document() {
         <meta name="twitter:card" content="summary_large_image" />
 
         {/* Favicon */}
-        <link rel="icon" href="/profile.webp" />
+        <link rel="icon" href="/logo.png" />
       </Head>
       <body className="antialiased">
         <Main />

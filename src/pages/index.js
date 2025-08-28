@@ -80,7 +80,7 @@ export const metadata = {
     siteName: "Praise Oluwasakin Portfolio",
     images: [
       {
-        url: "/profile.JPEG", // Replace with your real image in /public
+        url: "/profile.webp", // Replace with your real image in /public
         width: 1200,
         height: 630,
         alt: "Praise Oluwasakin Portfolio Preview",
@@ -465,7 +465,7 @@ export default function PraisePortfolio() {
               <div className="w-80 h-80 md:w-96 md:h-96 rounded-2xl overflow-hidden shadow-xl bg-gray-200">
                 {/* Replace with your picture */}
                 <img
-                  src="/profile.jpeg"
+                  src="/profile.webp"
                   alt="Praise Oluwasakin - Frontend Developer and Shopify Expert"
                   className="object-cover w-full h-full"
                 />

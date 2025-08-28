@@ -66,16 +66,21 @@ export const metadata = {
     "Shopify Customization",
     "Portfolio Website Developer",
   ],
-  authors: [{ name: "Praise Oluwasakin", url: "https://praise-portfolio.com" }],
+  authors: [
+    {
+      name: "Praise Oluwasakin",
+      url: "https://praise-oluwasakin-website.vercel.app/",
+    },
+  ],
   openGraph: {
     title: "Praise Oluwasakin | Frontend & Shopify Developer",
     description:
       "Frontend & Shopify developer building scalable, modern, and SEO-friendly web solutions. Available for freelance and contract work.",
-    url: "https://praise-portfolio.com",
+    url: "https://praise-oluwasakin-website.vercel.app/",
     siteName: "Praise Oluwasakin Portfolio",
     images: [
       {
-        url: "/og-image.jpg", // Replace with your real image in /public
+        url: "/profile.JPEG", // Replace with your real image in /public
         width: 1200,
         height: 630,
         alt: "Praise Oluwasakin Portfolio Preview",

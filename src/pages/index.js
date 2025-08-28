@@ -756,7 +756,7 @@ export default function PraisePortfolio() {
 
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="mailto:praise@example.com"
+                href="mailto:praiseoluwasakin@gmail.com"
                 className="px-6 py-3 rounded-full bg-white text-slate-900 font-semibold"
               >
                 Get in touch

@@ -1,7 +1,9 @@
 "use client";
 import { Analytics } from "@vercel/analytics/next";
-import { app, analytics } from "../lib/firebase";
+import { app, analytics } from "../firebase";
 import { logEvent } from "firebase/analytics";
+import Link from "next/link";
+import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import {
   Menu,
@@ -37,8 +39,79 @@ export default function PraisePortfolio() {
   const [scrolled, setScrolled] = useState(false);
   const sectionsRef = useRef({});
 
+  // inside PraisePortfolio component
+
+  const allProjects = [
+    {
+      title: "Wancemo Startup Website",
+      desc: "Developed a scalable, cloud-integrated website with smooth performance and modern design.",
+      tags: ["Next.js", "Tailwind CSS", "Azure"],
+      url: "https://www.wancemo.co.za/",
+      media: "/demos/wancemo.png", // fallback image
+      Icon: Smartphone,
+    },
+    {
+      title: "Modern-Mensch Shopify Store",
+      desc: "Created a sleek, interactive Shopify storefront with engaging visuals and streamlined navigation.",
+      tags: ["Shopify", "Liquid", "React"],
+      url: "https://www.modern-mensch.com/",
+      media: "/demos/modernmensch.mp4",
+      Icon: ShoppingCart,
+    },
+    {
+      title: "Tbells 4 Fresh Shopify Store",
+      desc: "Developed a modern and scalable Shopify storefront for Tbells 4 Fresh.",
+      tags: ["Shopify", "Liquid", "Custom Themes"],
+      url: "https://www.tbells4freshkitchen.com/",
+      media: "/demos/tbells.png",
+      Icon: ShoppingCart,
+    },
+    {
+      title: "Xpense Project",
+      desc: "Worked as a frontend developer to build a clean and responsive finance tracking app.",
+      tags: ["React", "Next.js", "Tailwind"],
+      url: null, // no live link yet
+      media: "/demos/xpense.png",
+      Icon: Globe,
+    },
+    {
+      title: "My Portfolio Website",
+      desc: "Personal portfolio showcasing my skills, projects and experience.",
+      tags: ["Next.js", "Tailwind CSS"],
+      url: "https://praise-oluwasakin-website.vercel.app/",
+      media: "/demos/portfolio.mp4",
+      Icon: Globe,
+    },
+    {
+      title: "Chamak Society Shopify Store",
+      desc: "Developed a user-friendly, accessible Shopify website tailored to client needs.",
+      tags: ["Shopify", "Liquid", "CSS"],
+      url: "https://chamaksociety.com",
+      media: null,
+      Icon: ShoppingCart,
+    },
+    {
+      title: "Examplifyam Shopify Store",
+      desc: "Designed and implemented a professional Shopify store with pixel-perfect design.",
+      tags: ["Shopify", "Liquid", "Git"],
+      url: null, // no link available
+      media: null,
+      Icon: ShoppingCart,
+    },
+  ];
+
+  const [showAll, setShowAll] = useState(false);
+
+  const projectsToShow = showAll ? allProjects : allProjects.slice(0, 6);
+
   // Define which sections are "light" so header switches to dark-text/white background
-  const lightSections = new Set(["skills", "projects", "blog", "contact"]);
+  const lightSections = new Set([
+    "skills",
+    "about",
+    "projects",
+    "blog",
+    "contact",
+  ]);
   const headerLight = lightSections.has(active) || (scrolled && active === "");
 
   useEffect(() => {
@@ -95,9 +168,9 @@ export default function PraisePortfolio() {
 
   const navItems = [
     { id: "home", label: "Home" },
+    { id: "about", label: "About" },
     { id: "skills", label: "Skills" },
     { id: "projects", label: "Projects" },
-    { id: "blog", label: "Blog" },
     { id: "contact", label: "Contact" },
   ];
 
@@ -313,6 +386,91 @@ export default function PraisePortfolio() {
           </div>
         </section>
 
+        <section
+          id="about"
+          className="w-full bg-gray-50 py-16 px-6 md:px-12 lg:px-20"
+        >
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            {/* Image Placeholder */}
+            <div className="flex justify-center">
+              <div className="w-80 h-80 md:w-96 md:h-96 rounded-2xl overflow-hidden shadow-xl bg-gray-200">
+                {/* Replace with your picture */}
+                <img
+                  src="/profile.jpeg"
+                  alt="Praise Oluwasakin - Frontend Developer and Shopify Expert"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </div>
+            {/* Content */}
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                About Me
+              </h2>
+              <p className="text-lg text-gray-700 leading-relaxed mb-4">
+                Hi, I’m <strong>Praise Oluwasakin</strong>, the founder of{" "}
+                <span className="font-semibold">mayorCodes</span>. I’m a{" "}
+                <strong>Front-end Developer</strong> and{" "}
+                <strong>Shopify Expert</strong> with a passion for transforming
+                ideas into functional, elegant, and impactful digital
+                experiences.
+              </p>
+
+              <p className="text-lg text-gray-700 leading-relaxed mb-4">
+                I specialize in modern web technologies including{" "}
+                <em>HTML, CSS, JavaScript, React, Next.js, Tailwind CSS,</em>{" "}
+                and <em>Liquid</em>. My focus is building high-performing,
+                SEO-friendly, and visually appealing Shopify stores tailored to
+                unique brands.
+              </p>
+
+              <h3 className="text-2xl font-semibold text-gray-900 mb-3">
+                Recent Projects
+              </h3>
+              <div className="flex flex-wrap gap-3 mb-6">
+                <Link
+                  href="https://modrn-mensch.com"
+                  target="_blank"
+                  className="px-5 py-2 rounded-full bg-blue-600 text-white font-medium shadow-md hover:bg-blue-700 hover:shadow-lg transition-transform transform hover:-translate-y-1"
+                >
+                  modrn-mensch.com
+                </Link>
+                <Link
+                  href="https://www.tbells4freshkitchen.com/"
+                  target="_blank"
+                  className="px-5 py-2 rounded-full bg-blue-600 text-white font-medium shadow-md hover:bg-blue-700 hover:shadow-lg transition-transform transform hover:-translate-y-1"
+                >
+                  tbells4freshkitchen.com
+                </Link>
+                <Link
+                  href="https://mybooksiebox.com"
+                  target="_blank"
+                  className="px-5 py-2 rounded-full bg-blue-600 text-white font-medium shadow-md hover:bg-blue-700 hover:shadow-lg transition-transform transform hover:-translate-y-1"
+                >
+                  mybooksiebox.com
+                </Link>
+                <Link
+                  href="https://pineapplephone.com"
+                  target="_blank"
+                  className="px-5 py-2 rounded-full bg-blue-600 text-white font-medium shadow-md hover:bg-blue-700 hover:shadow-lg transition-transform transform hover:-translate-y-1"
+                >
+                  pineapplephone.com
+                </Link>
+              </div>
+
+              <p className="text-lg text-gray-700 leading-relaxed">
+                Beyond coding, I lead a choir at{" "}
+                <strong>Kingdom Life Chapel</strong>, volunteer with{" "}
+                <strong>JCI</strong> and <strong>GIVC</strong>, and serve as a{" "}
+                <strong>Cowrywise Ambassador</strong> to promote financial
+                literacy. At my core, I’m a Christian driven by{" "}
+                <strong>excellence, service, and growth</strong> — always
+                striving to create value and lasting impact.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* SKILLS */}
         <section id="skills" className="bg-white py-20">
           <div className="mx-auto max-w-6xl px-6">
@@ -407,73 +565,43 @@ export default function PraisePortfolio() {
                   Featured Projects
                 </h2>
                 <p className="mt-2 text-gray-600">
-                  A selection of recent work — links to live demos and code
-                  included.
+                  A selection of recent work — links to live demos included.
                 </p>
               </div>
-
-              <a
-                href="#projects"
-                className="text-sm text-indigo-600 font-medium hidden sm:inline-flex items-center gap-2"
-              >
-                See all projects <ExternalLink className="w-4 h-4" />
-              </a>
             </div>
 
+            {/* Projects Grid */}
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "Mineuniverse Website",
-                  desc: "Built key pages (Homepage, Contact, About, Modlist) with optimized performance and responsive UI.",
-                  tags: ["React.js", "Next.js", "Tailwind CSS"],
-                  url: "https://mineuniverse.com",
-                  Icon: Globe,
-                },
-                {
-                  title: "Wemco Startup Website",
-                  desc: "Developed a scalable, cloud-integrated website with smooth performance and modern design.",
-                  tags: ["Next.js", "Tailwind CSS", "Azure"],
-                  url: "https://wemco.com",
-                  Icon: Smartphone,
-                },
-                {
-                  title: "Modern-Mensch Shopify Store",
-                  desc: "Created a sleek, interactive Shopify storefront with engaging visuals and streamlined navigation.",
-                  tags: ["Shopify", "Liquid", "React"],
-                  url: "https://modern-mensch.com",
-                  Icon: ShoppingCart,
-                },
-                {
-                  title: "Chamak Society Shopify Store",
-                  desc: "Developed a user-friendly, accessible Shopify website tailored to client needs.",
-                  tags: ["Shopify", "Liquid", "CSS"],
-                  url: "https://chamaksociety.com",
-                  Icon: ShoppingCart,
-                },
-                {
-                  title: "Examplifyam Shopify Store",
-                  desc: "Designed and implemented a professional Shopify store with pixel-perfect design and Git version control.",
-                  tags: ["Shopify", "Liquid", "Git"],
-                  url: "https://examplifyam.com",
-                  Icon: ShoppingCart,
-                },
-                {
-                  title: "Tbells 4 Fresh Shopify Store",
-                  desc: "Developed a modern and scalable Shopify storefront for Tbells 4 Fresh.",
-                  tags: ["Shopify", "Liquid", "Custom Themes"],
-                  url: "https://tbells4fresh.com",
-                  Icon: ShoppingCart,
-                },
-              ].map((p) => (
+              {projectsToShow.map((p) => (
                 <article
                   key={p.title}
                   className="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition"
                 >
-                  <div className="h-40 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white mb-4">
-                    <p.Icon className="w-10 h-10" />
+                  {/* Media Preview */}
+                  <div className="h-40 rounded-lg bg-slate-100 flex items-center justify-center mb-4 overflow-hidden">
+                    {p.media && p.media.endsWith(".mp4") ? (
+                      <video
+                        src={p.media}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="w-full h-full object-cover"
+                      />
+                    ) : p.media ? (
+                      <img
+                        src={p.media}
+                        alt={p.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <p.Icon className="w-10 h-10 text-gray-500" />
+                    )}
                   </div>
+
                   <h3 className="text-xl font-semibold">{p.title}</h3>
                   <p className="mt-2 text-gray-600">{p.desc}</p>
+
                   <div className="mt-3 flex flex-wrap gap-2">
                     {p.tags.map((t) => (
                       <span
@@ -484,71 +612,40 @@ export default function PraisePortfolio() {
                       </span>
                     ))}
                   </div>
-                  <div className="mt-4 flex gap-3">
-                    <a className="flex-1 inline-flex items-center justify-center gap-2 border border-slate-200 py-2 rounded-md text-sm hover:bg-slate-50">
-                      Live
-                    </a>
-                    <a className="flex-1 inline-flex items-center justify-center gap-2 bg-slate-900 text-white py-2 rounded-md text-sm">
-                      Code
-                    </a>
+
+                  <div className="mt-4 flex">
+                    {p.url ? (
+                      <a
+                        href={p.url}
+                        target="_blank"
+                        className="flex-1 inline-flex items-center justify-center gap-2 bg-slate-900 text-white py-2 rounded-md text-sm hover:bg-slate-800 transition"
+                      >
+                        Live
+                      </a>
+                    ) : (
+                      <button
+                        disabled
+                        className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-300 text-gray-600 py-2 rounded-md text-sm cursor-not-allowed"
+                      >
+                        Unavailable
+                      </button>
+                    )}
                   </div>
                 </article>
               ))}
             </div>
-          </div>
-        </section>
 
-        {/* BLOG */}
-        <section id="blog" className="py-20 bg-white">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold">Latest Posts</h2>
-                <p className="mt-2 text-gray-600">
-                  Writing about Shopify, frontend performance and practical
-                  tips.
-                </p>
-              </div>
-              <a
-                href="#blog"
-                className="text-sm text-indigo-600 font-medium hidden sm:inline-flex items-center gap-2"
-              >
-                View all <ExternalLink className="w-4 h-4" />
-              </a>
-            </div>
-
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  date: "Dec 15, 2024",
-                  title: "Advanced Shopify Customizations",
-                  excerpt:
-                    "Create custom sections and advanced Liquid patterns.",
-                },
-                {
-                  date: "Dec 10, 2024",
-                  title: "React Performance Tips",
-                  excerpt: "Memoization, bundling and rendering strategies.",
-                },
-                {
-                  date: "Dec 5, 2024",
-                  title: "Modern CSS Techniques",
-                  excerpt: "Useful modern layout patterns and utilities.",
-                },
-              ].map((b) => (
-                <article
-                  key={b.title}
-                  className="rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition bg-gradient-to-br from-amber-50 to-white"
+            {/* Show More Button */}
+            {allProjects.length > 6 && (
+              <div className="mt-8 flex justify-center">
+                <button
+                  onClick={() => setShowAll((prev) => !prev)}
+                  className="px-6 py-3 rounded-full bg-blue-600 text-white font-semibold shadow hover:bg-blue-700 transition"
                 >
-                  <div className="text-xs text-gray-500">{b.date}</div>
-                  <h3 className="mt-2 font-semibold text-lg">{b.title}</h3>
-                  <p className="mt-2 text-gray-600">{b.excerpt}</p>
-                  <a className="mt-4 inline-flex items-center gap-2 text-indigo-600 font-medium">
-                    Read post <ArrowRight className="w-4 h-4" />
-                  </a>
-                </article>
-              ))}
-            </div>
+                  {showAll ? "Show Less" : "Show More"}
+                </button>
+              </div>
+            )}
           </div>
         </section>
 
@@ -622,8 +719,8 @@ export default function PraisePortfolio() {
           </div>
         </section>
 
-        <footer className="py-8 bg-slate-900 text-slate-300">
-          <div className="mx-auto max-w-6xl px-6 text-center">
+        <footer className="py-3 bg-slate-900 text-slate-300">
+          <div className="mx-auto max-w-6xl px-6 text-sm text-center">
             © {new Date().getFullYear()} Praise Oluwasakin — Built with care.
           </div>
         </footer>

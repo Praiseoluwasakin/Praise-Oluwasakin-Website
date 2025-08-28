@@ -1,4 +1,7 @@
 "use client";
+import { Analytics } from "@vercel/analytics/next";
+import { app, analytics } from "../lib/firebase";
+import { logEvent } from "firebase/analytics";
 import React, { useEffect, useState, useRef } from "react";
 import {
   Menu,
@@ -57,7 +60,11 @@ export default function PraisePortfolio() {
     sections.forEach((s) => obs.observe(s));
     return () => obs.disconnect();
   }, []);
-
+  useEffect(() => {
+    if (analytics) {
+      logEvent(analytics, "page_view", { page_path: window.location.pathname });
+    }
+  }, []);
   useEffect(() => {
     // close mobile when resizing to desktop and toggle simple scrolled state
     const onResize = () => {
@@ -116,6 +123,7 @@ export default function PraisePortfolio() {
 
   return (
     <div className="min-h-screen bg-[#1e73be] bg-[url('/background.jpeg')] bg-cover bg-center font-sans text-gray-800">
+      <Analytics />
       {/* Custom small utility styles that are easier to manage here */}
       <style>{`
         @keyframes floatY { 0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)} }

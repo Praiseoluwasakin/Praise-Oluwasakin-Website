@@ -5,6 +5,8 @@ import { logEvent } from "firebase/analytics";
 import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
+import { FaXTwitter } from "react-icons/fa6";
+
 import {
   Menu,
   X,
@@ -33,6 +35,68 @@ import {
   ExternalLink,
 } from "lucide-react";
 
+export const metadata = {
+  title: "Praise Oluwasakin | Frontend & Shopify Developer",
+  description:
+    "Praise Oluwasakin is a frontend and Shopify developer specializing in modern, scalable web solutions. Open to freelance and contract projects in React, Next.js, and Shopify. Get in touch today.",
+  keywords: [
+    "Praise Oluwasakin",
+    "Frontend Developer",
+    "Shopify Developer",
+    "React Developer",
+    "Next.js Developer",
+    "Freelance Developer",
+    "Web Development",
+    "Nigeria Developer",
+    "Remote Web Developer",
+    "E-commerce Developer",
+    "Freelance Shopify Expert",
+    "Hire React Developer",
+    "Custom Shopify Themes",
+    "Next.js Freelance Developer",
+    "Frontend Engineer",
+    "JavaScript Developer",
+    "Modern Web Design",
+    "Fullstack Web Developer",
+    "Freelance Web Designer",
+    "SEO Friendly Websites",
+    "UI/UX Developer",
+    "Hire Frontend Developer Nigeria",
+    "Shopify Store Setup",
+    "Shopify Customization",
+    "Portfolio Website Developer",
+  ],
+  authors: [{ name: "Praise Oluwasakin", url: "https://praise-portfolio.com" }],
+  openGraph: {
+    title: "Praise Oluwasakin | Frontend & Shopify Developer",
+    description:
+      "Frontend & Shopify developer building scalable, modern, and SEO-friendly web solutions. Available for freelance and contract work.",
+    url: "https://praise-portfolio.com",
+    siteName: "Praise Oluwasakin Portfolio",
+    images: [
+      {
+        url: "/og-image.jpg", // Replace with your real image in /public
+        width: 1200,
+        height: 630,
+        alt: "Praise Oluwasakin Portfolio Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Praise Oluwasakin | Frontend & Shopify Developer",
+    description:
+      "Frontend & Shopify developer building scalable, modern, and SEO-friendly web solutions. Available for freelance and contract work.",
+    images: ["/og-image.jpg"], // Same image as Open Graph
+    creator: "@mayorcodes", // your X/Twitter handle
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
 export default function PraisePortfolio() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [active, setActive] = useState("home");
@@ -55,7 +119,7 @@ export default function PraisePortfolio() {
       desc: "Created a sleek, interactive Shopify storefront with engaging visuals and streamlined navigation.",
       tags: ["Shopify", "Liquid", "React"],
       url: "https://www.modern-mensch.com/",
-      media: "/demos/modernmensch.mp4",
+      media: "/modern-mensch.png",
       Icon: ShoppingCart,
     },
     {
@@ -63,7 +127,7 @@ export default function PraisePortfolio() {
       desc: "Developed a modern and scalable Shopify storefront for Tbells 4 Fresh.",
       tags: ["Shopify", "Liquid", "Custom Themes"],
       url: "https://www.tbells4freshkitchen.com/",
-      media: "https://youtu.be/n2BjwOAeDzY",
+      media: "/tbells.png",
       Icon: ShoppingCart,
     },
     {
@@ -71,7 +135,7 @@ export default function PraisePortfolio() {
       desc: "Worked as a frontend developer to build a clean and responsive finance tracking app.",
       tags: ["React", "Next.js", "Tailwind"],
       url: null, // no live link yet
-      media: "/demos/xpense.png",
+      media: "/xpense.png",
       Icon: Globe,
     },
     {
@@ -79,14 +143,14 @@ export default function PraisePortfolio() {
       desc: "Personal portfolio showcasing my skills, projects and experience.",
       tags: ["Next.js", "Tailwind CSS"],
       url: "https://praise-oluwasakin-website.vercel.app/",
-      media: "/demos/portfolio.mp4",
+      media: "portfolio.png",
       Icon: Globe,
     },
     {
       title: "Chamak Society Shopify Store",
       desc: "Developed a user-friendly, accessible Shopify website tailored to client needs.",
       tags: ["Shopify", "Liquid", "CSS"],
-      url: "https://chamaksociety.com",
+      url: null,
       media: null,
       Icon: ShoppingCart,
     },
@@ -579,7 +643,8 @@ export default function PraisePortfolio() {
                 >
                   {/* Media Preview */}
                   <div className="h-40 rounded-lg bg-slate-100 flex items-center justify-center mb-4 overflow-hidden">
-                    {p.media && p.media.endsWith(".mp4") ? (
+                    {p.media &&
+                    (p.media.endsWith(".mp4") || p.media.endsWith(".mov")) ? (
                       <video
                         src={p.media}
                         autoPlay
@@ -588,6 +653,23 @@ export default function PraisePortfolio() {
                         playsInline
                         className="w-full h-full object-cover"
                       />
+                    ) : p.media && p.media.includes("youtube.com") ? (
+                      <iframe
+                        src={
+                          p.media.includes("watch?v=")
+                            ? p.media
+                                .replace("watch?v=", "embed/")
+                                .split("&")[0] // clean embed link
+                            : p.media
+                                .replace("youtu.be/", "www.youtube.com/embed/")
+                                .split("?")[0]
+                        }
+                        title={p.title}
+                        className="w-full h-full object-cover"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
                     ) : p.media ? (
                       <img
                         src={p.media}
@@ -693,10 +775,14 @@ export default function PraisePortfolio() {
               </a>
               <a
                 href="https://twitter.com/mayorcodes"
-                className="p-3 rounded-full bg-sky-500 hover:bg-sky-600"
+                aria-label="X (formerly Twitter)"
+                className="p-3 rounded-full bg-black hover:bg-neutral-800"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Twitter className="w-5 h-5 text-white" />
+                <FaXTwitter className="w-5 h-5 text-white" />
               </a>
+
               <a
                 href="https://instagram.com/mayor.codes"
                 className="p-3 rounded-full bg-pink-600 hover:bg-pink-700"
@@ -704,13 +790,13 @@ export default function PraisePortfolio() {
                 <Instagram className="w-5 h-5 text-white" />
               </a>
               <a
-                href="https://linkedin.com/in/praise-oluwasakin"
+                href="https://www.linkedin.com/in/praise-oluwasakin-409306239/"
                 className="p-3 rounded-full bg-blue-800 hover:bg-blue-900"
               >
                 <Linkedin className="w-5 h-5 text-white" />
               </a>
               <a
-                href="https://github.com/POluwasakin"
+                href="https://github.com/Praiseoluwasakin"
                 className="p-3 rounded-full bg-slate-800 hover:bg-slate-700"
               >
                 <Github className="w-5 h-5 text-white" />

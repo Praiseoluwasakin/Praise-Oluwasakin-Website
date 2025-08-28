@@ -148,7 +148,7 @@ export default function PraisePortfolio() {
       desc: "Personal portfolio showcasing my skills, projects and experience.",
       tags: ["Next.js", "Tailwind CSS"],
       url: "https://praise-oluwasakin-website.vercel.app/",
-      media: "portfolio.png",
+      media: "/portfolio.png",
       Icon: Globe,
     },
     {
@@ -462,12 +462,14 @@ export default function PraisePortfolio() {
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             {/* Image Placeholder */}
             <div className="flex justify-center">
-              <div className="w-80 h-80 md:w-96 md:h-96 rounded-2xl overflow-hidden shadow-xl bg-gray-200">
+              <div className="w-84 h-84 md:w-96 md:h-96 rounded-2xl flex justify-center items-center overflow-hidden shadow-xl bg-gray-200">
                 {/* Replace with your picture */}
-                <img
+                <Image
                   src="/profile.webp"
                   alt="Praise Oluwasakin - Frontend Developer and Shopify Expert"
-                  className="object-cover w-full h-full"
+                  width={400}
+                  height={400}
+                  className="object-cover w-[95%] h-[95%] rounded-2xl"
                 />
               </div>
             </div>
@@ -676,9 +678,11 @@ export default function PraisePortfolio() {
                         allowFullScreen
                       ></iframe>
                     ) : p.media ? (
-                      <img
+                      <Image
                         src={p.media}
                         alt={p.title}
+                        width={400}
+                        height={400}
                         className="w-full h-full object-cover"
                       />
                     ) : (

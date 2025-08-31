@@ -528,11 +528,11 @@ export default function PraisePortfolio() {
                 </h3>
                 <div className="flex flex-wrap gap-3 mb-6">
                   <Link
-                    href="https://modrn-mensch.com"
+                    href="https://modern-mensch.com"
                     target="_blank"
                     className="px-5 py-2 rounded-full bg-blue-600 text-white font-medium shadow-md hover:bg-blue-700 hover:shadow-lg transition-transform transform hover:-translate-y-1"
                   >
-                    modrn-mensch.com
+                    modern-mensch.com
                   </Link>
                   <Link
                     href="https://www.tbells4freshkitchen.com/"

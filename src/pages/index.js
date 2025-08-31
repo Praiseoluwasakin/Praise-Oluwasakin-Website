@@ -488,19 +488,19 @@ export default function PraisePortfolio() {
             className="w-full bg-gray-50 py-16 px-6 md:px-12 lg:px-20"
           >
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-              {/* Image Placeholder */}
+              {/* Image */}
               <div className="flex justify-center">
                 <div className="w-84 h-84 md:w-96 md:h-96 rounded-2xl flex justify-center items-center overflow-hidden shadow-xl bg-gray-200">
-                  {/* Replace with your picture */}
                   <Image
                     src="/profile.webp"
-                    alt="Praise Oluwasakin - Frontend Developer and Shopify Expert"
+                    alt="Praise Oluwasakin - Frontend Developer, Shopify Expert, and Mentor"
                     width={400}
-                    height={400}
-                    className="object-cover w-[95%] h-[95%] rounded-2xl"
+                    height={500}
+                    className="object-cover object-top md:object-top w-[95%] h-[100%] rounded-2xl"
                   />
                 </div>
               </div>
+
               {/* Content */}
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -508,63 +508,57 @@ export default function PraisePortfolio() {
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
                   Hi, I’m <strong>Praise Oluwasakin</strong>, the founder of{" "}
-                  <span className="font-semibold">mayorCodes</span>. I’m a{" "}
-                  <strong>Front-end Developer</strong> and{" "}
-                  <strong>Shopify Expert</strong> with a passion for
-                  transforming ideas into functional, elegant, and impactful
-                  digital experiences.
+                  <span className="font-semibold">mayorCodes</span>. I’m a
+                  passionate <strong>Front-end Developer</strong>,{" "}
+                  <strong>Shopify Expert</strong>, and <strong>Mentor</strong>,
+                  dedicated to creating visually stunning, fast, and
+                  SEO-friendly websites that help brands grow online.
                 </p>
 
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  I specialize in modern web technologies including{" "}
-                  <em>HTML, CSS, JavaScript, React, Next.js, Tailwind CSS,</em>{" "}
-                  and <em>Liquid</em>. My focus is building high-performing,
-                  SEO-friendly, and visually appealing Shopify stores tailored
-                  to unique brands.
+                  My journey began in church, where I first learned HTML and CSS
+                  using nothing but inline styling. That humble start sparked my
+                  hunger to learn modern web development deeply. When I finally
+                  got the chance to study a structured course, I gave it my all
+                  — and since then, I’ve been on a mission to master the craft
+                  of building pixel-perfect, user-focused websites. For me, if a
+                  website doesn’t align with a brand’s <em>UX vision</em>, then
+                  the work isn’t complete.
                 </p>
 
-                <h3 className="text-2xl font-semibold text-gray-900 mb-3">
-                  Recent Projects
-                </h3>
-                <div className="flex flex-wrap gap-3 mb-6">
-                  <Link
-                    href="https://modern-mensch.com"
-                    target="_blank"
-                    className="px-5 py-2 rounded-full bg-blue-600 text-white font-medium shadow-md hover:bg-blue-700 hover:shadow-lg transition-transform transform hover:-translate-y-1"
-                  >
-                    modern-mensch.com
-                  </Link>
-                  <Link
-                    href="https://www.tbells4freshkitchen.com/"
-                    target="_blank"
-                    className="px-5 py-2 rounded-full bg-blue-600 text-white font-medium shadow-md hover:bg-blue-700 hover:shadow-lg transition-transform transform hover:-translate-y-1"
-                  >
-                    tbells4freshkitchen.com
-                  </Link>
-                  <Link
-                    href="https://mybooksiebox.com"
-                    target="_blank"
-                    className="px-5 py-2 rounded-full bg-blue-600 text-white font-medium shadow-md hover:bg-blue-700 hover:shadow-lg transition-transform transform hover:-translate-y-1"
-                  >
-                    mybooksiebox.com
-                  </Link>
-                  <Link
-                    href="https://pineapplephone.com"
-                    target="_blank"
-                    className="px-5 py-2 rounded-full bg-blue-600 text-white font-medium shadow-md hover:bg-blue-700 hover:shadow-lg transition-transform transform hover:-translate-y-1"
-                  >
-                    pineapplephone.com
-                  </Link>
-                </div>
+                <p className="text-lg text-gray-700 leading-relaxed mb-4">
+                  Over the years, I’ve built a wide range of projects — from
+                  custom Shopify stores to responsive React and Next.js web apps
+                  — using
+                  <em> Tailwind CSS, Liquid, and JavaScript</em>. My goal is
+                  always the same: to transform ideas into high-performing,
+                  engaging digital experiences that stand out.
+                </p>
+
+                <p className="text-lg text-gray-700 leading-relaxed mb-4">
+                  Beyond code, I serve as the{" "}
+                  <strong>
+                    Director of Skills and Development at JCIN OAU
+                  </strong>
+                  , where I lead initiatives that empower young people with
+                  digital skills. I’ve also mentored many upcoming developers,
+                  helping them grow their technical and problem-solving
+                  abilities. Leadership and mentorship are core to who I am.
+                </p>
 
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  Beyond coding, I lead a choir at{" "}
-                  <strong>Kingdom Life Chapel</strong>, volunteer with{" "}
-                  <strong>JCI</strong> and <strong>GIVC</strong>, and serve as a{" "}
-                  <strong>Cowrywise Ambassador</strong> to promote financial
-                  literacy. At my core, I’m a Christian driven by{" "}
-                  <strong>excellence, service, and growth</strong> — always
-                  striving to create value and lasting impact.
+                  I’m also a lifelong learner — I don’t rest until a task is
+                  done and done well. Whether I’m developing a Shopify store,
+                  optimizing a site for SEO and performance, or guiding a mentee
+                  through their first project, I approach everything with{" "}
+                  <strong>excellence, service, and growth</strong> in mind.
+                </p>
+
+                <p className="mt-6 text-lg text-gray-700 leading-relaxed font-medium">
+                  If you’re looking for a <strong>frontend developer</strong> or{" "}
+                  <strong>Shopify expert in Nigeria</strong> who blends
+                  creativity, technical expertise, and leadership, I’d love to
+                  work with you to bring your vision to life.
                 </p>
               </div>
             </div>

@@ -115,15 +115,15 @@ export default function PraisePortfolio() {
   const allProjects = [
     {
       title: "Wancemo Startup Website",
-      desc: "Developed a scalable, cloud-integrated website with smooth performance and modern design.",
+      desc: "A modern startup website built with Next.js, Tailwind CSS, and Azure integration. Designed for scalability and smooth performance, the site delivers a professional online presence with responsive layouts, optimized loading, and a clean UI tailored for growth-focused businesses.",
       tags: ["Next.js", "Tailwind CSS", "Azure"],
       url: "https://www.wancemo.co.za/",
-      media: "/wancemo.png", // fallback image
+      media: "/wancemo.png",
       Icon: Smartphone,
     },
     {
       title: "Modern-Mensch Shopify Store",
-      desc: "Created a sleek, interactive Shopify storefront with engaging visuals and streamlined navigation.",
+      desc: "A sleek and conversion-optimized Shopify storefront featuring engaging visuals, interactive navigation, and custom Liquid theme development. My work focused on streamlining the shopping experience, implementing reusable components, and ensuring fast-loading performance across devices.",
       tags: ["Shopify", "Liquid", "React"],
       url: "https://www.modern-mensch.com/",
       media: "/modern-mensch.png",
@@ -131,7 +131,7 @@ export default function PraisePortfolio() {
     },
     {
       title: "Tbells 4 Fresh Shopify Store",
-      desc: "Developed a modern and scalable Shopify storefront for Tbells 4 Fresh.",
+      desc: "A scalable Shopify storefront built for a fresh foods brand, featuring custom theme development, optimized product pages, and streamlined checkout flows. The site is designed with a mobile-first approach and SEO-friendly content to support both brand storytelling and customer conversions.",
       tags: ["Shopify", "Liquid", "Custom Themes"],
       url: "https://www.tbells4freshkitchen.com/",
       media: "/tbells.png",
@@ -139,15 +139,15 @@ export default function PraisePortfolio() {
     },
     {
       title: "Xpense Project",
-      desc: "Worked as a frontend developer to build a clean and responsive finance tracking app.",
+      desc: "A finance tracking app built with React and Next.js, focused on clean design and responsive layouts. The dashboard enables users to manage expenses with ease, featuring interactive UI components, real-time updates, and a scalable front-end architecture.",
       tags: ["React", "Next.js", "Tailwind"],
-      url: null, // no live link yet
+      url: null,
       media: "/xpense.png",
       Icon: Globe,
     },
     {
       title: "My Portfolio Website",
-      desc: "Personal portfolio showcasing my skills, projects and experience.",
+      desc: "A fully responsive personal portfolio built with Next.js and Tailwind CSS, showcasing my skills, experience, and projects. Optimized for performance and SEO, the site includes smooth animations, reusable components, and a clean structure designed to attract potential clients and employers.",
       tags: ["Next.js", "Tailwind CSS"],
       url: "https://praise-oluwasakin-website.vercel.app/",
       media: "/portfolio.png",
@@ -155,7 +155,7 @@ export default function PraisePortfolio() {
     },
     {
       title: "Chamak Society Shopify Store",
-      desc: "Developed a user-friendly, accessible Shopify website tailored to client needs.",
+      desc: "A user-friendly Shopify storefront designed with accessibility and client customization in mind. Built with Liquid and custom CSS, the site delivers a smooth shopping experience with clear navigation, curated collections, and responsive layouts for mobile-first performance.",
       tags: ["Shopify", "Liquid", "CSS"],
       url: null,
       media: null,
@@ -163,9 +163,170 @@ export default function PraisePortfolio() {
     },
     {
       title: "Examplifyam Shopify Store",
-      desc: "Designed and implemented a professional Shopify store with pixel-perfect design.",
+      desc: "A professional Shopify e-commerce store developed with pixel-perfect design and optimized for conversions. Leveraging Liquid and Git-based workflows, I delivered a theme that balances modern visuals, fast loading speeds, and an intuitive product browsing experience.",
       tags: ["Shopify", "Liquid", "Git"],
-      url: null, // no link available
+      url: null,
+      media: null,
+      Icon: ShoppingCart,
+    },
+    // --- new projects to append to allProjects (do NOT replace existing array) ---
+    {
+      title: "Change Automotive Group",
+      desc: "B2B / B2C automotive parts storefront with a broad product catalogue and multi-region currency selector. The site focuses on industrial and safety supplies with a checkout-first UX (cart & checkout links prominent), product collections, and quick add interactions. I noted strong product listing and filtering affordances and payment badges (Shop Pay, Apple Pay). This is an e-commerce-first experience that prioritises discoverability of SKUs and a streamlined checkout flow.",
+      tags: ["Shopify", "E-commerce", "Product Catalog"],
+      url: "https://www.changeautomotive-group.com/",
+      media: null,
+      Icon: ShoppingCart,
+    },
+    {
+      title: "ÈYÍ DÁRA NATURALS",
+      desc: "Skincare / haircare brand storefront built around product storytelling and subscription upsells. The homepage leads with hero merchandising, curated product categories (hair, accessories), subscription/promo blocks and content-driven sections (blog/‘Wellness Notes’) to support conversion and retention. Checkout signals and localized currency UX show a polished merchant setup aimed at DTC growth.",
+      tags: ["Shopify", "E-commerce", "Subscriptions"],
+      url: "https://www.eyidaranaturals.com/",
+      media: null,
+      Icon: ShoppingCart,
+    },
+    {
+      title: "King Amajigs",
+      desc: "Small e-commerce/music / merch storefront that features product merchandising and artist-brand storytelling. The site combines product galleries with calls-to-action for purchases and likely focuses on quick conversion for a niche audience (fans / buyers). The structure is commerce-forward with product detail emphasis and brand-centric messaging.",
+      tags: ["E-commerce", "Merch Store"],
+      url: "https://www.kingamajigs.com/",
+      media: null,
+      Icon: ShoppingCart,
+    },
+    {
+      title: "Goshen Garden",
+      desc: "Garden / lifestyle brand site using imagery-led product and service pages. The homepage and landing content centre around product categories and service highlights — strong visual hierarchy and clear shop entry points. Great candidate for focused category landing pages and SEO-driven collection content.",
+      tags: ["E-commerce", "Content-driven"],
+      url: "https://www.goshengarden.com",
+      media: null,
+      Icon: Globe,
+    },
+    {
+      title: "Atelier Ndigo (Ndigo Studio)",
+      desc: "Design and atelier portfolio site that highlights studio services, projects and bespoke product lines. The site reads as a studio-first presence with strong portfolio case study sections and contact/consultation flows for custom work.",
+      tags: ["Portfolio", "Studio Website"],
+      url: "https://www.ndigo-studio.com",
+      media: null,
+      Icon: Globe,
+    },
+    {
+      title: "Airofit",
+      desc: "Product-focused marketing site for a hardware + app product (breathing trainer). The homepage features product hero, benefits, and likely integrations with product pages and support resources. This is a marketing & product site built to convert interest into product purchases or app installs — good candidate for high-performance static/SSR tech.",
+      tags: ["Marketing Site", "Hardware Product"],
+      url: "https://airofit.com",
+      media: null,
+      Icon: Smartphone,
+    },
+    {
+      title: "Yelibana Fashions",
+      desc: "Women’s clothing brand site emphasising product categories, editorial imagery and fit guidance. Product pages and category browsing are front-and-centre with clear product CTAs — the UX looks tuned for fashion conversions and discovery.",
+      tags: ["E-commerce", "Fashion"],
+      url: "http://yelibanafashions.com",
+      media: null,
+      Icon: ShoppingCart,
+    },
+    {
+      title: "Menopalz",
+      desc: "Wellness & community site focused on menopause education and membership offerings. The site combines editorial content, a membership product and shop elements. It’s set up as a DTC experience with online payments and content-to-conversion flows.",
+      tags: ["Shopify", "Membership", "Content"],
+      url: "https://menopalz.com",
+      media: null,
+      Icon: ShoppingCart,
+    },
+    {
+      title: "Buy Plotter Supplies",
+      desc: "Niche e-commerce store for printing / plotter materials and supplies. The product catalog is the primary focus with clear product cards and quick purchase flows for B2B / trade customers. The UX emphasises SKU details and technical specs.",
+      tags: ["E-commerce", "Product Catalog"],
+      url: "https://buyplottersupplies.com/",
+      media: null,
+      Icon: ShoppingCart,
+    },
+    {
+      title: "D. Lee Luxury Home",
+      desc: "Home decor & textile storefront with strong product presentation (large imagery, variant options) and service/consultation calls to action. The site pairs merchandising with designer consult flows — a hybrid commerce + service experience.",
+      tags: ["Propel Commerce", "E-commerce", "Interiors"],
+      url: "https://dleeluxuryhome.com/",
+      media: null,
+      Icon: Globe,
+    },
+    {
+      title: "Leanne Marchand Studio",
+      desc: "Interior design portfolio and services site focused on lead generation and visual case studies. The site highlights project galleries, service descriptions and contact forms for consultations — built to showcase finished work and convert design inquiries.",
+      tags: ["Portfolio", "Lead Generation"],
+      url: "https://www.leannemarchandstudio.com/",
+      media: null,
+      Icon: Globe,
+    },
+    {
+      title: "Pineapple Phones",
+      desc: "Consumer electronics / accessories storefront with clear product merchandising and category browsing. The site is focused on product discovery and quick access to product pages and support resources.",
+      tags: ["E-commerce", "Product Site"],
+      url: "https://pineapplephones.com/",
+      media: null,
+      Icon: ShoppingCart,
+    },
+    {
+      title: "Benard Fitness",
+      desc: "Fitness equipment and accessories shop with product grouping for calisthenics and training gear. The UX emphasises product specs, customer reviews and product imagery to drive purchase confidence for fitness shoppers.",
+      tags: ["E-commerce", "Fitness"],
+      url: "https://benardfitness.com/",
+      media: null,
+      Icon: Globe,
+    },
+    {
+      title: "Urban Apparel",
+      desc: "Apparel brand storefront likely serving niche fashion audiences — product-led pages, lookbook visuals and direct-to-consumer CTA. Good candidate for a modular theme that emphasises merchandising and editorial content.",
+      tags: ["E-commerce", "Fashion"],
+      url: "https://urbanapparel.info/",
+      media: null,
+      Icon: ShoppingCart,
+    },
+    {
+      title: "Booksie — MyBooksieBox",
+      desc: "Curated children’s book subscription and e-commerce store focused on African children’s literature. The site is built to combine subscription merchandising with single-product purchases, strong visual product cards, and international shipping options.",
+      tags: ["Shopify", "Subscriptions", "E-commerce"],
+      url: "https://www.mybooksiebox.com/",
+      media: null,
+      Icon: ShoppingCart,
+    },
+    {
+      title: "Violett USK",
+      desc: "Australian fashion / lifestyle storefront with product-led pages and editorial styling — the site focuses on product imagery and category organization for conversion.",
+      tags: ["E-commerce", "Fashion"],
+      url: "https://violettusk.com.au/",
+      media: null,
+      Icon: ShoppingCart,
+    },
+    {
+      title: "Exemplifyam",
+      desc: "An e-commerce / brand storefront (site currently reachable) with product and category content. The merchant experience centres on product merchandising and conversion-focused CTAs.",
+      tags: ["E-commerce"],
+      url: "https://exemplifyam.com/",
+      media: null,
+      Icon: ShoppingCart,
+    },
+    {
+      title: "Dada Poppins",
+      desc: "UK-based online shop for toys / gift products — imagery-led product pages, simple category flows and a checkout-centric UX targeted at gift buyers.",
+      tags: ["E-commerce"],
+      url: "https://dadapoppins.co.uk/",
+      media: null,
+      Icon: ShoppingCart,
+    },
+    {
+      title: "Amin's Cuisine",
+      desc: "Local restaurant site with menu promotion, testimonials, and reservation/takeaway flows. The site is configured to take orders / payments and pair menu content with quick CTAs for bookings or pickups.",
+      tags: ["Shopify", "Restaurant", "Menu"],
+      url: "https://aminscuisine.com",
+      media: null,
+      Icon: Globe,
+    },
+    {
+      title: "Limon Healing Collection",
+      desc: "Wellness & bodycare product storefront showcasing curated product lines with editorial product storytelling and subscription/promotional messaging. The site combines visuals with product detail pages for DTC conversions.",
+      tags: ["E-commerce", "Wellness"],
+      url: "https://www.limonhealingcollection.com",
       media: null,
       Icon: ShoppingCart,
     },
@@ -668,10 +829,10 @@ export default function PraisePortfolio() {
                 {projectsToShow.map((p) => (
                   <article
                     key={p.title}
-                    className="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition"
+                    className="bg-white rounded-2xl p-6 flex flex-col justify-between items-center  shadow hover:shadow-lg transition"
                   >
                     {/* Media Preview */}
-                    <div className="h-40 rounded-lg bg-slate-100 flex items-center justify-center mb-4 overflow-hidden">
+                    <div className="h-40 w-full rounded-lg bg-slate-100 flex items-center justify-center mb-4 overflow-hidden">
                       {p.media &&
                       (p.media.endsWith(".mp4") || p.media.endsWith(".mov")) ? (
                         <video
@@ -729,7 +890,7 @@ export default function PraisePortfolio() {
                       ))}
                     </div>
 
-                    <div className="mt-4 flex">
+                    <div className="mt-4 w-full flex">
                       {p.url ? (
                         <a
                           href={p.url}

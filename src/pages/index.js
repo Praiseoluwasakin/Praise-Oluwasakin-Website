@@ -32,6 +32,7 @@ import {
   Linkedin,
   Github,
   ExternalLink,
+  Sparkles,
 } from "lucide-react";
 
 export const metadata = {
@@ -329,6 +330,19 @@ export default function PraisePortfolio() {
     },
   ];
 
+  const skills = [
+    { Icon: Code, label: "HTML" },
+    { Icon: Palette, label: "CSS" },
+    { Icon: Zap, label: "JavaScript" },
+    { Icon: RefreshCw, label: "React" },
+    { Icon: ArrowRight, label: "Next.js" },
+    { Icon: Wind, label: "Tailwind" },
+    { Icon: Code, label: "Git" },
+    { Icon: Github, label: "GitHub" },
+    { Icon: Brush, label: "Bootstrap" },
+    { Icon: Code, label: "TypeScript" },
+    { Icon: ShoppingCart, label: "Liquid" },
+  ];
   const [showAll, setShowAll] = useState(false);
 
   const projectsToShow = showAll ? allProjects : allProjects.slice(0, 6);
@@ -723,89 +737,70 @@ export default function PraisePortfolio() {
           </section>
 
           {/* SKILLS */}
-          <section id="skills" className="bg-white py-20">
-            <div className="mx-auto max-w-6xl px-6">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold">
-                    Skills & Expertise
-                  </h2>
-                  <p className="mt-2 text-gray-600 max-w-xl">
-                    A focused toolkit for building modern, maintainable web apps
-                    and high-converting e‑commerce stores.
-                  </p>
-                </div>
-                <div className="flex gap-3">
-                  <span className="px-3 py-1 rounded-full bg-gradient-to-r from-slate-100 to-slate-50 text-sm">
-                    Shopify
-                  </span>
-                  <span className="px-3 py-1 rounded-full bg-gradient-to-r from-amber-100 to-yellow-50 text-sm">
-                    E‑commerce
-                  </span>
-                  <span className="px-3 py-1 rounded-full bg-gradient-to-r from-indigo-100 to-purple-100 text-sm">
-                    Frontend
-                  </span>
-                </div>
+          <section
+            id="skills"
+            className="bg-gradient-to-br from-slate-50 to-white py-20 relative overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10 pointer-events-none" />
+            <div className="mx-auto max-w-6xl px-6 relative z-10">
+              <div className="text-center">
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 flex items-center justify-center gap-2">
+                  Skills & Expertise{" "}
+                  <Sparkles className="w-7 h-7 text-amber-500" />
+                </h2>
+                <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                  My toolkit blends creativity with technical excellence to
+                  deliver engaging, high-performance web experiences.
+                </p>
               </div>
 
-              <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
-                {[
-                  { Icon: Code, label: "HTML" },
-                  { Icon: Palette, label: "CSS" },
-                  { Icon: Zap, label: "JavaScript" },
-                  { Icon: RefreshCw, label: "React" },
-                  { Icon: ArrowRight, label: "Next.js" },
-                  { Icon: Wind, label: "Tailwind" },
-                  { Icon: Code, label: "Git" },
-                  { Icon: Github, label: "GitHub" },
-                  { Icon: Brush, label: "Bootstrap" },
-                  { Icon: Code, label: "TypeScript" },
-                  { Icon: ShoppingCart, label: "Liquid" },
-                ].map(({ Icon, label }) => (
+              <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                {skills.map(({ Icon, label }) => (
                   <div
                     key={label}
-                    className="group bg-gradient-to-br from-white to-slate-50 p-4 rounded-2xl shadow hover:shadow-xl transform transition"
+                    className="group relative bg-white rounded-2xl shadow-md hover:shadow-xl border border-slate-100 p-6 flex flex-col items-center justify-center transition transform hover:-translate-y-1 hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-50 to-purple-50 flex items-center justify-center group-hover:from-indigo-500 group-hover:to-purple-600 transition">
-                        <Icon className="w-6 h-6 text-indigo-600 group-hover:text-white" />
-                      </div>
-                      <div>
-                        <div className="text-sm font-semibold">{label}</div>
-                        <div className="text-xs text-gray-500">Experienced</div>
-                      </div>
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center mb-3 group-hover:from-indigo-500 group-hover:to-purple-600 transition">
+                      <Icon className="w-7 h-7 text-indigo-600 group-hover:text-white" />
                     </div>
+                    <div className="text-base font-semibold text-gray-900">
+                      {label}
+                    </div>
+                    <div className="text-xs text-gray-500 mt-1">Proficient</div>
+                    <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-indigo-200 transition pointer-events-none" />
                   </div>
                 ))}
               </div>
 
-              <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-white shadow">
+              <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-white shadow-md hover:shadow-lg transition">
                   <div className="flex items-center gap-3">
                     <Users className="w-6 h-6 text-blue-600" />
                     <div className="font-semibold">Team Collaboration</div>
                   </div>
                   <p className="mt-3 text-gray-600">
-                    Work closely with designers, PMs and stakeholders to ship
-                    polished features.
+                    Work closely with designers, PMs, and stakeholders to ship
+                    polished features efficiently.
                   </p>
                 </div>
-                <div className="p-6 rounded-2xl bg-gradient-to-br from-green-50 to-white shadow">
+                <div className="p-8 rounded-2xl bg-gradient-to-br from-green-50 to-white shadow-md hover:shadow-lg transition">
                   <div className="flex items-center gap-3">
                     <Lightbulb className="w-6 h-6 text-green-600" />
                     <div className="font-semibold">Problem Solving</div>
                   </div>
                   <p className="mt-3 text-gray-600">
-                    Break down complex problems and deliver pragmatic solutions.
+                    Break down complex problems into elegant, maintainable
+                    solutions.
                   </p>
                 </div>
-                <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-50 to-white shadow">
+                <div className="p-8 rounded-2xl bg-gradient-to-br from-purple-50 to-white shadow-md hover:shadow-lg transition">
                   <div className="flex items-center gap-3">
                     <Clock className="w-6 h-6 text-purple-600" />
                     <div className="font-semibold">Time Management</div>
                   </div>
                   <p className="mt-3 text-gray-600">
-                    Organised, deadline-driven and focused on high-impact work.
+                    Organized, deadline-driven, and focused on delivering value
+                    fast.
                   </p>
                 </div>
               </div>

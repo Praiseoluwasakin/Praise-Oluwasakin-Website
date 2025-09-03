@@ -20,17 +20,14 @@ import {
   ArrowRight,
   Wind,
   Brush,
-  ShoppingBag,
-  Droplet,
+  ShoppingCart,
   Users,
   Lightbulb,
   Clock,
-  ShoppingCart,
   Smartphone,
   Globe,
   MessageCircle,
   MessageSquare,
-  Twitter,
   Instagram,
   Linkedin,
   Github,
@@ -759,6 +756,11 @@ export default function PraisePortfolio() {
                   { Icon: RefreshCw, label: "React" },
                   { Icon: ArrowRight, label: "Next.js" },
                   { Icon: Wind, label: "Tailwind" },
+                  { Icon: Code, label: "Git" },
+                  { Icon: Github, label: "GitHub" },
+                  { Icon: Brush, label: "Bootstrap" },
+                  { Icon: Code, label: "TypeScript" },
+                  { Icon: ShoppingCart, label: "Liquid" },
                 ].map(({ Icon, label }) => (
                   <div
                     key={label}
@@ -829,84 +831,96 @@ export default function PraisePortfolio() {
                 {projectsToShow.map((p) => (
                   <article
                     key={p.title}
-                    className="bg-white rounded-2xl p-6 flex flex-col justify-between items-center  shadow hover:shadow-lg transition"
+                    className="group bg-white rounded-2xl p-0 flex flex-col justify-between shadow hover:shadow-2xl transform hover:-translate-y-1 transition overflow-hidden"
                   >
-                    {/* Media Preview */}
-                    <div className="h-40 w-full rounded-lg bg-slate-100 flex items-center justify-center mb-4 overflow-hidden">
-                      {p.media &&
-                      (p.media.endsWith(".mp4") || p.media.endsWith(".mov")) ? (
-                        <video
-                          src={p.media}
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          className="w-full h-full object-cover"
-                        />
-                      ) : p.media && p.media.includes("youtube.com") ? (
-                        <iframe
-                          src={
-                            p.media.includes("watch?v=")
-                              ? p.media
-                                  .replace("watch?v=", "embed/")
-                                  .split("&")[0] // clean embed link
-                              : p.media
-                                  .replace(
-                                    "youtu.be/",
-                                    "www.youtube.com/embed/"
-                                  )
-                                  .split("?")[0]
-                          }
-                          title={p.title}
-                          className="w-full h-full object-cover"
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        ></iframe>
-                      ) : p.media ? (
-                        <Image
-                          src={p.media}
-                          alt={p.title}
-                          width={400}
-                          height={400}
-                          className="w-full h-full object-cover"
-                        />
+                    <div className="relative w-full h-44 bg-slate-100">
+                      {p.media ? (
+                        p.media.endsWith(".mp4") || p.media.endsWith(".mov") ? (
+                          <video
+                            src={p.media}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <Image
+                            src={p.media}
+                            alt={p.title}
+                            fill
+                            className="object-cover"
+                          />
+                        )
                       ) : (
-                        <p.Icon className="w-10 h-10 text-gray-500" />
+                        <div className="w-full h-full flex items-center justify-center">
+                          <p.Icon className="w-10 h-10 text-gray-400" />
+                        </div>
                       )}
+
+                      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/35 to-transparent pointer-events-none" />
+
+                      <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition">
+                        {p.url && (
+                          <a
+                            href={p.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="bg-white/80 hover:bg-white rounded-full p-2 shadow"
+                          >
+                            <ExternalLink className="w-4 h-4 text-slate-900" />
+                          </a>
+                        )}
+                      </div>
                     </div>
 
-                    <h3 className="text-xl font-semibold">{p.title}</h3>
-                    <p className="mt-2 text-gray-600">{p.desc}</p>
+                    <div className="p-5">
+                      <h3 className="text-lg font-semibold text-slate-900">
+                        {p.title}
+                      </h3>
 
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {p.tags.map((t) => (
-                        <span
-                          key={t}
-                          className="text-xs px-3 py-1 bg-slate-100 rounded-full"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
+                      <div
+                        className="mt-2 text-sm text-gray-600"
+                        style={{
+                          maxHeight: 72,
+                          overflow: "hidden",
+                          position: "relative",
+                        }}
+                      >
+                        <p>{p.desc}</p>
+                        <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+                      </div>
 
-                    <div className="mt-4 w-full flex">
-                      {p.url ? (
-                        <a
-                          href={p.url}
-                          target="_blank"
-                          className="flex-1 inline-flex items-center justify-center gap-2 bg-slate-900 text-white py-2 rounded-md text-sm hover:bg-slate-800 transition"
-                        >
-                          Live
-                        </a>
-                      ) : (
-                        <button
-                          disabled
-                          className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-300 text-gray-600 py-2 rounded-md text-sm cursor-not-allowed"
-                        >
-                          Unavailable
-                        </button>
-                      )}
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {p.tags.map((t) => (
+                          <span
+                            key={t}
+                            className="text-xs px-3 py-1 bg-slate-100 rounded-full"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="mt-4 flex gap-3">
+                        {p.url ? (
+                          <a
+                            href={p.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-2 flex-1 justify-center bg-slate-900 text-white py-2 rounded-md text-sm hover:bg-slate-800 transition"
+                          >
+                            View live
+                          </a>
+                        ) : (
+                          <button
+                            disabled
+                            className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-200 text-gray-500 py-2 rounded-md text-sm cursor-not-allowed"
+                          >
+                            Unavailable
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </article>
                 ))}

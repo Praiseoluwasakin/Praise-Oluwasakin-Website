@@ -9,6 +9,8 @@ import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import { FaXTwitter } from "react-icons/fa6";
 
+import { NextSeo } from "next-seo";
+
 import {
   Menu,
   X,
@@ -33,6 +35,7 @@ import {
   Github,
   ExternalLink,
   Sparkles,
+  Check,
 } from "lucide-react";
 
 export const metadata = {
@@ -94,8 +97,8 @@ export const metadata = {
     title: "Praise Oluwasakin | Frontend & Shopify Developer",
     description:
       "Frontend & Shopify developer building scalable, modern, and SEO-friendly web solutions. Available for freelance and contract work.",
-    images: ["/profile.webp"], // Same image as Open Graph
-    creator: "@mayorcodes", // your X/Twitter handle
+    images: ["/profile.webp"],
+    creator: "@mayorcodes",
   },
   icons: {
     icon: "/profile.webp",
@@ -439,6 +442,33 @@ export default function PraisePortfolio() {
 
   return (
     <>
+      {/* Per-page SEO (NextSeo) */}
+      <NextSeo
+        title="Praise Oluwasakin | Frontend & Shopify Developer"
+        description="Frontend Developer & Shopify Expert — building clean, responsive, and conversion-focused eCommerce and web experiences with React, Next.js, TailwindCSS, and Shopify Liquid."
+        canonical="https://praise-oluwasakin-website.vercel.app/"
+        openGraph={{
+          url: "https://praise-oluwasakin-website.vercel.app/",
+          title: "Praise Oluwasakin | Frontend & Shopify Developer",
+          description:
+            "Frontend Developer & Shopify Expert — building clean, responsive, and conversion-focused eCommerce and web experiences with React, Next.js, TailwindCSS, and Shopify Liquid.",
+          images: [
+            {
+              url: "https://praise-oluwasakin-website.vercel.app/profile.webp",
+              width: 1200,
+              height: 630,
+              alt: "Praise Oluwasakin Portfolio",
+            },
+          ],
+          site_name: "Praise Oluwasakin Portfolio",
+        }}
+        twitter={{
+          handle: "@mayorcodes",
+          site: "@mayorcodes",
+          cardType: "summary_large_image",
+        }}
+      />
+
       <Head>
         <title>Praise Oluwasakin | Frontend & Shopify Developer</title>
         <meta
@@ -464,6 +494,7 @@ export default function PraisePortfolio() {
         <meta property="og:image" content="/profile.webp" />
         <meta name="twitter:creator" content="@mayorcodes" />
       </Head>
+
       <div className="min-h-screen bg-[#1e73be] bg-[url('/background.jpeg')] bg-cover bg-center font-sans text-gray-800">
         <Analytics />
         {/* Custom small utility styles that are easier to manage here */}
@@ -655,82 +686,149 @@ export default function PraisePortfolio() {
             </div>
           </section>
 
+          {/* ABOUT */}
           <section
             id="about"
             className="w-full bg-gray-50 py-16 px-6 md:px-12 lg:px-20"
           >
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
               {/* Image */}
-              <div className="flex justify-center">
+              <div className="flex justify-center order-1 md:order-1">
                 <div className="w-84 h-84 md:w-96 md:h-96 rounded-2xl flex justify-center items-center overflow-hidden shadow-xl bg-gray-200">
                   <Image
                     src="/profile.webp"
-                    alt="Praise Oluwasakin - Frontend Developer, Shopify Expert, and Mentor"
+                    alt="Praise Oluwasakin - Frontend Developer & Shopify Expert"
                     width={400}
                     height={500}
-                    className="object-cover object-top md:object-top w-[95%] h-[100%] rounded-2xl"
+                    className="object-cover object-top w-[95%] h-[100%] rounded-2xl"
                   />
                 </div>
               </div>
 
               {/* Content */}
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                  About Me
+              <div className="order-2 md:order-2">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                  Hey, I’m Praise Oluwasakin a Frontend Developer & Shopify
+                  Expert.
                 </h2>
-                <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  Hi, I’m <strong>Praise Oluwasakin</strong>, the founder of{" "}
-                  <span className="font-semibold">mayorCodes</span>. I’m a
-                  passionate <strong>Front-end Developer</strong>,{" "}
-                  <strong>Shopify Expert</strong>, and <strong>Mentor</strong>,
-                  dedicated to creating visually stunning, fast, and
-                  SEO-friendly websites that help brands grow online.
-                </p>
 
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  My journey began in church, where I first learned HTML and CSS
-                  using nothing but inline styling. That humble start sparked my
-                  hunger to learn modern web development deeply. When I finally
-                  got the chance to study a structured course, I gave it my all
-                  — and since then, I’ve been on a mission to master the craft
-                  of building pixel-perfect, user-focused websites. For me, if a
-                  website doesn’t align with a brand’s <em>UX vision</em>, then
-                  the work isn’t complete.
+                  <span className="font-medium">Born on October 15</span>, I
+                  specialize in creating clean, responsive, and user-friendly
+                  web experiences. I combine modern frontend tools like{" "}
+                  <strong>React, Next.js, TailwindCSS</strong>, and{" "}
+                  <strong>JavaScript</strong> with Shopify’s
+                  <strong> Liquid</strong> to build eCommerce stores that are
+                  not just beautiful, but also functional and
+                  conversion-focused.
                 </p>
 
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  Over the years, I’ve built a wide range of projects — from
-                  custom Shopify stores to responsive React and Next.js web apps
-                  — using
-                  <em> Tailwind CSS, Liquid, and JavaScript</em>. My goal is
-                  always the same: to transform ideas into high-performing,
-                  engaging digital experiences that stand out.
+                  Over time, I’ve worked on multiple Shopify and custom projects
+                  for clients across industries, helping them launch, grow, and
+                  optimize their online presence. A few of my recent works
+                  include <strong>Modern Mensch</strong>,{" "}
+                  <strong>MyBooksieBox</strong>, and
+                  <strong> Pineapple Phone</strong> each tailored to the
+                  client’s brand and customer journey.
                 </p>
+
+                <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                  Beyond development, I value clarity, communication, and
+                  consistency in delivering results. My background as a student
+                  of Building at <strong>Obafemi Awolowo University</strong>{" "}
+                  also strengthens my approach to structure, detail, and
+                  user-experience design.
+                </p>
+
+                {/* Feature / skills list */}
+                <div className="mt-4 mb-6">
+                  <div className="text-sm text-gray-500 mb-2">
+                    📌 What I bring to the table
+                  </div>
+
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <li className="flex items-start gap-3">
+                      <span className="mt-1">
+                        <div className="w-7 h-7 rounded-md bg-amber-50 flex items-center justify-center shadow-sm">
+                          <Check className="w-4 h-4 text-amber-600" />
+                        </div>
+                      </span>
+                      <div>
+                        <div className="font-semibold text-gray-900">
+                          Core expertise
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          HTML, CSS, JavaScript, React, Next.js, Liquid,
+                          TailwindCSS
+                        </div>
+                      </div>
+                    </li>
+
+                    <li className="flex items-start gap-3">
+                      <span className="mt-1">
+                        <div className="w-7 h-7 rounded-md bg-amber-50 flex items-center justify-center shadow-sm">
+                          <Check className="w-4 h-4 text-amber-600" />
+                        </div>
+                      </span>
+                      <div>
+                        <div className="font-semibold text-gray-900">
+                          Shopify & custom themes
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          Proven track record with custom Shopify themes and
+                          stores
+                        </div>
+                      </div>
+                    </li>
+
+                    <li className="flex items-start gap-3">
+                      <span className="mt-1">
+                        <div className="w-7 h-7 rounded-md bg-amber-50 flex items-center justify-center shadow-sm">
+                          <Check className="w-4 h-4 text-amber-600" />
+                        </div>
+                      </span>
+                      <div>
+                        <div className="font-semibold text-gray-900">
+                          Detail-oriented mindset
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          Passion for creating seamless, accessible web
+                          experiences
+                        </div>
+                      </div>
+                    </li>
+
+                    <li className="flex items-start gap-3">
+                      <span className="mt-1">
+                        <div className="w-7 h-7 rounded-md bg-amber-50 flex items-center justify-center shadow-sm">
+                          <Check className="w-4 h-4 text-amber-600" />
+                        </div>
+                      </span>
+                      <div>
+                        <div className="font-semibold text-gray-900">
+                          SEO & performance
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          Strong focus on SEO, performance optimization, and
+                          responsive design
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
 
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  Beyond code, I serve as the{" "}
-                  <strong>
-                    Director of Skills and Development at JCIN OAU
-                  </strong>
-                  , where I lead initiatives that empower young people with
-                  digital skills. I’ve also mentored many upcoming developers,
-                  helping them grow their technical and problem-solving
-                  abilities. Leadership and mentorship are core to who I am.
+                  When I’m not coding, I serve in leadership roles including
+                  choir coordination and volunteering with organizations like{" "}
+                  <strong>JCI</strong> and <strong>GIVC</strong> which sharpen
+                  my teamwork, organization, and communication skills.
                 </p>
 
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  I’m also a lifelong learner — I don’t rest until a task is
-                  done and done well. Whether I’m developing a Shopify store,
-                  optimizing a site for SEO and performance, or guiding a mentee
-                  through their first project, I approach everything with{" "}
-                  <strong>excellence, service, and growth</strong> in mind.
-                </p>
-
-                <p className="mt-6 text-lg text-gray-700 leading-relaxed font-medium">
-                  If you’re looking for a <strong>frontend developer</strong> or{" "}
-                  <strong>Shopify expert in Nigeria</strong> who blends
-                  creativity, technical expertise, and leadership, I’d love to
-                  work with you to bring your vision to life.
+                <p className="mt-4 text-lg text-gray-700 leading-relaxed font-medium">
+                  💡 I’m currently available for freelance work, collaborations,
+                  or full-time opportunities where I can help brands scale their
+                  online presence.
                 </p>
               </div>
             </div>

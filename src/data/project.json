@@ -1,0 +1,198 @@
+[
+  {
+    "title": "Wancemo Startup Website",
+    "slug": "wancemo-startup-website",
+    "desc": "A modern startup website built with Next.js, Tailwind CSS, and Azure integration.",
+    "url": "[https://www.wancemo.co.za/](https://www.wancemo.co.za/)",
+    "image": "/wancemo.png"
+  },
+  {
+    "title": "Modern-Mensch Shopify Store",
+    "slug": "modern-mensch-shopify-store",
+    "desc": "A sleek and conversion-optimized Shopify storefront featuring custom Liquid theme development.",
+    "url": "[https://www.modern-mensch.com/](https://www.modern-mensch.com/)",
+    "image": "/modern-mensch.png"
+  },
+  {
+    "title": "Tbells 4 Fresh Shopify Store",
+    "slug": "tbells-4-fresh-shopify-store",
+    "desc": "A scalable Shopify storefront built for a fresh foods brand with optimized product pages and checkout flows.",
+    "url": "[https://www.tbells4freshkitchen.com/](https://www.tbells4freshkitchen.com/)",
+    "image": "/tbells.png"
+  },
+  {
+    "title": "Xpense Project",
+    "slug": "xpense-project",
+    "desc": "A finance tracking app built with React and Next.js, focused on clean design and responsive layouts.",
+    "url": null,
+    "image": "/xpense.png"
+  },
+  {
+    "title": "My Portfolio Website",
+    "slug": "my-portfolio-website",
+    "desc": "A fully responsive personal portfolio built with Next.js and Tailwind CSS.",
+    "url": "[https://praise-oluwasakin-website.vercel.app/](https://praise-oluwasakin-website.vercel.app/)",
+    "image": "/portfolio.png"
+  },
+  {
+    "title": "Chamak Society Shopify Store",
+    "slug": "chamak-society-shopify-store",
+    "desc": "A user-friendly Shopify storefront designed with accessibility and client customization in mind.",
+    "url": null,
+    "image": null
+  },
+  {
+    "title": "Examplifyam Shopify Store",
+    "slug": "examplifyam-shopify-store",
+    "desc": "A professional Shopify e-commerce store developed with pixel-perfect design and optimized for conversions.",
+    "url": null,
+    "image": null
+  },
+  {
+    "title": "Change Automotive Group",
+    "slug": "change-automotive-group",
+    "desc": "B2B/B2C automotive parts storefront with a broad product catalogue, multi-region currency selector, and checkout-first UX.",
+    "url": "[https://www.changeautomotive-group.com/](https://www.changeautomotive-group.com/)",
+    "image": null
+  },
+  {
+    "title": "ÈYÍ DÁRA NATURALS",
+    "slug": "eyi-dara-naturals",
+    "desc": "Skincare and haircare brand storefront built around product storytelling and subscription upsells.",
+    "url": "[https://www.eyidaranaturals.com/](https://www.eyidaranaturals.com/)",
+    "image": null
+  },
+  {
+    "title": "King Amajigs",
+    "slug": "king-amajigs",
+    "desc": "Small e-commerce / music merch storefront featuring product merchandising and artist-brand storytelling.",
+    "url": "[https://www.kingamajigs.com/](https://www.kingamajigs.com/)",
+    "image": null
+  },
+  {
+    "title": "Goshen Garden",
+    "slug": "goshen-garden",
+    "desc": "Garden and lifestyle brand site using imagery-led product and service pages with strong visual hierarchy.",
+    "url": "[https://www.goshengarden.com](https://www.goshengarden.com)",
+    "image": null
+  },
+  {
+    "title": "Atelier Ndigo (Ndigo Studio)",
+    "slug": "atelier-ndigo",
+    "desc": "Design and atelier portfolio site that highlights studio services, projects and bespoke product lines.",
+    "url": "[https://www.ndigo-studio.com](https://www.ndigo-studio.com)",
+    "image": null
+  },
+  {
+    "title": "Airofit",
+    "slug": "airofit",
+    "desc": "Product-focused marketing site for a hardware + app product (breathing trainer) featuring product hero and benefits.",
+    "url": "[https://airofit.com](https://airofit.com)",
+    "image": null
+  },
+  {
+    "title": "Yelibana Fashions",
+    "slug": "yelibana-fashions",
+    "desc": "Women’s clothing brand site emphasising product categories, editorial imagery and fit guidance.",
+    "url": "[http://yelibanafashions.com](http://yelibanafashions.com)",
+    "image": null
+  },
+  {
+    "title": "Menopalz",
+    "slug": "menopalz",
+    "desc": "Wellness & community site focused on menopause education and membership offerings with editorial content.",
+    "url": "[https://menopalz.com](https://menopalz.com)",
+    "image": null
+  },
+  {
+    "title": "Buy Plotter Supplies",
+    "slug": "buy-plotter-supplies",
+    "desc": "Niche e-commerce store for printing and plotter materials with SKU-focused product catalog.",
+    "url": "[https://buyplottersupplies.com/](https://buyplottersupplies.com/)",
+    "image": null
+  },
+  {
+    "title": "D. Lee Luxury Home",
+    "slug": "d-lee-luxury-home",
+    "desc": "Home decor & textile storefront with strong product presentation and consultation calls to action.",
+    "url": "[https://dleeluxuryhome.com/](https://dleeluxuryhome.com/)",
+    "image": null
+  },
+  {
+    "title": "Leanne Marchand Studio",
+    "slug": "leanne-marchand-studio",
+    "desc": "Interior design portfolio and services site focused on lead generation and visual case studies.",
+    "url": "[https://www.leannemarchandstudio.com/](https://www.leannemarchandstudio.com/)",
+    "image": null
+  },
+  {
+    "title": "Pineapple Phones",
+    "slug": "pineapple-phones",
+    "desc": "Consumer electronics and accessories storefront with clear product merchandising and category browsing.",
+    "url": "[https://pineapplephones.com/](https://pineapplephones.com/)",
+    "image": null
+  },
+  {
+    "title": "Benard Fitness",
+    "slug": "benard-fitness",
+    "desc": "Fitness equipment and accessories shop with product grouping for calisthenics and training gear.",
+    "url": "[https://benardfitness.com/](https://benardfitness.com/)",
+    "image": null
+  },
+  {
+    "title": "Urban Apparel",
+    "slug": "urban-apparel",
+    "desc": "Apparel brand storefront with product-led pages, lookbook visuals and direct-to-consumer CTAs.",
+    "url": "[https://urbanapparel.info/](https://urbanapparel.info/)",
+    "image": null
+  },
+  {
+    "title": "Booksie — MyBooksieBox",
+    "slug": "booksie-mybooksiebox",
+    "desc": "Curated children’s book subscription and e-commerce store focused on African children’s literature.",
+    "url": "[https://www.mybooksiebox.com/](https://www.mybooksiebox.com/)",
+    "image": null
+  },
+  {
+    "title": "Violett USK",
+    "slug": "violett-usk",
+    "desc": "Australian fashion and lifestyle storefront with product-led pages and editorial styling.",
+    "url": "[https://violettusk.com.au/](https://violettusk.com.au/)",
+    "image": null
+  },
+  {
+    "title": "Exemplifyam",
+    "slug": "exemplifyam",
+    "desc": "An e-commerce brand storefront with product and category content focused on merchandising.",
+    "url": "[https://exemplifyam.com/](https://exemplifyam.com/)",
+    "image": null
+  },
+  {
+    "title": "Exemplifyam (duplicate entry variant)",
+    "slug": "exemplifyam-variant",
+    "desc": "Alternate listing for Exemplifyam/Examplifyam from the projects array (keep or remove as needed).",
+    "url": null,
+    "image": null
+  },
+  {
+    "title": "Dada Poppins",
+    "slug": "dada-poppins",
+    "desc": "UK-based online shop for toys and gift products — imagery-led product pages and simple category flows.",
+    "url": "[https://dadapoppins.co.uk/](https://dadapoppins.co.uk/)",
+    "image": null
+  },
+  {
+    "title": "Amin's Cuisine",
+    "slug": "amins-cuisine",
+    "desc": "Local restaurant site with menu promotion, testimonials, and reservation/takeaway flows.",
+    "url": "[https://aminscuisine.com](https://aminscuisine.com)",
+    "image": null
+  },
+  {
+    "title": "Limon Healing Collection",
+    "slug": "limon-healing-collection",
+    "desc": "Wellness & bodycare product storefront showcasing curated product lines with editorial storytelling.",
+    "url": "[https://www.limonhealingcollection.com](https://www.limonhealingcollection.com)",
+    "image": null
+  }
+]

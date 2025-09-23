@@ -1,10 +1,8 @@
-/** next-sitemap.config.js */
-module.exports = {
-  siteUrl: "https://praise-oluwasakin-website.vercel.app",
-  generateRobotsTxt: true,
-  changefreq: "weekly",
-  priority: 0.7,
+/** @type {import('next-sitemap').IConfig} */
+const config = {
+  siteUrl: "https://praise-oluwasakin-website.vercel.app", // your live URL
+  generateRobotsTxt: true, // generates robots.txt
   sitemapSize: 5000,
-  // optional: exclude: ['/secret-page'],
-  // optional: transform to customize entries
 };
+
+module.exports = config;

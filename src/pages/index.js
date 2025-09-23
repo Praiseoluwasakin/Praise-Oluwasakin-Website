@@ -687,28 +687,54 @@ export default function PraisePortfolio() {
           </section>
 
           {/* ABOUT */}
+          {/* ABOUT — improved profile image UI */}
           <section
             id="about"
             className="w-full bg-gray-50 py-16 px-6 md:px-12 lg:px-20"
           >
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-              {/* Image */}
-              <div className="flex justify-center order-1 md:order-1">
-                <div className="w-84 h-84 md:w-96 md:h-96 rounded-2xl flex justify-center items-center overflow-hidden shadow-xl bg-gray-200">
-                  <Image
-                    src="/profile.webp"
-                    alt="Praise Oluwasakin - Frontend Developer & Shopify Expert"
-                    width={400}
-                    height={500}
-                    className="object-cover object-top w-[95%] h-[100%] rounded-2xl"
+              {/* Image column */}
+              <div className="flex justify-center">
+                <div className="relative w-80 sm:w-84 md:w-96 lg:w-[420px] h-[340px]">
+                  {/* Decorative accent card (rotated) */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute -left-6 -top-6 w-full h-full rounded-3xl bg-amber-300/20 blur-sm transform rotate-3 shadow-sm"
                   />
+
+                  {/* Slight border card behind the image for depth */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute -right-4 -bottom-4 w-full h-full rounded-3xl bg-white/90 border border-amber-50 shadow-md"
+                  />
+
+                  {/* Main image card */}
+                  <div className="relative w-full h-full rounded-3xl overflow-hidden ring-2 ring-amber-50/60 bg-gradient-to-br from-white to-amber-50 transform transition-transform duration-350 hover:scale-105 shadow-xl">
+                    <Image
+                      src="/profile.webp"
+                      alt="Praise Oluwasakin — Frontend Developer & Shopify Expert"
+                      fill
+                      sizes="(max-width: 768px) 320px, (max-width: 1024px) 380px, 420px"
+                      className="object-cover object-top"
+                      priority
+                    />
+
+                    {/* soft vignette overlay for better portrait focus */}
+                    <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/6 via-transparent to-transparent" />
+
+                    {/* small badge bottom-left */}
+                    <div className="absolute left-4 bottom-4 flex items-center gap-2 bg-white/90 px-3 py-1 rounded-full text-xs font-medium text-slate-800 shadow-sm">
+                      <span className="w-2 h-2 rounded-full bg-green-500 inline-block" />
+                      Available for work
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="order-2 md:order-2">
+              {/* Content column */}
+              <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                  Hey, I’m Praise Oluwasakin a Frontend Developer & Shopify
+                  Hey, I’m Praise Oluwasakin — a Frontend Developer & Shopify
                   Expert.
                 </h2>
 
@@ -727,9 +753,9 @@ export default function PraisePortfolio() {
                   Over time, I’ve worked on multiple Shopify and custom projects
                   for clients across industries, helping them launch, grow, and
                   optimize their online presence. A few of my recent works
-                  include <strong>Modern Mensch</strong>,{" "}
+                  include <strong>Modrn Mensch</strong>,{" "}
                   <strong>MyBooksieBox</strong>, and
-                  <strong> Pineapple Phone</strong> each tailored to the
+                  <strong> Pineapple Phone</strong> — each tailored to the
                   client’s brand and customer journey.
                 </p>
 
@@ -741,7 +767,6 @@ export default function PraisePortfolio() {
                   user-experience design.
                 </p>
 
-                {/* Feature / skills list */}
                 <div className="mt-4 mb-6">
                   <div className="text-sm text-gray-500 mb-2">
                     📌 What I bring to the table
@@ -819,9 +844,9 @@ export default function PraisePortfolio() {
                 </div>
 
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  When I’m not coding, I serve in leadership roles including
+                  When I’m not coding, I serve in leadership roles — including
                   choir coordination and volunteering with organizations like{" "}
-                  <strong>JCI</strong> and <strong>GIVC</strong> which sharpen
+                  <strong>JCI</strong> and <strong>GIVC</strong> — which sharpen
                   my teamwork, organization, and communication skills.
                 </p>
 

@@ -672,7 +672,7 @@ export default function PraisePortfolio() {
                   <div className="bg-white/6 backdrop-blur-md border border-white/8 rounded-xl p-4">
                     <div className="text-sm text-white/75">Experience</div>
                     <div className="mt-1 font-medium text-white">
-                      Shopify & Frontend (4+ years)
+                      Shopify & Frontend (5+ years)
                     </div>
                   </div>
                 </div>

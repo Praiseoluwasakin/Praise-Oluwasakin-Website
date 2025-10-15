@@ -4,7 +4,7 @@ import { app, analytics } from "../firebase";
 import { logEvent } from "firebase/analytics";
 import Link from "next/link";
 import Head from "next/head";
-
+import BirthdayBalloons from "@/components/birthday-balloons";
 import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import { FaXTwitter } from "react-icons/fa6";
@@ -497,6 +497,7 @@ export default function PraisePortfolio() {
 
       <div className="min-h-screen bg-[#1e73be] bg-[url('/background.jpeg')] bg-cover bg-center font-sans text-gray-800">
         <Analytics />
+        <BirthdayBalloons />
         {/* Custom small utility styles that are easier to manage here */}
         <style>{`
         @keyframes floatY { 0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)} }

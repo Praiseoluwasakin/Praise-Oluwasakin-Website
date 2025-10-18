@@ -1276,8 +1276,8 @@ export default function PraisePortfolio() {
                   Ready to Collaborate?
                 </h2>
                 <p className="mt-4 text-xl text-gray-300 max-w-3xl mx-auto font-light">
-                  Available for freelance and contract work — let's discuss your
-                  next Shopify or full-stack project.
+                  Available for freelance and contract work — let&apos;s discuss
+                  your next Shopify or full-stack project.
                 </p>
               </div>
 

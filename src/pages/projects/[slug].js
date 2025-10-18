@@ -1,5 +1,4 @@
-// pages/projects/[slug].js
-import fs from "fs";
+import { promises as fs } from "fs"; // FIX: Changed 'fs' to '{ promises as fs }'
 import path from "path";
 import Image from "next/image";
 import { NextSeo } from "next-seo";
@@ -74,7 +73,8 @@ export default function ProjectPage({ project }) {
 
 export async function getStaticPaths() {
   const file = path.join(process.cwd(), "data", "projects.json");
-  const raw = fs.readFileSync(file, "utf8");
+  // FIX: Changed fs.readFileSync to asynchronous fs.readFile
+  const raw = await fs.readFile(file, "utf8");
   const projects = JSON.parse(raw);
 
   const paths = projects.map((p) => ({ params: { slug: p.slug } }));
@@ -84,7 +84,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const file = path.join(process.cwd(), "data", "projects.json");
-  const raw = fs.readFileSync(file, "utf8");
+  // FIX: Changed fs.readFileSync to asynchronous fs.readFile
+  const raw = await fs.readFile(file, "utf8");
   const projects = JSON.parse(raw);
   const project = projects.find((p) => p.slug === params.slug) || null;
 

@@ -207,6 +207,12 @@ export default function PraisePortfolio() {
 
   const socialLinks = [
     {
+      href: "https://www.upwork.com/freelancers/~01f7c3f6c2fdd0c680",
+      Icon: ExternalLink,
+      color: "bg-emerald-600 hover:bg-emerald-700",
+      label: "Upwork",
+    },
+    {
       href: "https://wa.me/2349158418618",
       Icon: MessageCircle,
       color: "bg-green-600 hover:bg-green-700",
@@ -1330,6 +1336,27 @@ export default function PraisePortfolio() {
                           >
                             Download My Resume
                           </button>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <ExternalLink className="w-6 h-6 text-amber-400 mt-1" />
+                        <div>
+                          <p className="font-semibold text-lg">
+                            Preferred Hiring Method
+                          </p>
+                          <a
+                            href="https://www.upwork.com/freelancers/~01f7c3f6c2fdd0c680"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-indigo-100 hover:text-white transition underline"
+                          >
+                            Hire me on Upwork
+                            <ExternalLink className="w-4 h-4" />
+                          </a>
+                          <p className="mt-1 text-sm text-indigo-100/80">
+                            Secure contracts, clear milestones, and my preferred
+                            way to start new projects.
+                          </p>
                         </div>
                       </div>
                     </div>

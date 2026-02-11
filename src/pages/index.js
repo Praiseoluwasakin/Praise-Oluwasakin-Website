@@ -795,7 +795,7 @@ export default function PraisePortfolio() {
         <main className="pt-28">
           <section
             id="home"
-            className="relative overflow-hidden min-h-screen pt-32 md:pt-40 pb-24"
+            className="relative overflow-hidden min-h-[80vh] pt-24 md:pt-32 pb-20 flex items-center"
           >
             <div className="absolute inset-0 -z-10 bg-gradient-to-br from-indigo-800 via-purple-900 to-slate-900" />{" "}
             {/* Darker, richer background */}
@@ -1271,23 +1271,24 @@ export default function PraisePortfolio() {
           {/* CONTACT */}
           <section
             id="contact"
-            className="py-20 bg-slate-900 relative overflow-hidden"
+            className="py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-900 relative overflow-hidden"
           >
-            <div className="mx-auto max-w-6xl px-6">
-              <div className="text-center mb-16">
-                <span className="inline-block px-4 py-1.5 rounded-full bg-amber-500 text-sm font-semibold text-slate-900 tracking-wider">
+            <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top,_#334155_0,_transparent_55%),radial-gradient(circle_at_bottom,_#4f46e5_0,_transparent_55%)]" />
+            <div className="relative mx-auto max-w-6xl px-6">
+              <div className="text-center mb-14">
+                <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/40 text-sm font-semibold text-emerald-200 tracking-wider">
                   Get in Touch
                 </span>
-                <h2 className="text-4xl md:text-5xl font-extrabold text-white mt-3">
-                  Ready to Collaborate?
+                <h2 className="text-4xl md:text-5xl font-extrabold text-white mt-4">
+                  Let&apos;s build something great
                 </h2>
-                <p className="mt-4 text-xl text-gray-300 max-w-3xl mx-auto font-light">
-                  Available for freelance and contract work — let&apos;s discuss
-                  your next Shopify or full-stack project.
+                <p className="mt-4 text-lg text-slate-200 max-w-3xl mx-auto font-light">
+                  Tell me a bit about your project, timeline, and goals. I&apos;ll reply personally
+                  to <span className="font-semibold">praiseoluwasakin@gmail.com</span>.
                 </p>
               </div>
 
-              <div className="bg-white rounded-3xl shadow-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-2">
+              <div className="bg-white/95 backdrop-blur-xl border border-slate-100/60 rounded-3xl shadow-[0_24px_80px_rgba(15,23,42,0.65)] overflow-hidden grid grid-cols-1 lg:grid-cols-2">
                 {/* LEFT COLUMN: Contact Info & Socials */}
                 <div className="p-8 md:p-12 bg-indigo-700 text-white flex flex-col justify-between">
                   <div>
@@ -1385,104 +1386,131 @@ export default function PraisePortfolio() {
                 </div>
 
                 {/* RIGHT COLUMN: Contact Form */}
-                <div className="p-8 md:p-12">
+                <div className="p-8 md:p-12 bg-slate-50">
                   <form
                     onSubmit={handleFormSubmit}
-                    className="space-y-6"
-                    action="YOUR_FORM_SUBMISSION_ENDPOINT" // IMPORTANT: Replace this placeholder
-                    method="POST"
+                    className="space-y-7"
                   >
                     {/* Inline confirmation message rendered from state */}
                     {submissionMessage && (
                       <div
                         id="confirmation-message"
-                        className="rounded-md bg-green-50 border border-green-200 text-green-800 px-4 py-2 text-sm"
+                        className="rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 px-4 py-3 text-sm font-medium flex items-center gap-2"
                       >
-                        {submissionMessage}
+                        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-white text-xs">
+                          ✓
+                        </span>
+                        <span>{submissionMessage}</span>
                       </div>
                     )}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       {/* Name Input */}
-                      <div className="input-group">
-                        <label htmlFor="name" className="sr-only">
+                      <div>
+                        <label
+                          htmlFor="name"
+                          className="block text-sm font-medium text-slate-700"
+                        >
                           Your Name
                         </label>
-                        <User className="w-5 h-5 text-gray-400" />
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleFormChange}
-                          placeholder="Your Name"
-                          required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-amber-500 focus:border-amber-500 text-gray-900 placeholder-gray-500"
-                        />
+                        <div className="mt-2 relative">
+                          <User className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                          <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleFormChange}
+                            placeholder="e.g. Product Manager at Shopify brand"
+                            required
+                            className="w-full rounded-2xl border border-slate-200 bg-white pl-9 pr-3 py-3 text-sm text-slate-900 placeholder-slate-400 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
+                          />
+                        </div>
                       </div>
 
                       {/* Email Input */}
-                      <div className="input-group">
-                        <label htmlFor="email" className="sr-only">
-                          Your Email
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className="block text-sm font-medium text-slate-700"
+                        >
+                          Work Email
                         </label>
-                        <Mail className="w-5 h-5 text-gray-400" />
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleFormChange}
-                          placeholder="Your Email"
-                          required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-amber-500 focus:border-amber-500 text-gray-900 placeholder-gray-500"
-                        />
+                        <div className="mt-2 relative">
+                          <Mail className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleFormChange}
+                            placeholder="you@company.com"
+                            required
+                            className="w-full rounded-2xl border border-slate-200 bg-white pl-9 pr-3 py-3 text-sm text-slate-900 placeholder-slate-400 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
+                          />
+                        </div>
                       </div>
                     </div>
 
                     {/* Subject Input */}
-                    <div className="input-group">
-                      <label htmlFor="subject" className="sr-only">
-                        Subject
+                    <div>
+                      <label
+                        htmlFor="subject"
+                        className="block text-sm font-medium text-slate-700"
+                      >
+                        Project Subject
                       </label>
-                      <FileText className="w-5 h-5 text-gray-400" />
-                      <input
-                        type="text"
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleFormChange}
-                        placeholder="Project Subject or Inquiry Type"
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-amber-500 focus:border-amber-500 text-gray-900 placeholder-gray-500"
-                      />
+                      <div className="mt-2 relative">
+                        <FileText className="pointer-events-none absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
+                        <input
+                          type="text"
+                          id="subject"
+                          name="subject"
+                          value={formData.subject}
+                          onChange={handleFormChange}
+                          placeholder="Shopify store redesign, new landing page, etc."
+                          required
+                          className="w-full rounded-2xl border border-slate-200 bg-white pl-9 pr-3 py-3 text-sm text-slate-900 placeholder-slate-400 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
+                        />
+                      </div>
                     </div>
 
                     {/* Message Textarea */}
-                    <div className="input-group textarea-group">
-                      <label htmlFor="message" className="sr-only">
-                        Your Message
+                    <div>
+                      <label
+                        htmlFor="message"
+                        className="block text-sm font-medium text-slate-700"
+                      >
+                        Project Details
                       </label>
-                      <MessageSquare className="w-5 h-5 text-gray-400" />
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleFormChange}
-                        placeholder="Tell me about your project or opportunity..."
-                        rows="5"
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-amber-500 focus:border-amber-500 text-gray-900 placeholder-gray-500"
-                      />
+                      <div className="mt-2 relative">
+                        <MessageSquare className="pointer-events-none absolute left-3 top-3.5 h-4 w-4 text-slate-400" />
+                        <textarea
+                          id="message"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleFormChange}
+                          placeholder="Share scope, budget range, and ideal timeline so I can respond with helpful next steps."
+                          rows="5"
+                          required
+                          className="w-full rounded-2xl border border-slate-200 bg-white pl-9 pr-3 py-3 text-sm text-slate-900 placeholder-slate-400 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition resize-none"
+                        />
+                      </div>
                     </div>
 
-                    {/* Submit Button */}
-                    <div>
+                    {/* Submit Button + helper text */}
+                    <div className="space-y-3">
                       <button
                         type="submit"
-                        className="w-full flex items-center justify-center gap-2 bg-indigo-700 text-white py-3 rounded-full text-base font-bold shadow-lg hover:bg-indigo-600 transition transform hover:scale-[1.005]"
+                        className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-indigo-700 text-white py-3.5 text-sm font-semibold shadow-lg hover:bg-indigo-600 hover:shadow-xl transition transform hover:scale-[1.01]"
                       >
-                        Send Message <ArrowRight className="w-5 h-5" />
+                        Send Message
+                        <ArrowRight className="w-4 h-4" />
                       </button>
+                      <p className="text-xs text-slate-500 text-center">
+                        This form currently doesn&apos;t send emails yet — see below for how to
+                        connect it to your inbox via Formspree, EmailJS, or a simple Next.js API
+                        route.
+                      </p>
                     </div>
                   </form>
                 </div>

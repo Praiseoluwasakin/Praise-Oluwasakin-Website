@@ -1394,7 +1394,6 @@ export default function PraisePortfolio() {
                   <form
                     action="https://formspree.io/f/xykdkokv"
                     method="POST"
-                    onSubmit={handleFormSubmit}
                     className="space-y-7"
                   >
                     {/* Inline confirmation message rendered from state */}

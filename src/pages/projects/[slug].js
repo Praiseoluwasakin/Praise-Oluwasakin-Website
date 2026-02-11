@@ -72,8 +72,8 @@ export default function ProjectPage({ project }) {
 }
 
 export async function getStaticPaths() {
-  const file = path.join(process.cwd(), "data", "projects.json");
-  // FIX: Changed fs.readFileSync to asynchronous fs.readFile
+  // Read from the actual location of projects.json: src/data/projects.json
+  const file = path.join(process.cwd(), "src", "data", "projects.json");
   const raw = await fs.readFile(file, "utf8");
   const projects = JSON.parse(raw);
 
@@ -83,8 +83,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const file = path.join(process.cwd(), "data", "projects.json");
-  // FIX: Changed fs.readFileSync to asynchronous fs.readFile
+  // Read from the actual location of projects.json: src/data/projects.json
+  const file = path.join(process.cwd(), "src", "data", "projects.json");
   const raw = await fs.readFile(file, "utf8");
   const projects = JSON.parse(raw);
   const project = projects.find((p) => p.slug === params.slug) || null;

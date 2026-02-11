@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "postbuild": "node scripts/generate-sitemap-from-projects.js",
+    "postbuild": "node src/scripts/generate-sitemap-from-projects.js",
     "lint": "eslint",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d out"

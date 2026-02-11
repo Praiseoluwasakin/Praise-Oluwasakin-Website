@@ -75,7 +75,8 @@ export default function Projects({ projects }) {
 }
 
 export async function getStaticProps() {
-  const file = path.join(process.cwd(), "data", "projects.json");
+  // Read from the actual location of projects.json: src/data/projects.json
+  const file = path.join(process.cwd(), "src", "data", "projects.json");
   const raw = fs.readFileSync(file, "utf8");
   const projects = JSON.parse(raw);
 

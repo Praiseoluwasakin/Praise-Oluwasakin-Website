@@ -175,7 +175,7 @@ export default function PraisePortfolio() {
 
     // set in-component confirmation message (safer than touching DOM directly)
     setSubmissionMessage(
-      "Thank you for your message! We will be in touch soon."
+      "Thank you for your message! We will be in touch soon.",
     );
     // optionally clear form
     setFormData({ name: "", email: "", message: "", subject: "" });
@@ -533,7 +533,7 @@ export default function PraisePortfolio() {
           }
         });
       },
-      { threshold: 0.45 }
+      { threshold: 0.45 },
     );
 
     sections.forEach((s) => obs.observe(s));
@@ -769,8 +769,8 @@ export default function PraisePortfolio() {
                         ? "bg-blue-100 text-[#1e73be]"
                         : "bg-white/15 text-white" // Stronger active background in dark mode
                       : headerLight
-                      ? "text-slate-700 hover:bg-slate-100"
-                      : "text-gray-200 hover:bg-white/6"
+                        ? "text-slate-700 hover:bg-slate-100"
+                        : "text-gray-200 hover:bg-white/6"
                   }`}
                 >
                   {n.label}
@@ -1283,8 +1283,12 @@ export default function PraisePortfolio() {
                   Let&apos;s build something great
                 </h2>
                 <p className="mt-4 text-lg text-slate-200 max-w-3xl mx-auto font-light">
-                  Tell me a bit about your project, timeline, and goals. I&apos;ll reply personally
-                  to <span className="font-semibold">praiseoluwasakin@gmail.com</span>.
+                  Tell me a bit about your project, timeline, and goals.
+                  I&apos;ll reply personally to{" "}
+                  <span className="font-semibold">
+                    praiseoluwasakin@gmail.com
+                  </span>
+                  .
                 </p>
               </div>
 
@@ -1388,6 +1392,8 @@ export default function PraisePortfolio() {
                 {/* RIGHT COLUMN: Contact Form */}
                 <div className="p-8 md:p-12 bg-slate-50">
                   <form
+                    action="https://formspree.io/f/xykdkokv"
+                    method="POST"
                     onSubmit={handleFormSubmit}
                     className="space-y-7"
                   >
@@ -1507,9 +1513,9 @@ export default function PraisePortfolio() {
                         <ArrowRight className="w-4 h-4" />
                       </button>
                       <p className="text-xs text-slate-500 text-center">
-                        This form currently doesn&apos;t send emails yet — see below for how to
-                        connect it to your inbox via Formspree, EmailJS, or a simple Next.js API
-                        route.
+                        This form currently doesn&apos;t send emails yet — see
+                        below for how to connect it to your inbox via Formspree,
+                        EmailJS, or a simple Next.js API route.
                       </p>
                     </div>
                   </form>

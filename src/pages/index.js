@@ -605,13 +605,13 @@ export default function PraisePortfolio() {
       {/* Per-page SEO (NextSeo) */}
       <NextSeo
         title="Praise Oluwasakin | Frontend & Shopify Developer"
-        description="Frontend Developer & Shopify Expert — building clean, responsive, and conversion-focused eCommerce and web experiences with React, Next.js, TailwindCSS, and Shopify Liquid."
+        description="Frontend & Shopify developer helping e‑commerce brands ship fast, conversion-focused stores with React, Next.js, Tailwind CSS, and Shopify Liquid."
         canonical="https://praise-oluwasakin-website.vercel.app/"
         openGraph={{
           url: "https://praise-oluwasakin-website.vercel.app/",
           title: "Praise Oluwasakin | Frontend & Shopify Developer",
           description:
-            "Frontend Developer & Shopify Expert — building clean, responsive, and conversion-focused eCommerce and web experiences with React, Next.js, TailwindCSS, and Shopify Liquid.",
+            "Frontend & Shopify developer helping e‑commerce and DTC brands launch modern, high-performing storefronts with React, Next.js, Tailwind CSS, and Shopify.",
           images: [
             {
               url: "https://praise-oluwasakin-website.vercel.app/profile.webp",
@@ -633,7 +633,7 @@ export default function PraisePortfolio() {
         <title>Praise Oluwasakin | Frontend & Shopify Developer</title>
         <meta
           name="description"
-          content="Praise Oluwasakin is a frontend and Shopify developer specializing in modern, scalable web solutions."
+          content="Frontend & Shopify developer helping e‑commerce brands ship fast, conversion-focused stores with React, Next.js, Tailwind CSS, and Shopify Liquid."
         />
         <meta
           name="keywords"
@@ -679,13 +679,17 @@ export default function PraisePortfolio() {
               className="flex items-center gap-3 no-underline group"
             >
               <div
-                className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-colors group-hover:scale-[1.05] duration-200 ${
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors group-hover:scale-[1.05] duration-200 overflow-hidden ${
                   headerLight
-                    ? "bg-gradient-to-br from-yellow-300 to-amber-400 text-slate-800"
-                    : "bg-gradient-to-br from-yellow-300 to-amber-400 text-[#111827]"
+                    ? "bg-white border border-slate-200"
+                    : "bg-slate-900/80 border border-white/20"
                 }`}
               >
-                PO
+                <img
+                  src="/logo.png"
+                  alt="Praise Oluwasakin logo"
+                  className="w-8 h-8 object-contain"
+                />
               </div>
               <div className="hidden md:block">
                 {/* Updated text color for better contrast in dark mode */}
@@ -1539,8 +1543,12 @@ export default function PraisePortfolio() {
                     href="#home"
                     className="flex items-center gap-3 no-underline group"
                   >
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold bg-gradient-to-br from-yellow-300 to-amber-400 text-slate-800">
-                      PO
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden bg-white border border-slate-200">
+                      <img
+                        src="/logo.png"
+                        alt="Praise Oluwasakin logo"
+                        className="w-8 h-8 object-contain"
+                      />
                     </div>
                     <span className="text-xl font-bold text-white">
                       Praise Oluwasakin

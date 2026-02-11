@@ -6,13 +6,13 @@ import { DefaultSeo } from "next-seo";
 const DEFAULT_SEO = {
   title: "Praise Oluwasakin | Frontend & Shopify Developer",
   description:
-    "Praise Oluwasakin is a frontend & Shopify developer building clean, responsive, and conversion-focused eCommerce and web experiences.",
+    "Frontend & Shopify developer helping e‑commerce brands ship fast, conversion-focused stores with React, Next.js, Tailwind CSS, and Shopify Liquid.",
   openGraph: {
     type: "website",
     url: "https://praise-oluwasakin-website.vercel.app/",
     title: "Praise Oluwasakin | Frontend & Shopify Developer",
     description:
-      "Praise Oluwasakin is a frontend & Shopify developer building clean, responsive, and conversion-focused eCommerce and web experiences.",
+      "Frontend & Shopify developer helping e‑commerce and DTC brands ship modern, high-performing storefronts with React, Next.js, Tailwind CSS, and Shopify.",
     images: [
       {
         url: "https://praise-oluwasakin-website.vercel.app/profile.webp",
@@ -21,6 +21,7 @@ const DEFAULT_SEO = {
         alt: "Praise Oluwasakin Portfolio Preview",
       },
     ],
+    site_name: "Praise Oluwasakin Portfolio",
   },
   twitter: {
     handle: "@mayorcodes",

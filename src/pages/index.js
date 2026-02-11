@@ -1397,7 +1397,11 @@ export default function PraisePortfolio() {
                     className="space-y-7"
                   >
                     {/* Redirect back to a clean thank-you page after successful submit */}
-                    <input type="hidden" name="_next" value="/thanks" />
+                    <input
+                      type="hidden"
+                      name="_next"
+                      value="https://praise-oluwasakin-website.vercel.app/thanks"
+                    />
                     {/* Inline confirmation message rendered from state */}
                     {submissionMessage && (
                       <div

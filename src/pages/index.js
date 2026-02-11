@@ -1396,6 +1396,8 @@ export default function PraisePortfolio() {
                     method="POST"
                     className="space-y-7"
                   >
+                    {/* Redirect back to a clean thank-you page after successful submit */}
+                    <input type="hidden" name="_next" value="/thanks" />
                     {/* Inline confirmation message rendered from state */}
                     {submissionMessage && (
                       <div

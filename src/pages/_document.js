@@ -7,6 +7,7 @@ export default function Document() {
         {/* Global meta tags */}
         <meta charSet="UTF-8" />
         <meta name="author" content="Praise Oluwasakin" />
+        <meta name="google-site-verification" content="_ps4i9Ooms-ueYZZZGNSBqmjEQFVFUpf32GDRvKOudI" />
 
         {/* Open Graph defaults */}
         <meta property="og:type" content="website" />

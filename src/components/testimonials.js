@@ -186,7 +186,7 @@ const Testimonials = () => {
 
                 {/* Testimonial Quote Text */}
                 <p className="text-slate-700 leading-relaxed text-[15px] font-medium pr-2 whitespace-pre-line">
-                  "{item.text}"
+                  &ldquo;{item.text}&rdquo;
                 </p>
               </div>
 

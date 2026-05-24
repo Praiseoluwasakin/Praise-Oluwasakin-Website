@@ -5,6 +5,7 @@ import { logEvent } from "firebase/analytics";
 import Link from "next/link";
 import Head from "next/head";
 import BirthdayBalloons from "@/components/birthday-balloons";
+import Testimonials from "@/components/testimonials";
 import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
 import { FaXTwitter } from "react-icons/fa6";
@@ -515,6 +516,7 @@ export default function PraisePortfolio() {
     "skills",
     "about",
     "projects",
+    "reviews",
     "blog",
     "contact",
   ]);
@@ -577,6 +579,7 @@ export default function PraisePortfolio() {
     { id: "about", label: "About" },
     { id: "skills", label: "Skills" },
     { id: "projects", label: "Projects" },
+    { id: "reviews", label: "Reviews" },
     { id: "contact", label: "Contact" },
   ];
 
@@ -1271,6 +1274,9 @@ export default function PraisePortfolio() {
               )}
             </div>
           </section>
+
+          {/* TESTIMONIALS */}
+          <Testimonials />
 
           {/* CONTACT */}
           <section

@@ -5,7 +5,7 @@ import { RiDoubleQuotesR } from "react-icons/ri";
 const testimonials = [
   {
     name: "All in Lid Team",
-    role: "E-commerce Founder",
+    role: "All In Lid Founder",
     project: "Shopify Store Ecom Optimization",
     rating: 5.0,
     text: "Working with Praise on the All in Lid store was a solid experience. He came in, did a full audit of the site before even starting, and put together a clear strategy doc so we were always on the same page. He understood what I needed, conversion focused with higher AOV, better Klaviyo flows, upsells, trust builders, the works. He worked on a duplicate theme so the live store never went down while ads were still running, which was huge for me. Anytime I had an idea he integrated it without hesitation and communicated every step of the way. If you need a Shopify dev who actually understands ecom and not just how to push buttons on a theme, Praise is your guy. 5 stars.",
@@ -15,7 +15,7 @@ const testimonials = [
   },
   {
     name: "Faith Olusakin",
-    role: "Lead Program Coordinator",
+    role: "Shopify Expert",
     project: "Church & Portfolio Websites",
     rating: 5.0,
     text: "Praise is genuinely one of the most hardworking and talented people I know. I've watched him grow right in front of me and the growth has been exceptional. He built our church website from scratch, handled every update I threw at him — no matter how last minute — and even surprised me with a personal portfolio website as a birthday gift without me asking. He works late nights, he communicates, and he never gives up even when things get complicated. I'm not just saying this because I know him personally. I'm saying it because I've seen the quality of his work firsthand across multiple projects. If you need someone who will genuinely care about your project and deliver, Praise is your person. I would recommend him to anyone without hesitation. 10/10 🤍",
@@ -25,14 +25,14 @@ const testimonials = [
   },
   {
     name: "Oluwadamilola Salako",
-    role: "Product Lead",
+    role: "Backend Developer",
     project: "Eau Deals & Cost to Baby",
     rating: 5.0,
     text: "I've worked with Praise across multiple projects now — Eau Deals, and Cost to Baby and he's been solid every single time. He jumps into codebases that aren't always clean, figures things out fast, and delivers. For Cost to Baby he was connecting to live API endpoints, sending detailed reports, and making sure the UI matched exactly what was needed. He communicates well, gives updates without you having to chase him, and when he can't make a call he'll send a loom video instead so you're never left in the dark. Balancing school and projects at the same time and still showing up the way he does says a lot. Easy to work with, genuinely skilled. 5 stars from me bruv 🔥",
     initials: "OS",
     tag: "Fullstack / API Integration",
     gradient: "from-amber-500 to-rose-600",
-  }
+  },
 ];
 
 const Testimonials = () => {
@@ -43,7 +43,7 @@ const Testimonials = () => {
 
   // Track window width for perfect responsiveness
   const [windowWidth, setWindowWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 1200
+    typeof window !== "undefined" ? window.innerWidth : 1200,
   );
 
   useEffect(() => {
@@ -139,7 +139,8 @@ const Testimonials = () => {
           What Partners & Clients <span className="text-amber-400">Say!</span>
         </h2>
         <p className="text-slate-300 px-4 mx-auto text-sm md:text-base font-normal max-w-xl">
-          Real feedback from founders, teammates, and clients on communication, Shopify excellence, and reliable full-stack delivery.
+          Real feedback from founders, teammates, and clients on communication,
+          Shopify excellence, and reliable full-stack delivery.
         </p>
       </div>
 
@@ -149,7 +150,10 @@ const Testimonials = () => {
           className="flex"
           style={{
             transform: `translateX(calc(50% - (${activeIndex} * ${cardWidth}px) - (${cardWidth / 2}px) - (${activeIndex} * ${gap}px)))`,
-            transition: transitionDuration > 0 ? `transform ${transitionDuration}ms ease-[cubic-bezier(0.25,1,0.5,1)]` : "none"
+            transition:
+              transitionDuration > 0
+                ? `transform ${transitionDuration}ms ease-[cubic-bezier(0.25,1,0.5,1)]`
+                : "none",
           }}
         >
           {items.map((item, index) => {
@@ -176,14 +180,18 @@ const Testimonials = () => {
                   {/* Header info: Avatar initials, Name and Role */}
                   <div>
                     <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-5">
-                      <div className={`w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center text-white font-extrabold text-lg md:text-xl shadow-md`}>
+                      <div
+                        className={`w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center text-white font-extrabold text-lg md:text-xl shadow-md`}
+                      >
                         {item.initials}
                       </div>
                       <div>
                         <h3 className="font-extrabold text-sm md:text-lg tracking-tight text-white flex items-center gap-1.5">
                           {item.name}
                         </h3>
-                        <p className="text-[10px] md:text-xs font-bold text-slate-400 tracking-wide uppercase">{item.role}</p>
+                        <p className="text-[10px] md:text-xs font-bold text-slate-400 tracking-wide uppercase">
+                          {item.role}
+                        </p>
                       </div>
                     </div>
 

@@ -91,7 +91,7 @@ const Testimonials = () => {
       }, 700); // Wait for current slide transition to finish
       return () => clearTimeout(snapTimer);
     }
-  }, [activeIndex, items.length, testimonials.length]);
+  }, [activeIndex, items.length]);
 
   return (
     <section

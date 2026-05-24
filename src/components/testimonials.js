@@ -1,7 +1,8 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Star, ShieldCheck, Heart, ChevronLeft, ChevronRight, MessageSquare } from "lucide-react";
+import React, { useState, useEffect, useCallback } from "react";
+import { FaStar, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { RiDoubleQuotesR } from "react-icons/ri";
 
-const reviewsData = [
+const testimonials = [
   {
     name: "All in Lid Team",
     role: "E-commerce Founder",
@@ -35,168 +36,202 @@ const reviewsData = [
 ];
 
 const Testimonials = () => {
-  const scrollRef = useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const items = [...testimonials, ...testimonials, ...testimonials];
+  const [activeIndex, setActiveIndex] = useState(testimonials.length);
+  const [isPaused, setIsPaused] = useState(false);
+  const [transitionDuration, setTransitionDuration] = useState(700);
 
-  // Check scroll positions to show/hide horizontal slider navigation on mobile/tablet
-  const checkScrollLimits = () => {
-    const el = scrollRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 5);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 5);
+  // Track window width for perfect responsiveness
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 1200
+  );
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Dynamic dimensions based on viewport
+  const isMobile = windowWidth < 640;
+  const isTablet = windowWidth >= 640 && windowWidth < 1024;
+
+  const cardWidth = isMobile ? windowWidth * 0.85 : isTablet ? 500 : 550;
+  const gap = isMobile ? 15 : 30;
+
+  const next = useCallback(() => {
+    setTransitionDuration(700);
+    setActiveIndex((prev) => prev + 1);
+  }, []);
+
+  const prev = () => {
+    setTransitionDuration(700);
+    setActiveIndex((prev) => prev - 1);
   };
 
   useEffect(() => {
-    const el = scrollRef.current;
-    if (el) {
-      el.addEventListener("scroll", checkScrollLimits, { passive: true });
-      // Initial check
-      checkScrollLimits();
-    }
-    return () => {
-      if (el) el.removeEventListener("scroll", checkScrollLimits);
-    };
-  }, []);
+    if (isPaused) return;
+    const interval = setInterval(() => next(), 5000);
+    return () => clearInterval(interval);
+  }, [next, isPaused]);
 
-  const scrollLeft = () => {
-    if (scrollRef.current) {
-      const cardWidth = scrollRef.current.firstElementChild?.clientWidth || 320;
-      scrollRef.current.scrollBy({ left: -(cardWidth + 24), behavior: "smooth" });
+  // Seamless snap transitions back to clone anchors
+  useEffect(() => {
+    if (activeIndex === items.length - testimonials.length) {
+      const snapTimer = setTimeout(() => {
+        setTransitionDuration(0);
+        setActiveIndex(testimonials.length);
+      }, 700); // Wait for current slide transition to finish
+      return () => clearTimeout(snapTimer);
     }
-  };
-
-  const scrollRight = () => {
-    if (scrollRef.current) {
-      const cardWidth = scrollRef.current.firstElementChild?.clientWidth || 320;
-      scrollRef.current.scrollBy({ left: cardWidth + 24, behavior: "smooth" });
+    if (activeIndex === testimonials.length - 1) {
+      const snapTimer = setTimeout(() => {
+        setTransitionDuration(0);
+        setActiveIndex(items.length - testimonials.length - 1);
+      }, 700); // Wait for current slide transition to finish
+      return () => clearTimeout(snapTimer);
     }
-  };
+  }, [activeIndex, items.length, testimonials.length]);
 
   return (
-    <section id="reviews" className="bg-slate-50 py-20 relative overflow-hidden">
-      {/* Self-contained styling to hide scrollbars while preserving snap gestures */}
-      <style>{`
-        .reviews-scroll::-webkit-scrollbar {
-          display: none;
-        }
-        .reviews-scroll {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
+    <section
+      id="reviews"
+      className="relative py-16 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white overflow-hidden font-sans select-none"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* --- DECORATIVE TOP CORNER SHAPES --- */}
+      <div className="absolute top-[-20px] left-[-20px] w-32 h-32 md:w-48 md:h-48 opacity-40 pointer-events-none">
+        <svg viewBox="0 0 200 200" fill="none" className="w-full h-full">
+          <path
+            d="M20 40C60 10 120 30 50 80C20 110 150 140 180 60"
+            stroke="#6366f1"
+            strokeWidth="4"
+            strokeLinecap="round"
+          />
+          <path
+            d="M40 20C80 50 30 100 100 90"
+            stroke="#a5b4fc"
+            strokeWidth="3"
+            strokeLinecap="round"
+            opacity="0.6"
+          />
+        </svg>
+      </div>
 
-      {/* Decorative Blur Backgrounds */}
-      <div className="absolute top-1/4 left-[-10%] w-96 h-96 bg-indigo-200/30 rounded-full blur-[120px] pointer-events-none -z-10" />
-      <div className="absolute bottom-1/4 right-[-10%] w-96 h-96 bg-amber-100/40 rounded-full blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute top-4 right-4 w-24 h-24 md:w-40 md:h-40 opacity-30 pointer-events-none">
+        <svg viewBox="0 0 200 200" fill="none" className="w-full h-full">
+          <path
+            d="M100 100C140 20 190 80 160 120C120 180 40 150 60 80C80 20 160 40 140 100"
+            stroke="#fbbf24"
+            strokeWidth="6"
+            strokeLinecap="round"
+          />
+        </svg>
+      </div>
 
-      <div className="mx-auto max-w-6xl px-6 relative z-10">
-        
-        {/* Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-indigo-100 text-sm font-semibold text-indigo-700 tracking-wider">
-            Testimonials
-          </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mt-3 flex items-center justify-center gap-3">
-            What Partners & Clients Say <Heart className="w-8 h-8 text-rose-500 fill-rose-500 animate-pulse-subtle" />
-          </h2>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
-            Real feedback from founders, teammates, and clients on communication, Shopify excellence, and reliable full-stack delivery.
-          </p>
-        </div>
+      {/* HEADER */}
+      <div className="text-center px-4 relative z-10 mb-8 md:mb-12">
+        <span className="inline-block px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-sm font-semibold text-indigo-300 tracking-wider mb-3">
+          Testimonials
+        </span>
+        <h2 className="text-3xl md:text-5xl font-extrabold mb-3 md:mb-4 tracking-tight">
+          What Partners & Clients <span className="text-amber-400">Say!</span>
+        </h2>
+        <p className="text-slate-300 px-4 mx-auto text-sm md:text-base font-normal max-w-xl">
+          Real feedback from founders, teammates, and clients on communication, Shopify excellence, and reliable full-stack delivery.
+        </p>
+      </div>
 
-        {/* Scroll Control Arrows for mobile and tablet touch guidance */}
-        <div className="flex md:hidden justify-end gap-3 mb-4 pr-1">
-          <button
-            onClick={scrollLeft}
-            disabled={!canScrollLeft}
-            aria-label="Scroll left"
-            className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all shadow-md ${
-              canScrollLeft 
-                ? "bg-white border-slate-200 text-slate-800 hover:bg-slate-50 active:scale-95" 
-                : "bg-slate-100/50 border-slate-100 text-slate-300 cursor-not-allowed"
-            }`}
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={scrollRight}
-            disabled={!canScrollRight}
-            aria-label="Scroll right"
-            className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all shadow-md ${
-              canScrollRight 
-                ? "bg-white border-slate-200 text-slate-800 hover:bg-slate-50 active:scale-95" 
-                : "bg-slate-100/50 border-slate-100 text-slate-300 cursor-not-allowed"
-            }`}
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Reviews Grid & Swipe Scroller */}
+      {/* CAROUSEL TRACK */}
+      <div className="relative w-full h-[380px] md:h-[430px] flex items-center justify-center">
         <div
-          ref={scrollRef}
-          className="reviews-scroll flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory pb-6 md:pb-0 scroll-smooth px-1 md:px-0"
+          className="flex"
+          style={{
+            transform: `translateX(calc(50% - (${activeIndex} * ${cardWidth}px) - (${cardWidth / 2}px) - (${activeIndex} * ${gap}px)))`,
+            transition: transitionDuration > 0 ? `transform ${transitionDuration}ms ease-[cubic-bezier(0.25,1,0.5,1)]` : "none"
+          }}
         >
-          {reviewsData.map((item, index) => (
-            <article
-              key={index}
-              className="group relative bg-white/80 backdrop-blur-md border border-slate-200/70 rounded-[2rem] p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between overflow-hidden snap-center min-w-[290px] sm:min-w-[340px] md:min-w-0 flex-shrink-0"
-            >
-              {/* Subtle top indicator with card gradient color */}
-              <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${item.gradient}`} />
-              
-              {/* Card interactive backdrop glow */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-slate-50/50 via-indigo-50/5 to-amber-50/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10" />
+          {items.map((item, index) => {
+            const isActive = index === activeIndex;
+            return (
+              <div
+                key={index}
+                style={{ width: `${cardWidth}px`, marginRight: `${gap}px` }}
+                className={`flex-shrink-0 transition-all duration-700 ease-in-out ${
+                  isActive
+                    ? "scale-100 opacity-100 z-10 blur-0"
+                    : "scale-[0.85] md:scale-90 opacity-40 blur-[1px] z-0"
+                }`}
+              >
+                <div
+                  className={`rounded-[20px] md:rounded-[24px] p-6 md:p-8 h-[290px] md:h-[330px] relative shadow-2xl flex flex-col justify-between transition-colors duration-500 ${
+                    isActive
+                      ? "bg-white/10 border border-white/20 backdrop-blur-md"
+                      : "bg-white/5 border border-white/10"
+                  }`}
+                >
+                  <RiDoubleQuotesR className="absolute right-4 md:right-8 top-6 md:top-10 text-7xl md:text-[100px] text-white/5 pointer-events-none" />
 
-              <div>
-                {/* Header info (Avatar and Initials) */}
-                <div className="flex items-center gap-4">
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center text-white font-extrabold text-xl shadow-md shadow-indigo-100 group-hover:scale-[1.05] transition-transform duration-300`}>
-                    {item.initials}
-                  </div>
+                  {/* Header info: Avatar initials, Name and Role */}
                   <div>
-                    <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-indigo-900 transition-colors duration-300 flex items-center gap-1.5">
-                      {item.name}
-                      <ShieldCheck className="w-4 h-4 text-indigo-600 fill-indigo-100" title="Verified Client" />
-                    </h3>
-                    <p className="text-xs font-bold text-slate-500 tracking-wide uppercase">{item.role}</p>
+                    <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-5">
+                      <div className={`w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center text-white font-extrabold text-lg md:text-xl shadow-md`}>
+                        {item.initials}
+                      </div>
+                      <div>
+                        <h3 className="font-extrabold text-sm md:text-lg tracking-tight text-white flex items-center gap-1.5">
+                          {item.name}
+                        </h3>
+                        <p className="text-[10px] md:text-xs font-bold text-slate-400 tracking-wide uppercase">{item.role}</p>
+                      </div>
+                    </div>
+
+                    {/* Tag details & Star Rating */}
+                    <div className="flex flex-wrap items-center gap-2.5 md:gap-4 mb-3 md:mb-4">
+                      <span className="inline-flex items-center px-2.5 py-0.5 bg-indigo-500/10 text-indigo-300 text-[10px] md:text-xs font-bold rounded-lg border border-indigo-500/20">
+                        {item.tag}
+                      </span>
+                      <div className="flex items-center gap-1.5">
+                        <div className="flex text-amber-400 text-xs md:text-sm gap-0.5">
+                          {[...Array(5)].map((_, i) => (
+                            <FaStar key={i} />
+                          ))}
+                        </div>
+                        <span className="font-extrabold text-xs md:text-sm text-slate-300">
+                          {item.rating.toFixed(1)}
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                </div>
 
-                {/* Subtag detailing the work completed */}
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <span className="inline-flex items-center gap-1 px-3 py-1 bg-indigo-50/80 text-indigo-700 text-xs font-bold rounded-lg border border-indigo-100/60 transition-colors group-hover:bg-indigo-100/70">
-                    <MessageSquare className="w-3.5 h-3.5 text-indigo-600" />
-                    {item.tag}
-                  </span>
+                  {/* Review Text */}
+                  <p className="text-slate-200 leading-relaxed text-xs md:text-sm font-medium pr-2 overflow-y-auto h-[120px] md:h-[140px] scrollbar-thin scrollbar-thumb-indigo-500/30 scrollbar-track-transparent">
+                    {item.text}
+                  </p>
                 </div>
-
-                {/* Star rating display */}
-                <div className="flex items-center gap-2 mt-4 mb-5">
-                  <div className="flex text-amber-400 gap-0.5">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
-                    ))}
-                  </div>
-                  <span className="text-xs font-extrabold text-slate-800 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200/50">
-                    5.0 / 5.0
-                  </span>
-                </div>
-
-                {/* Testimonial Quote Text */}
-                <p className="text-slate-700 leading-relaxed text-[15px] font-medium pr-2 whitespace-pre-line">
-                  &ldquo;{item.text}&rdquo;
-                </p>
               </div>
-
-              {/* Elegant Backdrop Quote Symbol */}
-              <div className="absolute right-6 bottom-4 text-slate-100/80 select-none pointer-events-none -z-20 font-serif text-9xl opacity-60 group-hover:text-indigo-50/60 group-hover:scale-110 transition-all duration-500">
-                ”
-              </div>
-            </article>
-          ))}
+            );
+          })}
         </div>
+      </div>
+
+      {/* CONTROLS */}
+      <div className="flex justify-center gap-4 md:gap-8 mt-2 md:mt-5 relative z-10">
+        <button
+          onClick={prev}
+          aria-label="Previous testimonial"
+          className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white flex items-center justify-center transition-all shadow-lg border border-slate-700 active:scale-95"
+        >
+          <FaChevronLeft size={isMobile ? 18 : 24} />
+        </button>
+        <button
+          onClick={next}
+          aria-label="Next testimonial"
+          className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-amber-500 text-slate-950 hover:bg-amber-400 flex items-center justify-center shadow-2xl transition-all hover:scale-110 active:scale-95"
+        >
+          <FaChevronRight size={isMobile ? 18 : 24} />
+        </button>
       </div>
     </section>
   );

@@ -35,67 +35,74 @@ const testimonials = [
   },
 ];
 
+const TOTAL = testimonials.length;
+
 const Testimonials = () => {
-  const total = testimonials.length;
-  const items = [...testimonials, ...testimonials, ...testimonials];
-
-  const [activeIndex, setActiveIndex] = useState(total);
+  const [activeIndex, setActiveIndex] = useState(TOTAL);
   const [isPaused, setIsPaused] = useState(false);
-  const [transitionDuration, setTransitionDuration] = useState(700);
+  const [transitionEnabled, setTransitionEnabled] = useState(true);
   const touchStartX = useRef(null);
+  const trackRef = useRef(null);
 
-  const [windowWidth, setWindowWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 1200,
-  );
+  // Measure the actual rendered container width — no window.innerWidth guesses
+  const [containerWidth, setContainerWidth] = useState(0);
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const el = trackRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => {
+      setContainerWidth(entry.contentRect.width);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
   }, []);
 
-  const isMobile = windowWidth < 640;
-  const isTablet = windowWidth >= 640 && windowWidth < 1024;
+  const isMobile = containerWidth < 640;
 
-  // Active card takes 82% of screen on mobile so sides peek through
-  const cardWidth = isMobile ? windowWidth * 0.82 : isTablet ? 500 : 550;
-  const gap = isMobile ? 14 : 28;
+  // Active card = 82% of container on mobile, fixed 540px on desktop
+  const cardWidth = containerWidth
+    ? isMobile
+      ? containerWidth * 0.82
+      : Math.min(containerWidth * 0.6, 540)
+    : 300;
+  const gap = isMobile ? 14 : 24;
+
+  const items = [...testimonials, ...testimonials, ...testimonials];
 
   const next = useCallback(() => {
-    setTransitionDuration(700);
-    setActiveIndex((prev) => prev + 1);
+    setTransitionEnabled(true);
+    setActiveIndex((p) => p + 1);
   }, []);
 
   const prev = useCallback(() => {
-    setTransitionDuration(700);
-    setActiveIndex((prev) => prev - 1);
+    setTransitionEnabled(true);
+    setActiveIndex((p) => p - 1);
   }, []);
 
   useEffect(() => {
     if (isPaused) return;
-    const interval = setInterval(next, 5000);
-    return () => clearInterval(interval);
+    const id = setInterval(next, 5000);
+    return () => clearInterval(id);
   }, [next, isPaused]);
 
-  // Seamless infinite loop snap
+  // Seamless infinite snap
   useEffect(() => {
-    if (activeIndex === items.length - total) {
+    if (activeIndex === items.length - TOTAL) {
       const t = setTimeout(() => {
-        setTransitionDuration(0);
-        setActiveIndex(total);
+        setTransitionEnabled(false);
+        setActiveIndex(TOTAL);
       }, 700);
       return () => clearTimeout(t);
     }
-    if (activeIndex === total - 1) {
+    if (activeIndex === TOTAL - 1) {
       const t = setTimeout(() => {
-        setTransitionDuration(0);
-        setActiveIndex(items.length - total - 1);
+        setTransitionEnabled(false);
+        setActiveIndex(items.length - TOTAL - 1);
       }, 700);
       return () => clearTimeout(t);
     }
-  }, [activeIndex, items.length, total]);
+  }, [activeIndex, items.length]);
 
-  // Touch swipe
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
     setIsPaused(true);
@@ -105,11 +112,20 @@ const Testimonials = () => {
     const diff = touchStartX.current - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 44) diff > 0 ? next() : prev();
     touchStartX.current = null;
-    setIsPaused(false);
+    setTimeout(() => setIsPaused(false), 1000);
   };
 
-  // Which dot is active (map back to 0–2)
-  const dotIndex = (((activeIndex - total) % total) + total) % total;
+  const dotIndex = (((activeIndex - TOTAL) % TOTAL) + TOTAL) % TOTAL;
+
+  // ── The key fix ──────────────────────────────────────────────────────────────
+  // Instead of "calc(50% - index*cardWidth - ...)" which breaks on mobile,
+  // we compute a px offset directly from the measured container width.
+  // The active card's left edge should be at: (containerWidth - cardWidth) / 2
+  // Each card occupies (cardWidth + gap). So we shift left by activeIndex steps.
+  const offset =
+    containerWidth > 0
+      ? (containerWidth - cardWidth) / 2 - activeIndex * (cardWidth + gap)
+      : 0;
 
   return (
     <section
@@ -137,21 +153,20 @@ const Testimonials = () => {
         </p>
       </div>
 
-      {/* Carousel track */}
+      {/* Carousel — ref here so ResizeObserver measures the real width */}
       <div
-        className="relative w-full flex items-start justify-center"
-        style={{ height: isMobile ? "auto" : "430px" }}
+        ref={trackRef}
+        className="relative w-full overflow-hidden"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
         <div
-          className="flex"
+          className="flex items-start"
           style={{
-            transform: `translateX(calc(50% - (${activeIndex} * ${cardWidth}px) - (${cardWidth / 2}px) - (${activeIndex} * ${gap}px)))`,
-            transition:
-              transitionDuration > 0
-                ? `transform ${transitionDuration}ms cubic-bezier(0.25,1,0.5,1)`
-                : "none",
+            transform: `translateX(${offset}px)`,
+            transition: transitionEnabled
+              ? "transform 700ms cubic-bezier(0.25,1,0.5,1)"
+              : "none",
           }}
         >
           {items.map((item, index) => {
@@ -159,31 +174,33 @@ const Testimonials = () => {
             return (
               <div
                 key={index}
-                style={{ width: `${cardWidth}px`, marginRight: `${gap}px` }}
                 className={`flex-shrink-0 transition-all duration-700 ease-in-out ${
                   isActive
                     ? "scale-100 opacity-100 z-10"
-                    : "scale-[0.88] opacity-35 blur-[1px] z-0"
+                    : "scale-[0.88] opacity-30 blur-[1.5px] z-0"
                 }`}
+                style={{
+                  width: `${cardWidth}px`,
+                  marginRight: `${gap}px`,
+                }}
               >
                 <div
-                  className={`rounded-2xl md:rounded-3xl p-6 md:p-8 relative overflow-hidden transition-colors duration-500 ${
+                  className={`rounded-2xl md:rounded-3xl p-5 md:p-8 relative overflow-hidden transition-colors duration-500 ${
                     isActive
                       ? "bg-white/10 border border-white/20 backdrop-blur-md shadow-2xl"
                       : "bg-white/[0.04] border border-white/10"
                   }`}
                 >
-                  {/* Gold top strip on active */}
                   {isActive && (
                     <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-amber-400/90 via-amber-400/30 to-transparent" />
                   )}
 
-                  <RiDoubleQuotesR className="absolute right-4 top-4 md:right-6 md:top-6 text-6xl md:text-8xl text-white/[0.05] pointer-events-none" />
+                  <RiDoubleQuotesR className="absolute right-4 top-4 text-6xl md:text-8xl text-white/[0.05] pointer-events-none" />
 
                   {/* Profile */}
                   <div className="flex items-center gap-3 mb-4">
                     <div
-                      className={`w-11 h-11 md:w-13 md:h-13 flex-shrink-0 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center text-white font-extrabold text-sm md:text-base shadow-md`}
+                      className={`w-11 h-11 flex-shrink-0 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center text-white font-extrabold text-sm shadow-md`}
                     >
                       {item.initials}
                     </div>
@@ -191,7 +208,7 @@ const Testimonials = () => {
                       <h3 className="font-extrabold text-sm md:text-base text-white leading-tight truncate">
                         {item.name}
                       </h3>
-                      <p className="text-[10px] md:text-xs text-slate-400 font-semibold uppercase tracking-wider mt-0.5 truncate">
+                      <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mt-0.5 truncate">
                         {item.role}
                       </p>
                     </div>
@@ -199,25 +216,22 @@ const Testimonials = () => {
 
                   {/* Tag + stars */}
                   <div className="flex flex-wrap items-center gap-2 mb-4">
-                    <span className="inline-flex items-center px-2.5 py-1 bg-indigo-500/10 text-indigo-300 text-[10px] md:text-xs font-bold rounded-lg border border-indigo-500/20 tracking-wide">
+                    <span className="inline-flex items-center px-2.5 py-1 bg-indigo-500/10 text-indigo-300 text-[10px] font-bold rounded-lg border border-indigo-500/20 tracking-wide">
                       {item.tag}
                     </span>
                     <div className="flex items-center gap-1">
-                      <div className="flex text-amber-400 gap-0.5">
-                        {[...Array(5)].map((_, i) => (
-                          <FaStar key={i} size={10} />
-                        ))}
-                      </div>
+                      {[...Array(5)].map((_, i) => (
+                        <FaStar key={i} size={10} className="text-amber-400" />
+                      ))}
                       <span className="text-slate-300 font-bold text-xs ml-0.5">
                         {item.rating.toFixed(1)}
                       </span>
                     </div>
                   </div>
 
-                  {/* Divider */}
                   <div className="border-t border-white/[0.07] mb-4" />
 
-                  {/* Full review text — no fixed height, no inner scroll */}
+                  {/* Full text — no fixed height, no inner scroll */}
                   <p className="text-slate-300 leading-relaxed text-xs md:text-sm font-normal">
                     {item.text}
                   </p>
@@ -234,14 +248,13 @@ const Testimonials = () => {
 
       {/* Dots + nav */}
       <div className="flex flex-col items-center gap-4 mt-8 relative z-10">
-        {/* Dot indicators */}
         <div className="flex gap-2">
           {testimonials.map((_, i) => (
             <button
               key={i}
               onClick={() => {
-                setTransitionDuration(700);
-                setActiveIndex(total + i);
+                setTransitionEnabled(true);
+                setActiveIndex(TOTAL + i);
               }}
               aria-label={`Go to testimonial ${i + 1}`}
               className={`h-1.5 rounded-full transition-all duration-300 ${
@@ -253,23 +266,20 @@ const Testimonials = () => {
           ))}
         </div>
 
-        {/* Prev / counter / next */}
         <div className="flex items-center gap-4">
           <button
             onClick={prev}
-            aria-label="Previous testimonial"
+            aria-label="Previous"
             className="w-11 h-11 rounded-full bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white flex items-center justify-center transition-all border border-slate-700 active:scale-95 shadow-lg"
           >
             <FaChevronLeft size={14} />
           </button>
-
           <span className="text-xs text-slate-500 font-medium tabular-nums w-10 text-center">
-            {dotIndex + 1} / {total}
+            {dotIndex + 1} / {TOTAL}
           </span>
-
           <button
             onClick={next}
-            aria-label="Next testimonial"
+            aria-label="Next"
             className="w-11 h-11 rounded-full bg-amber-500 text-slate-950 hover:bg-amber-400 flex items-center justify-center shadow-xl transition-all active:scale-95 hover:scale-105"
           >
             <FaChevronRight size={14} />
@@ -278,7 +288,7 @@ const Testimonials = () => {
       </div>
 
       <p className="text-center text-[11px] text-slate-700 mt-5 relative z-10 tracking-wide">
-        ● &nbsp;Verified client reviews&nbsp; ●
+        ●&nbsp;&nbsp;Verified client reviews&nbsp;&nbsp;●
       </p>
     </section>
   );

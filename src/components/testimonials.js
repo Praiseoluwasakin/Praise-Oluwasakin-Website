@@ -36,67 +36,94 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
-  const [active, setActive] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [direction, setDirection] = useState(null); // 'left' | 'right'
-  const touchStartX = useRef(null);
   const total = testimonials.length;
+  const items = [...testimonials, ...testimonials, ...testimonials];
 
-  const goTo = useCallback(
-    (index, dir) => {
-      if (isAnimating) return;
-      setDirection(dir);
-      setIsAnimating(true);
-      setTimeout(() => {
-        setActive((index + total) % total);
-        setIsAnimating(false);
-      }, 380);
-    },
-    [isAnimating, total],
+  const [activeIndex, setActiveIndex] = useState(total);
+  const [isPaused, setIsPaused] = useState(false);
+  const [transitionDuration, setTransitionDuration] = useState(700);
+  const touchStartX = useRef(null);
+
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 1200,
   );
 
-  const next = useCallback(() => goTo(active + 1, "left"), [active, goTo]);
-  const prev = useCallback(() => goTo(active - 1, "right"), [active, goTo]);
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isMobile = windowWidth < 640;
+  const isTablet = windowWidth >= 640 && windowWidth < 1024;
+
+  // Active card takes 82% of screen on mobile so sides peek through
+  const cardWidth = isMobile ? windowWidth * 0.82 : isTablet ? 500 : 550;
+  const gap = isMobile ? 14 : 28;
+
+  const next = useCallback(() => {
+    setTransitionDuration(700);
+    setActiveIndex((prev) => prev + 1);
+  }, []);
+
+  const prev = useCallback(() => {
+    setTransitionDuration(700);
+    setActiveIndex((prev) => prev - 1);
+  }, []);
 
   useEffect(() => {
     if (isPaused) return;
-    const id = setInterval(next, 5500);
-    return () => clearInterval(id);
+    const interval = setInterval(next, 5000);
+    return () => clearInterval(interval);
   }, [next, isPaused]);
 
+  // Seamless infinite loop snap
+  useEffect(() => {
+    if (activeIndex === items.length - total) {
+      const t = setTimeout(() => {
+        setTransitionDuration(0);
+        setActiveIndex(total);
+      }, 700);
+      return () => clearTimeout(t);
+    }
+    if (activeIndex === total - 1) {
+      const t = setTimeout(() => {
+        setTransitionDuration(0);
+        setActiveIndex(items.length - total - 1);
+      }, 700);
+      return () => clearTimeout(t);
+    }
+  }, [activeIndex, items.length, total]);
+
+  // Touch swipe
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
+    setIsPaused(true);
   };
   const handleTouchEnd = (e) => {
     if (touchStartX.current === null) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 44) diff > 0 ? next() : prev();
     touchStartX.current = null;
+    setIsPaused(false);
   };
 
-  const t = testimonials[active];
-
-  const slideClass = isAnimating
-    ? direction === "left"
-      ? "opacity-0 -translate-x-6"
-      : "opacity-0 translate-x-6"
-    : "opacity-100 translate-x-0";
+  // Which dot is active (map back to 0–2)
+  const dotIndex = (((activeIndex - total) % total) + total) % total;
 
   return (
     <section
       id="reviews"
-      className="relative py-20 md:py-28 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white overflow-hidden select-none"
+      className="relative py-16 md:py-24 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white overflow-hidden font-sans select-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Decorative circles */}
-      <div className="absolute top-0 right-0 w-72 h-72 rounded-full border border-amber-400/10 -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-56 h-56 rounded-full border border-indigo-500/10 translate-y-1/2 -translate-x-1/2 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] rounded-full bg-indigo-900/10 -translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none" />
+      {/* Decorative rings */}
+      <div className="absolute top-0 right-0 w-80 h-80 rounded-full border border-amber-400/10 -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full border border-indigo-500/10 translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
       {/* Header */}
-      <div className="text-center px-6 relative z-10 mb-12 md:mb-16">
+      <div className="text-center px-6 relative z-10 mb-10 md:mb-14">
         <span className="inline-block px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/25 text-xs font-bold text-amber-400 tracking-widest uppercase mb-4">
           ★ Testimonials
         </span>
@@ -110,113 +137,147 @@ const Testimonials = () => {
         </p>
       </div>
 
-      {/* Dot indicators */}
-      <div className="flex justify-center gap-2 mb-8 relative z-10">
-        {testimonials.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goTo(i, i > active ? "left" : "right")}
-            aria-label={`Go to testimonial ${i + 1}`}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === active
-                ? "w-8 bg-amber-400"
-                : "w-2 bg-slate-600 hover:bg-slate-500"
-            }`}
-          />
-        ))}
-      </div>
-
-      {/* Card */}
+      {/* Carousel track */}
       <div
-        className="relative z-10 px-5 md:px-8 max-w-2xl mx-auto"
+        className="relative w-full flex items-start justify-center"
+        style={{ height: isMobile ? "auto" : "430px" }}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
         <div
-          className={`transition-all duration-[380ms] ease-out ${slideClass}`}
+          className="flex"
+          style={{
+            transform: `translateX(calc(50% - (${activeIndex} * ${cardWidth}px) - (${cardWidth / 2}px) - (${activeIndex} * ${gap}px)))`,
+            transition:
+              transitionDuration > 0
+                ? `transform ${transitionDuration}ms cubic-bezier(0.25,1,0.5,1)`
+                : "none",
+          }}
         >
-          <div className="rounded-2xl md:rounded-3xl bg-white/[0.06] border border-white/10 backdrop-blur-sm p-6 md:p-10 relative overflow-hidden">
-            {/* Gold top strip */}
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-amber-400/80 via-amber-400/20 to-transparent" />
-
-            {/* Big quote icon */}
-            <RiDoubleQuotesR className="absolute right-5 top-5 md:right-8 md:top-8 text-6xl md:text-8xl text-white/[0.04] pointer-events-none" />
-
-            {/* Profile row */}
-            <div className="flex items-center gap-3 md:gap-4 mb-5">
+          {items.map((item, index) => {
+            const isActive = index === activeIndex;
+            return (
               <div
-                className={`w-12 h-12 md:w-14 md:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br ${t.gradient} flex items-center justify-center text-white font-extrabold text-base md:text-lg shadow-lg`}
+                key={index}
+                style={{ width: `${cardWidth}px`, marginRight: `${gap}px` }}
+                className={`flex-shrink-0 transition-all duration-700 ease-in-out ${
+                  isActive
+                    ? "scale-100 opacity-100 z-10"
+                    : "scale-[0.88] opacity-35 blur-[1px] z-0"
+                }`}
               >
-                {t.initials}
-              </div>
-              <div className="min-w-0">
-                <h3 className="font-extrabold text-sm md:text-base text-white leading-tight truncate">
-                  {t.name}
-                </h3>
-                <p className="text-[11px] md:text-xs text-slate-400 font-semibold uppercase tracking-wider mt-0.5">
-                  {t.role}
-                </p>
-              </div>
-            </div>
+                <div
+                  className={`rounded-2xl md:rounded-3xl p-6 md:p-8 relative overflow-hidden transition-colors duration-500 ${
+                    isActive
+                      ? "bg-white/10 border border-white/20 backdrop-blur-md shadow-2xl"
+                      : "bg-white/[0.04] border border-white/10"
+                  }`}
+                >
+                  {/* Gold top strip on active */}
+                  {isActive && (
+                    <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-amber-400/90 via-amber-400/30 to-transparent" />
+                  )}
 
-            {/* Tag + stars */}
-            <div className="flex flex-wrap items-center gap-2.5 mb-5">
-              <span className="inline-flex items-center px-3 py-1 bg-indigo-500/10 text-indigo-300 text-[10px] md:text-xs font-bold rounded-lg border border-indigo-500/20 tracking-wide">
-                {t.tag}
-              </span>
-              <div className="flex items-center gap-1.5">
-                <div className="flex text-amber-400 gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <FaStar key={i} size={11} />
-                  ))}
+                  <RiDoubleQuotesR className="absolute right-4 top-4 md:right-6 md:top-6 text-6xl md:text-8xl text-white/[0.05] pointer-events-none" />
+
+                  {/* Profile */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <div
+                      className={`w-11 h-11 md:w-13 md:h-13 flex-shrink-0 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center text-white font-extrabold text-sm md:text-base shadow-md`}
+                    >
+                      {item.initials}
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-extrabold text-sm md:text-base text-white leading-tight truncate">
+                        {item.name}
+                      </h3>
+                      <p className="text-[10px] md:text-xs text-slate-400 font-semibold uppercase tracking-wider mt-0.5 truncate">
+                        {item.role}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Tag + stars */}
+                  <div className="flex flex-wrap items-center gap-2 mb-4">
+                    <span className="inline-flex items-center px-2.5 py-1 bg-indigo-500/10 text-indigo-300 text-[10px] md:text-xs font-bold rounded-lg border border-indigo-500/20 tracking-wide">
+                      {item.tag}
+                    </span>
+                    <div className="flex items-center gap-1">
+                      <div className="flex text-amber-400 gap-0.5">
+                        {[...Array(5)].map((_, i) => (
+                          <FaStar key={i} size={10} />
+                        ))}
+                      </div>
+                      <span className="text-slate-300 font-bold text-xs ml-0.5">
+                        {item.rating.toFixed(1)}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="border-t border-white/[0.07] mb-4" />
+
+                  {/* Full review text — no fixed height, no inner scroll */}
+                  <p className="text-slate-300 leading-relaxed text-xs md:text-sm font-normal">
+                    {item.text}
+                  </p>
+
+                  <p className="text-right text-[10px] text-slate-600 font-medium mt-3 tracking-wide">
+                    {item.project}
+                  </p>
                 </div>
-                <span className="text-slate-300 font-bold text-xs">
-                  {t.rating.toFixed(1)}
-                </span>
               </div>
-            </div>
-
-            {/* Divider */}
-            <div className="border-t border-white/[0.06] mb-5" />
-
-            {/* Full review — no fixed height, no inner scroll */}
-            <p className="text-slate-300 leading-relaxed text-sm md:text-[15px] font-normal">
-              {t.text}
-            </p>
-
-            {/* Project tag bottom right */}
-            <p className="text-right text-[10px] text-slate-600 font-medium mt-4 tracking-wide">
-              {t.project}
-            </p>
-          </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Navigation buttons */}
-      <div className="flex justify-center items-center gap-4 mt-8 relative z-10">
-        <button
-          onClick={prev}
-          aria-label="Previous testimonial"
-          className="w-11 h-11 md:w-13 md:h-13 rounded-full bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white flex items-center justify-center transition-all border border-slate-700 active:scale-95 shadow-lg"
-        >
-          <FaChevronLeft size={15} />
-        </button>
+      {/* Dots + nav */}
+      <div className="flex flex-col items-center gap-4 mt-8 relative z-10">
+        {/* Dot indicators */}
+        <div className="flex gap-2">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => {
+                setTransitionDuration(700);
+                setActiveIndex(total + i);
+              }}
+              aria-label={`Go to testimonial ${i + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === dotIndex
+                  ? "w-7 bg-amber-400"
+                  : "w-2 bg-slate-600 hover:bg-slate-500"
+              }`}
+            />
+          ))}
+        </div>
 
-        <span className="text-xs text-slate-500 font-medium tabular-nums w-10 text-center">
-          {active + 1} / {total}
-        </span>
+        {/* Prev / counter / next */}
+        <div className="flex items-center gap-4">
+          <button
+            onClick={prev}
+            aria-label="Previous testimonial"
+            className="w-11 h-11 rounded-full bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white flex items-center justify-center transition-all border border-slate-700 active:scale-95 shadow-lg"
+          >
+            <FaChevronLeft size={14} />
+          </button>
 
-        <button
-          onClick={next}
-          aria-label="Next testimonial"
-          className="w-11 h-11 md:w-13 md:h-13 rounded-full bg-amber-500 text-slate-950 hover:bg-amber-400 flex items-center justify-center shadow-xl transition-all active:scale-95 hover:scale-105"
-        >
-          <FaChevronRight size={15} />
-        </button>
+          <span className="text-xs text-slate-500 font-medium tabular-nums w-10 text-center">
+            {dotIndex + 1} / {total}
+          </span>
+
+          <button
+            onClick={next}
+            aria-label="Next testimonial"
+            className="w-11 h-11 rounded-full bg-amber-500 text-slate-950 hover:bg-amber-400 flex items-center justify-center shadow-xl transition-all active:scale-95 hover:scale-105"
+          >
+            <FaChevronRight size={14} />
+          </button>
+        </div>
       </div>
 
-      {/* Trust line */}
-      <p className="text-center text-[11px] text-slate-600 mt-6 relative z-10 tracking-wide">
+      <p className="text-center text-[11px] text-slate-700 mt-5 relative z-10 tracking-wide">
         ● &nbsp;Verified client reviews&nbsp; ●
       </p>
     </section>

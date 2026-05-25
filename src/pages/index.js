@@ -813,12 +813,11 @@ export default function PraisePortfolio() {
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-yellow-300 drop-shadow-lg">
                     {" "}
                     {/* Stronger gradient for name */}
-                    Praise
+                    Praise Oluwasakin
                   </span>
                 </h1>
                 <p className="mt-6 text-xl sm:text-2xl font-light text-white/90">
-                  <strong>Frontend Developer</strong> &{" "}
-                  <strong>Shopify Expert</strong> — crafting sleek, fast
+                  <strong>Frontend & Shopify Developer</strong> — crafting sleek, fast
                   experiences and high-converting e-commerce stores.
                 </p>
 
@@ -913,19 +912,14 @@ export default function PraisePortfolio() {
               {/* Content column */}
               <div className="order-1 md:order-2">
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                  Hey, I’m Praise Oluwasakin — a Frontend Developer & Shopify
-                  Expert.
+                  Hey, I’m Praise Oluwasakin — a Frontend & Shopify Developer.
                 </h2>
 
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  <span className="font-medium">Born on October 15</span>, I
-                  specialize in creating clean, responsive, and user-friendly
-                  web experiences. I combine modern frontend tools like{" "}
+                  Born on October 15, I work as a professional <strong>Frontend & Shopify Developer</strong>, specializing in creating clean, responsive, and user-friendly web experiences. I combine modern frontend development tools like{" "}
                   <strong>React, Next.js, TailwindCSS</strong>, and{" "}
                   <strong>JavaScript</strong> with Shopify’s
-                  <strong> Liquid</strong> to build eCommerce stores that are
-                  not just beautiful, but also functional and
-                  conversion-focused.
+                  <strong> Liquid</strong> templating language to build eCommerce stores that are not just beautiful, but also functional and conversion-focused.
                 </p>
 
                 {/* --- Developer Metrics / Analytics Injection (Employer Conviction) --- */}
@@ -970,10 +964,10 @@ export default function PraisePortfolio() {
                 </div>
 
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  Over time, I’ve worked on multiple Shopify and custom projects
+                  Over the years, as a freelance frontend developer, I’ve worked on multiple Shopify eCommerce and custom web development projects
                   for clients across industries, helping them launch, grow, and
                   optimize their online presence. A few of my recent works
-                  include <strong>Modrn Mensch</strong>,{" "}
+                  as a developer include <strong>Modrn Mensch</strong>,{" "}
                   <strong>MyBooksieBox</strong>, and
                   <strong> Pineapple Phone</strong> — each tailored to the
                   client’s brand and customer journey.
@@ -1063,16 +1057,14 @@ export default function PraisePortfolio() {
                 </div>
 
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  When I’m not coding, I serve in leadership roles — including
+                  When I’m not coding or working as a Shopify developer, I serve in leadership roles — including
                   choir coordination and volunteering with organizations like{" "}
                   <strong>JCI</strong> and <strong>GIVC</strong> — which sharpen
                   my teamwork, organization, and communication skills.
                 </p>
 
                 <p className="mt-4 text-lg text-gray-700 leading-relaxed font-bold text-amber-700 bg-amber-50 p-4 rounded-xl border border-amber-200">
-                  💡 I’m currently available for freelance work, collaborations,
-                  or full-time opportunities where I can help brands scale their
-                  online presence.
+                  💡 As Praise Oluwasakin, I’m currently available for freelance frontend developer contracts, Shopify store builds, or full-time opportunities where I can help brands scale their online presence.
                 </p>
               </div>
             </div>

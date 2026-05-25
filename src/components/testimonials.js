@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { FaStar, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { RiDoubleQuotesR } from "react-icons/ri";
 
@@ -36,211 +36,189 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
-  const items = [...testimonials, ...testimonials, ...testimonials];
-  const [activeIndex, setActiveIndex] = useState(testimonials.length);
+  const [active, setActive] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [transitionDuration, setTransitionDuration] = useState(700);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [direction, setDirection] = useState(null); // 'left' | 'right'
+  const touchStartX = useRef(null);
+  const total = testimonials.length;
 
-  // Track window width for perfect responsiveness
-  const [windowWidth, setWindowWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 1200,
+  const goTo = useCallback(
+    (index, dir) => {
+      if (isAnimating) return;
+      setDirection(dir);
+      setIsAnimating(true);
+      setTimeout(() => {
+        setActive((index + total) % total);
+        setIsAnimating(false);
+      }, 380);
+    },
+    [isAnimating, total],
   );
 
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Dynamic dimensions based on viewport
-  const isMobile = windowWidth < 640;
-  const isTablet = windowWidth >= 640 && windowWidth < 1024;
-
-  const cardWidth = isMobile ? windowWidth * 0.85 : isTablet ? 500 : 550;
-  const gap = isMobile ? 15 : 30;
-
-  const next = useCallback(() => {
-    setTransitionDuration(700);
-    setActiveIndex((prev) => prev + 1);
-  }, []);
-
-  const prev = () => {
-    setTransitionDuration(700);
-    setActiveIndex((prev) => prev - 1);
-  };
+  const next = useCallback(() => goTo(active + 1, "left"), [active, goTo]);
+  const prev = useCallback(() => goTo(active - 1, "right"), [active, goTo]);
 
   useEffect(() => {
     if (isPaused) return;
-    const interval = setInterval(() => next(), 5000);
-    return () => clearInterval(interval);
+    const id = setInterval(next, 5500);
+    return () => clearInterval(id);
   }, [next, isPaused]);
 
-  // Seamless snap transitions back to clone anchors
-  useEffect(() => {
-    if (activeIndex === items.length - testimonials.length) {
-      const snapTimer = setTimeout(() => {
-        setTransitionDuration(0);
-        setActiveIndex(testimonials.length);
-      }, 700); // Wait for current slide transition to finish
-      return () => clearTimeout(snapTimer);
-    }
-    if (activeIndex === testimonials.length - 1) {
-      const snapTimer = setTimeout(() => {
-        setTransitionDuration(0);
-        setActiveIndex(items.length - testimonials.length - 1);
-      }, 700); // Wait for current slide transition to finish
-      return () => clearTimeout(snapTimer);
-    }
-  }, [activeIndex, items.length]);
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 44) diff > 0 ? next() : prev();
+    touchStartX.current = null;
+  };
+
+  const t = testimonials[active];
+
+  const slideClass = isAnimating
+    ? direction === "left"
+      ? "opacity-0 -translate-x-6"
+      : "opacity-0 translate-x-6"
+    : "opacity-100 translate-x-0";
 
   return (
     <section
       id="reviews"
-      className="relative py-16 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white overflow-hidden font-sans select-none"
+      className="relative py-20 md:py-28 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white overflow-hidden select-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* --- DECORATIVE TOP CORNER SHAPES --- */}
-      <div className="absolute top-[-20px] left-[-20px] w-32 h-32 md:w-48 md:h-48 opacity-40 pointer-events-none">
-        <svg viewBox="0 0 200 200" fill="none" className="w-full h-full">
-          <path
-            d="M20 40C60 10 120 30 50 80C20 110 150 140 180 60"
-            stroke="#6366f1"
-            strokeWidth="4"
-            strokeLinecap="round"
-          />
-          <path
-            d="M40 20C80 50 30 100 100 90"
-            stroke="#a5b4fc"
-            strokeWidth="3"
-            strokeLinecap="round"
-            opacity="0.6"
-          />
-        </svg>
-      </div>
+      {/* Decorative circles */}
+      <div className="absolute top-0 right-0 w-72 h-72 rounded-full border border-amber-400/10 -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-56 h-56 rounded-full border border-indigo-500/10 translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] rounded-full bg-indigo-900/10 -translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none" />
 
-      <div className="absolute top-4 right-4 w-24 h-24 md:w-40 md:h-40 opacity-30 pointer-events-none">
-        <svg viewBox="0 0 200 200" fill="none" className="w-full h-full">
-          <path
-            d="M100 100C140 20 190 80 160 120C120 180 40 150 60 80C80 20 160 40 140 100"
-            stroke="#fbbf24"
-            strokeWidth="6"
-            strokeLinecap="round"
-          />
-        </svg>
-      </div>
-
-      {/* HEADER */}
-      <div className="text-center px-4 relative z-10 mb-8 md:mb-12">
-        <span className="inline-block px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-sm font-semibold text-indigo-300 tracking-wider mb-3">
-          Testimonials
+      {/* Header */}
+      <div className="text-center px-6 relative z-10 mb-12 md:mb-16">
+        <span className="inline-block px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/25 text-xs font-bold text-amber-400 tracking-widest uppercase mb-4">
+          ★ Testimonials
         </span>
-        <h2 className="text-3xl md:text-5xl font-extrabold mb-3 md:mb-4 tracking-tight">
-          What Partners & Clients <span className="text-amber-400">Say!</span>
+        <h2 className="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight leading-tight">
+          What Partners &amp; Clients{" "}
+          <span className="text-amber-400">Say!</span>
         </h2>
-        <p className="text-slate-300 px-4 mx-auto text-sm md:text-base font-normal max-w-xl">
+        <p className="text-slate-400 mx-auto text-sm md:text-base font-normal max-w-lg leading-relaxed">
           Real feedback from founders, teammates, and clients on communication,
           Shopify excellence, and reliable full-stack delivery.
         </p>
       </div>
 
-      {/* CAROUSEL TRACK */}
-      <div className="relative w-full h-[380px] md:h-[430px] flex items-center justify-center">
+      {/* Dot indicators */}
+      <div className="flex justify-center gap-2 mb-8 relative z-10">
+        {testimonials.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i, i > active ? "left" : "right")}
+            aria-label={`Go to testimonial ${i + 1}`}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              i === active
+                ? "w-8 bg-amber-400"
+                : "w-2 bg-slate-600 hover:bg-slate-500"
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Card */}
+      <div
+        className="relative z-10 px-5 md:px-8 max-w-2xl mx-auto"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <div
-          className="flex"
-          style={{
-            transform: `translateX(calc(50% - (${activeIndex} * ${cardWidth}px) - (${cardWidth / 2}px) - (${activeIndex} * ${gap}px)))`,
-            transition:
-              transitionDuration > 0
-                ? `transform ${transitionDuration}ms ease-[cubic-bezier(0.25,1,0.5,1)]`
-                : "none",
-          }}
+          className={`transition-all duration-[380ms] ease-out ${slideClass}`}
         >
-          {items.map((item, index) => {
-            const isActive = index === activeIndex;
-            return (
+          <div className="rounded-2xl md:rounded-3xl bg-white/[0.06] border border-white/10 backdrop-blur-sm p-6 md:p-10 relative overflow-hidden">
+            {/* Gold top strip */}
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-amber-400/80 via-amber-400/20 to-transparent" />
+
+            {/* Big quote icon */}
+            <RiDoubleQuotesR className="absolute right-5 top-5 md:right-8 md:top-8 text-6xl md:text-8xl text-white/[0.04] pointer-events-none" />
+
+            {/* Profile row */}
+            <div className="flex items-center gap-3 md:gap-4 mb-5">
               <div
-                key={index}
-                style={{ width: `${cardWidth}px`, marginRight: `${gap}px` }}
-                className={`flex-shrink-0 transition-all duration-700 ease-in-out ${
-                  isActive
-                    ? "scale-100 opacity-100 z-10 blur-0"
-                    : "scale-[0.85] md:scale-90 opacity-40 blur-[1px] z-0"
-                }`}
+                className={`w-12 h-12 md:w-14 md:h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br ${t.gradient} flex items-center justify-center text-white font-extrabold text-base md:text-lg shadow-lg`}
               >
-                <div
-                  className={`rounded-[20px] md:rounded-[24px] p-6 md:p-8 h-[290px] md:h-[330px] relative shadow-2xl flex flex-col justify-between transition-colors duration-500 ${
-                    isActive
-                      ? "bg-white/10 border border-white/20 backdrop-blur-md"
-                      : "bg-white/5 border border-white/10"
-                  }`}
-                >
-                  <RiDoubleQuotesR className="absolute right-4 md:right-8 top-6 md:top-10 text-7xl md:text-[100px] text-white/5 pointer-events-none" />
-
-                  {/* Header info: Avatar initials, Name and Role */}
-                  <div>
-                    <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-5">
-                      <div
-                        className={`w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center text-white font-extrabold text-lg md:text-xl shadow-md`}
-                      >
-                        {item.initials}
-                      </div>
-                      <div>
-                        <h3 className="font-extrabold text-sm md:text-lg tracking-tight text-white flex items-center gap-1.5">
-                          {item.name}
-                        </h3>
-                        <p className="text-[10px] md:text-xs font-bold text-slate-400 tracking-wide uppercase">
-                          {item.role}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Tag details & Star Rating */}
-                    <div className="flex flex-wrap items-center gap-2.5 md:gap-4 mb-3 md:mb-4">
-                      <span className="inline-flex items-center px-2.5 py-0.5 bg-indigo-500/10 text-indigo-300 text-[10px] md:text-xs font-bold rounded-lg border border-indigo-500/20">
-                        {item.tag}
-                      </span>
-                      <div className="flex items-center gap-1.5">
-                        <div className="flex text-amber-400 text-xs md:text-sm gap-0.5">
-                          {[...Array(5)].map((_, i) => (
-                            <FaStar key={i} />
-                          ))}
-                        </div>
-                        <span className="font-extrabold text-xs md:text-sm text-slate-300">
-                          {item.rating.toFixed(1)}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Review Text */}
-                  <p className="text-slate-200 leading-relaxed text-xs md:text-sm font-medium pr-2 overflow-y-auto h-[120px] md:h-[140px] scrollbar-thin scrollbar-thumb-indigo-500/30 scrollbar-track-transparent">
-                    {item.text}
-                  </p>
-                </div>
+                {t.initials}
               </div>
-            );
-          })}
+              <div className="min-w-0">
+                <h3 className="font-extrabold text-sm md:text-base text-white leading-tight truncate">
+                  {t.name}
+                </h3>
+                <p className="text-[11px] md:text-xs text-slate-400 font-semibold uppercase tracking-wider mt-0.5">
+                  {t.role}
+                </p>
+              </div>
+            </div>
+
+            {/* Tag + stars */}
+            <div className="flex flex-wrap items-center gap-2.5 mb-5">
+              <span className="inline-flex items-center px-3 py-1 bg-indigo-500/10 text-indigo-300 text-[10px] md:text-xs font-bold rounded-lg border border-indigo-500/20 tracking-wide">
+                {t.tag}
+              </span>
+              <div className="flex items-center gap-1.5">
+                <div className="flex text-amber-400 gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <FaStar key={i} size={11} />
+                  ))}
+                </div>
+                <span className="text-slate-300 font-bold text-xs">
+                  {t.rating.toFixed(1)}
+                </span>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="border-t border-white/[0.06] mb-5" />
+
+            {/* Full review — no fixed height, no inner scroll */}
+            <p className="text-slate-300 leading-relaxed text-sm md:text-[15px] font-normal">
+              {t.text}
+            </p>
+
+            {/* Project tag bottom right */}
+            <p className="text-right text-[10px] text-slate-600 font-medium mt-4 tracking-wide">
+              {t.project}
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* CONTROLS */}
-      <div className="flex justify-center gap-4 md:gap-8 mt-2 md:mt-5 relative z-10">
+      {/* Navigation buttons */}
+      <div className="flex justify-center items-center gap-4 mt-8 relative z-10">
         <button
           onClick={prev}
           aria-label="Previous testimonial"
-          className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white flex items-center justify-center transition-all shadow-lg border border-slate-700 active:scale-95"
+          className="w-11 h-11 md:w-13 md:h-13 rounded-full bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white flex items-center justify-center transition-all border border-slate-700 active:scale-95 shadow-lg"
         >
-          <FaChevronLeft size={isMobile ? 18 : 24} />
+          <FaChevronLeft size={15} />
         </button>
+
+        <span className="text-xs text-slate-500 font-medium tabular-nums w-10 text-center">
+          {active + 1} / {total}
+        </span>
+
         <button
           onClick={next}
           aria-label="Next testimonial"
-          className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-amber-500 text-slate-950 hover:bg-amber-400 flex items-center justify-center shadow-2xl transition-all hover:scale-110 active:scale-95"
+          className="w-11 h-11 md:w-13 md:h-13 rounded-full bg-amber-500 text-slate-950 hover:bg-amber-400 flex items-center justify-center shadow-xl transition-all active:scale-95 hover:scale-105"
         >
-          <FaChevronRight size={isMobile ? 18 : 24} />
+          <FaChevronRight size={15} />
         </button>
       </div>
+
+      {/* Trust line */}
+      <p className="text-center text-[11px] text-slate-600 mt-6 relative z-10 tracking-wide">
+        ● &nbsp;Verified client reviews&nbsp; ●
+      </p>
     </section>
   );
 };

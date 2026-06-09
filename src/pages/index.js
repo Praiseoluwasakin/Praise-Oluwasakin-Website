@@ -4,7 +4,8 @@ import { app, analytics } from "../firebase";
 import { logEvent } from "firebase/analytics";
 import Head from "next/head";
 import Testimonials from "@/components/testimonials";
-import React, { useEffect, useState, useRef } from "react";
+import ScrollReveal from "@/components/scroll-reveal";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { NextSeo } from "next-seo";
 import {
   Menu,
@@ -256,9 +257,21 @@ export default function PraisePortfolio() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [active, setActive] = useState("about");
   const [showAll, setShowAll] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const sectionsRef = useRef({});
 
   const projectsToShow = showAll ? allProjects : allProjects.slice(0, 6);
+
+  const scrollToSection = useCallback((e, id) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const offset = window.innerWidth >= 768 ? 88 : 76;
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: "smooth" });
+    setMobileOpen(false);
+  }, []);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
@@ -289,8 +302,18 @@ export default function PraisePortfolio() {
     const onResize = () => {
       if (window.innerWidth >= 1024) setMobileOpen(false);
     };
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
     window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   const downloadResume = () => {
@@ -342,11 +365,16 @@ export default function PraisePortfolio() {
         <Analytics />
 
         {/* Header */}
-        <header className="fixed top-0 w-full z-50 bg-brand-bg/90 backdrop-blur-md border-b border-architectural">
+        <header
+          className={`site-header fixed top-0 w-full z-50 bg-brand-bg/90 backdrop-blur-md border-b border-architectural ${
+            scrolled ? "scrolled" : ""
+          }`}
+        >
           <div className="flex justify-between items-center px-5 md:px-16 py-4 max-w-[1280px] mx-auto">
             <a
               href="#home"
-              className="font-display text-lg md:text-2xl font-bold text-brand-navy tracking-tight"
+              onClick={(e) => scrollToSection(e, "home")}
+              className="font-display text-lg md:text-2xl font-bold text-brand-navy tracking-tight transition-opacity hover:opacity-80"
             >
               Praise Oluwasakin
             </a>
@@ -356,6 +384,7 @@ export default function PraisePortfolio() {
                 <a
                   key={n.id}
                   href={`#${n.id}`}
+                  onClick={(e) => scrollToSection(e, n.id)}
                   className={`font-body text-xs xl:text-sm font-semibold tracking-wide transition-colors duration-300 ${
                     active === n.id
                       ? "text-brand-accent"
@@ -367,7 +396,8 @@ export default function PraisePortfolio() {
               ))}
               <a
                 href="#contact"
-                className="px-6 py-2 bg-cta text-brand-bg font-body text-sm font-semibold hover:opacity-90 transition-opacity"
+                onClick={(e) => scrollToSection(e, "contact")}
+                className="px-6 py-2 bg-cta text-brand-bg font-body text-sm font-semibold hover:opacity-90 transition-all duration-300 hover:translate-y-[-1px]"
               >
                 Get in touch
               </a>
@@ -375,23 +405,40 @@ export default function PraisePortfolio() {
 
             <button
               aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
               onClick={() => setMobileOpen((s) => !s)}
-              className="lg:hidden text-brand-navy p-2"
+              className="lg:hidden text-brand-navy p-2 transition-transform duration-300 active:scale-95"
             >
-              {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <span
+                className={`inline-block transition-transform duration-300 ${
+                  mobileOpen ? "rotate-90" : "rotate-0"
+                }`}
+              >
+                {mobileOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
+              </span>
             </button>
           </div>
 
-          {mobileOpen && (
-            <div className="lg:hidden px-5 pb-4 border-t border-architectural">
+          <div
+            className={`mobile-nav-panel lg:hidden border-t border-architectural ${
+              mobileOpen ? "open" : ""
+            }`}
+          >
+            <div className="mobile-nav-inner px-5 pb-4">
               <div className="flex flex-col gap-1 pt-2">
                 {navItems.map((n) => (
                   <a
                     key={n.id}
                     href={`#${n.id}`}
-                    onClick={() => setMobileOpen(false)}
-                    className={`px-3 py-3 font-body text-sm font-semibold ${
-                      active === n.id ? "text-brand-accent" : "text-brand-navy"
+                    onClick={(e) => scrollToSection(e, n.id)}
+                    className={`mobile-nav-link px-3 py-3 font-body text-sm font-semibold rounded-sm ${
+                      active === n.id
+                        ? "text-brand-accent bg-brand-navy/5"
+                        : "text-brand-navy hover:text-brand-accent"
                     }`}
                   >
                     {n.label}
@@ -399,19 +446,20 @@ export default function PraisePortfolio() {
                 ))}
                 <a
                   href="#contact"
-                  onClick={() => setMobileOpen(false)}
-                  className="mt-2 px-6 py-3 bg-cta text-brand-bg font-body text-sm font-semibold text-center"
+                  onClick={(e) => scrollToSection(e, "contact")}
+                  className="mobile-nav-link mt-2 px-6 py-3 bg-cta text-brand-bg font-body text-sm font-semibold text-center"
                 >
                   Get in touch
                 </a>
               </div>
             </div>
-          )}
+          </div>
         </header>
 
         <main className="flex-grow pt-24 md:pt-32 pb-16 md:pb-20 px-4 md:px-16 max-w-[1280px] mx-auto w-full">
           {/* Hero */}
           <section id="home" className="mb-20 md:mb-32">
+            <ScrollReveal>
             <div className="fixed-grid">
               <div className="col-span-4 md:col-span-10 md:col-start-2">
                 <h1 className="font-display text-[28px] sm:text-[36px] md:text-[72px] font-extrabold text-brand-navy mb-6 md:mb-8 border-b border-architectural pb-6 md:pb-8 leading-[1.1] tracking-tight">
@@ -427,7 +475,8 @@ export default function PraisePortfolio() {
                   <div className="flex flex-wrap gap-4">
                     <a
                       href="#work"
-                      className="inline-flex items-center gap-2 border border-brand-navy px-6 py-3 font-body text-sm font-semibold text-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-colors"
+                      onClick={(e) => scrollToSection(e, "work")}
+                      className="inline-flex items-center gap-2 border border-brand-navy px-6 py-3 font-body text-sm font-semibold text-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-300"
                     >
                       Explore Archives
                       <ArrowRight className="w-4 h-4" />
@@ -443,10 +492,12 @@ export default function PraisePortfolio() {
                 </div>
               </div>
             </div>
+            </ScrollReveal>
           </section>
 
           {/* Stats */}
           <section className="mb-20 md:mb-32 border-y border-architectural py-8 md:py-12">
+            <ScrollReveal delay={80}>
             <div className="fixed-grid">
               <div className="col-span-2 md:col-span-3 border-r border-architectural pr-4">
                 <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
@@ -495,10 +546,12 @@ export default function PraisePortfolio() {
                 <p className="font-body text-sm text-brand-navy mt-1">Years</p>
               </div>
             </div>
+            </ScrollReveal>
           </section>
 
           {/* About */}
           <section id="about" className="mb-20 md:mb-32">
+            <ScrollReveal delay={100}>
             <div className="fixed-grid">
               <div className="col-span-4 md:col-span-4">
                 <div className="mb-6 md:mb-8 overflow-hidden border border-architectural md:grayscale md:hover:grayscale-0 transition-all duration-500">
@@ -521,17 +574,22 @@ export default function PraisePortfolio() {
                   scalable, aesthetically refined interfaces.
                 </p>
                 <p className="font-body text-base text-brand-navy leading-relaxed">
-                  I specialize in translating complex design systems into robust,
-                  high-performance web experiences. My work bridges the gap
-                  between meticulous editorial design and the rigorous demands
-                  of modern e-commerce architectures.
+                  I specialize in translating complex design systems into
+                  robust, high-performance web experiences. My work bridges the
+                  gap between meticulous editorial design and the rigorous
+                  demands of modern e-commerce architectures.
                 </p>
               </div>
             </div>
+            </ScrollReveal>
           </section>
 
           {/* Beyond the Code */}
-          <section id="beyond" className="mb-20 md:mb-32 border-t border-architectural pt-8 md:pt-12">
+          <section
+            id="beyond"
+            className="mb-20 md:mb-32 border-t border-architectural pt-8 md:pt-12"
+          >
+            <ScrollReveal delay={120}>
             <div className="fixed-grid">
               <div className="col-span-4 md:col-span-4">
                 <h2 className="font-display text-[32px] font-bold text-brand-navy mb-4">
@@ -540,9 +598,9 @@ export default function PraisePortfolio() {
               </div>
               <div className="col-span-4 md:col-span-8">
                 <p className="font-body text-lg text-brand-navy leading-relaxed mb-12">
-                  Outside of client work, I serve as Co-Director of Skills
-                  &amp; Development at JCINOAU — Junior Chamber International
-                  Nigeria, Obafemi Awolowo University — alongside{" "}
+                  Outside of client work, I serve as Co-Director of Skills &amp;
+                  Development at JCINOAU — Junior Chamber International Nigeria,
+                  Obafemi Awolowo University — alongside{" "}
                   <strong>Loveth Oladejo</strong>, where we lead programs that
                   equip students with practical, career-ready skills.
                 </p>
@@ -576,8 +634,8 @@ export default function PraisePortfolio() {
                     </p>
                     <p className="font-body text-sm text-brand-navy leading-relaxed">
                       By the end of the program, participants won&apos;t just
-                      have a skill — they&apos;ll know how to use it, talk
-                      about it, and earn from it.
+                      have a skill — they&apos;ll know how to use it, talk about
+                      it, and earn from it.
                     </p>
                   </div>
                   <div className="border border-architectural p-6 md:p-8 bg-brand-bg">
@@ -601,30 +659,26 @@ export default function PraisePortfolio() {
                     </p>
                     <ul className="font-body text-sm text-brand-navy space-y-2">
                       <li>
-                        <strong>Teamwork &amp; Conflict Resolution</strong> —
-                        20 December 2025
+                        <strong>Teamwork &amp; Conflict Resolution</strong>
                       </li>
                       <li>
-                        <strong>Leadership &amp; Problem Solving</strong> — 9
-                        January 2026
+                        <strong>Leadership &amp; Problem Solving</strong>
                       </li>
                       <li>
-                        <strong>Communication &amp; Active Listening</strong> —
-                        17 January 2026
+                        <strong>Communication &amp; Active Listening</strong>
                       </li>
                       <li>
-                        <strong>Time Management &amp; Critical Thinking</strong> —
-                        23 January 2026
+                        <strong>Time Management &amp; Critical Thinking</strong>
                       </li>
                       <li>
-                        <strong>Stress Management &amp; Decision Making</strong>{" "}
-                        — 31 January 2026
+                        <strong>Stress Management &amp; Decision Making</strong>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
+            </ScrollReveal>
           </section>
 
           {/* Skills */}
@@ -632,6 +686,7 @@ export default function PraisePortfolio() {
             id="skills"
             className="mb-20 md:mb-32 border border-architectural p-4 md:p-12"
           >
+            <ScrollReveal delay={80}>
             <h2 className="font-display text-xl md:text-[32px] font-bold text-brand-navy mb-4 md:mb-8 border-b border-architectural pb-3 md:pb-4">
               Technical Repertoire
             </h2>
@@ -652,10 +707,12 @@ export default function PraisePortfolio() {
                 );
               })}
             </div>
+            </ScrollReveal>
           </section>
 
           {/* Projects */}
           <section id="work" className="mb-20 md:mb-32">
+            <ScrollReveal delay={100}>
             <div className="flex justify-between items-end mb-6 md:mb-12 border-b border-architectural pb-3 md:pb-4 gap-3">
               <h2 className="font-display text-xl md:text-[32px] font-bold text-brand-navy">
                 Selected Works
@@ -665,9 +722,7 @@ export default function PraisePortfolio() {
                   onClick={() => setShowAll((prev) => !prev)}
                   className="font-body text-[10px] md:text-xs text-brand-navy hover:text-accent uppercase tracking-wider border-b border-transparent hover:border-accent transition-colors shrink-0"
                 >
-                  {showAll
-                    ? "Show Less"
-                    : `View All ${allProjects.length}`}
+                  {showAll ? "Show Less" : `View All ${allProjects.length}`}
                 </button>
               )}
             </div>
@@ -678,9 +733,7 @@ export default function PraisePortfolio() {
                   className="border border-architectural flex flex-col group cursor-pointer"
                   onClick={() => p.url && window.open(p.url, "_blank")}
                   onKeyDown={(e) =>
-                    p.url &&
-                    e.key === "Enter" &&
-                    window.open(p.url, "_blank")
+                    p.url && e.key === "Enter" && window.open(p.url, "_blank")
                   }
                   role={p.url ? "link" : "article"}
                   tabIndex={p.url ? 0 : undefined}
@@ -729,12 +782,16 @@ export default function PraisePortfolio() {
                 </article>
               ))}
             </div>
+            </ScrollReveal>
           </section>
 
-          <Testimonials />
+          <ScrollReveal delay={120}>
+            <Testimonials />
+          </ScrollReveal>
 
           {/* Contact */}
           <section id="contact" className="mb-16">
+            <ScrollReveal delay={80}>
             <div className="fixed-grid border border-architectural">
               <div className="col-span-4 md:col-span-5 p-8 md:p-12 border-b md:border-b-0 md:border-r border-architectural bg-brand-navy text-brand-bg">
                 <h2 className="font-display text-[32px] font-bold mb-6">
@@ -864,6 +921,7 @@ export default function PraisePortfolio() {
                 </form>
               </div>
             </div>
+            </ScrollReveal>
           </section>
         </main>
 
@@ -873,7 +931,8 @@ export default function PraisePortfolio() {
             <div>
               <a
                 href="#home"
-                className="font-display text-[32px] font-bold text-brand-navy mb-4 block"
+                onClick={(e) => scrollToSection(e, "home")}
+                className="font-display text-[32px] font-bold text-brand-navy mb-4 block transition-opacity hover:opacity-80"
               >
                 Praise Oluwasakin
               </a>

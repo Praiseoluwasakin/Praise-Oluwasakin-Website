@@ -30,15 +30,43 @@ const testimonials = [
 
 const HOLD_MS = 9000;
 
+const TestimonialCard = ({ item }) => (
+  <div className="w-full flex-shrink-0 px-1">
+    <div className="border border-architectural p-5 md:p-8 bg-brand-bg min-h-[280px] md:min-h-[320px] flex flex-col justify-between">
+      <p className="font-body text-sm md:text-base text-brand-navy italic leading-relaxed mb-6">
+        &ldquo;{item.text}&rdquo;
+      </p>
+      <div className="flex items-center gap-4">
+        <div className="w-10 h-10 md:w-12 md:h-12 bg-brand-navy flex items-center justify-center rounded-full text-brand-bg font-display font-semibold text-xs md:text-sm shrink-0">
+          {item.initials}
+        </div>
+        <div>
+          <p className="font-body font-semibold text-sm text-brand-navy">
+            {item.name}
+          </p>
+          <p className="font-body text-xs text-accent uppercase tracking-wider">
+            {item.role}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(true);
 
   const total = testimonials.length;
 
-  const goTo = useCallback((index) => {
-    setActiveIndex(((index % total) + total) % total);
-  }, [total]);
+  const goTo = useCallback(
+    (index) => {
+      setIsTransitioning(true);
+      setActiveIndex(((index % total) + total) % total);
+    },
+    [total],
+  );
 
   const next = useCallback(() => {
     goTo(activeIndex + 1);
@@ -54,8 +82,6 @@ const Testimonials = () => {
     return () => clearInterval(id);
   }, [isPaused, next]);
 
-  const active = testimonials[activeIndex];
-
   return (
     <section
       id="testimonials"
@@ -70,22 +96,20 @@ const Testimonials = () => {
       </h2>
 
       <div className="relative max-w-3xl mx-auto px-4 md:px-8">
-        <div className="border border-architectural p-5 md:p-8 bg-brand-bg min-h-[280px] md:min-h-[320px] flex flex-col justify-between transition-opacity duration-500">
-          <p className="font-body text-sm md:text-base text-brand-navy italic leading-relaxed mb-6">
-            &ldquo;{active.text}&rdquo;
-          </p>
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-brand-navy flex items-center justify-center rounded-full text-brand-bg font-display font-semibold text-xs md:text-sm shrink-0">
-              {active.initials}
-            </div>
-            <div>
-              <p className="font-body font-semibold text-sm text-brand-navy">
-                {active.name}
-              </p>
-              <p className="font-body text-xs text-accent uppercase tracking-wider">
-                {active.role}
-              </p>
-            </div>
+        <div className="overflow-hidden">
+          <div
+            className="flex testimonial-track"
+            style={{
+              transform: `translateX(-${activeIndex * 100}%)`,
+              transition: isTransitioning
+                ? "transform 0.65s cubic-bezier(0.25, 1, 0.5, 1)"
+                : "none",
+            }}
+            onTransitionEnd={() => setIsTransitioning(true)}
+          >
+            {testimonials.map((item) => (
+              <TestimonialCard key={item.initials} item={item} />
+            ))}
           </div>
         </div>
 
@@ -94,7 +118,7 @@ const Testimonials = () => {
             type="button"
             onClick={prev}
             aria-label="Previous testimonial"
-            className="w-10 h-10 md:w-11 md:h-11 border border-architectural flex items-center justify-center text-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-colors"
+            className="w-10 h-10 md:w-11 md:h-11 border border-architectural flex items-center justify-center text-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 active:scale-95"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -106,7 +130,7 @@ const Testimonials = () => {
                 type="button"
                 onClick={() => goTo(i)}
                 aria-label={`Go to testimonial ${i + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
+                className={`h-1.5 rounded-full transition-all duration-500 ${
                   i === activeIndex
                     ? "w-7 bg-brand-navy"
                     : "w-2 bg-brand-accent/50 hover:bg-brand-accent"
@@ -119,13 +143,13 @@ const Testimonials = () => {
             type="button"
             onClick={next}
             aria-label="Next testimonial"
-            className="w-10 h-10 md:w-11 md:h-11 border border-architectural flex items-center justify-center text-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-colors"
+            className="w-10 h-10 md:w-11 md:h-11 border border-architectural flex items-center justify-center text-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 active:scale-95"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
 
-        <p className="text-center font-body text-[10px] md:text-xs text-accent mt-4 tracking-wider">
+        <p className="text-center font-body text-[10px] md:text-xs text-accent mt-4 tracking-wider transition-opacity duration-300">
           {activeIndex + 1} of {total}
         </p>
       </div>

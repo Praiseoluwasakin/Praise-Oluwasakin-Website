@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const testimonials = [
   {
@@ -27,46 +28,106 @@ const testimonials = [
   },
 ];
 
-const TestimonialCard = ({ item }) => (
-  <div className="w-[min(400px,85vw)] flex-shrink-0 border border-architectural p-8 bg-brand-bg">
-    <p className="font-body text-base text-brand-navy italic mb-6 leading-relaxed">
-      &ldquo;{item.text}&rdquo;
-    </p>
-    <div className="flex items-center gap-4">
-      <div className="w-12 h-12 bg-brand-navy flex items-center justify-center rounded-full text-brand-bg font-display font-semibold text-sm">
-        {item.initials}
-      </div>
-      <div>
-        <p className="font-body font-semibold text-sm text-brand-navy">
-          {item.name}
-        </p>
-        <p className="font-body text-xs text-accent uppercase tracking-wider">
-          {item.role}
-        </p>
-      </div>
-    </div>
-  </div>
-);
+const HOLD_MS = 9000;
 
 const Testimonials = () => {
-  const items = [...testimonials, ...testimonials];
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const total = testimonials.length;
+
+  const goTo = useCallback((index) => {
+    setActiveIndex(((index % total) + total) % total);
+  }, [total]);
+
+  const next = useCallback(() => {
+    goTo(activeIndex + 1);
+  }, [activeIndex, goTo]);
+
+  const prev = useCallback(() => {
+    goTo(activeIndex - 1);
+  }, [activeIndex, goTo]);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const id = setInterval(next, HOLD_MS);
+    return () => clearInterval(id);
+  }, [isPaused, next]);
+
+  const active = testimonials[activeIndex];
 
   return (
     <section
       id="testimonials"
-      className="mb-32 overflow-hidden py-12 border-y border-architectural"
+      className="mb-20 md:mb-32 py-8 md:py-12 border-y border-architectural"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setTimeout(() => setIsPaused(false), HOLD_MS)}
     >
-      <h2 className="font-display text-2xl md:text-[32px] font-bold text-brand-navy mb-12 text-center">
+      <h2 className="font-display text-xl md:text-[32px] font-bold text-brand-navy mb-8 md:mb-12 text-center px-4">
         Client Endorsements
       </h2>
-      <div className="relative w-full">
-        <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-brand-bg to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-brand-bg to-transparent z-10 pointer-events-none" />
-        <div className="carousel-track gap-8 px-4">
-          {items.map((item, i) => (
-            <TestimonialCard key={`${item.initials}-${i}`} item={item} />
-          ))}
+
+      <div className="relative max-w-3xl mx-auto px-4 md:px-8">
+        <div className="border border-architectural p-5 md:p-8 bg-brand-bg min-h-[280px] md:min-h-[320px] flex flex-col justify-between transition-opacity duration-500">
+          <p className="font-body text-sm md:text-base text-brand-navy italic leading-relaxed mb-6">
+            &ldquo;{active.text}&rdquo;
+          </p>
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-brand-navy flex items-center justify-center rounded-full text-brand-bg font-display font-semibold text-xs md:text-sm shrink-0">
+              {active.initials}
+            </div>
+            <div>
+              <p className="font-body font-semibold text-sm text-brand-navy">
+                {active.name}
+              </p>
+              <p className="font-body text-xs text-accent uppercase tracking-wider">
+                {active.role}
+              </p>
+            </div>
+          </div>
         </div>
+
+        <div className="flex items-center justify-center gap-4 md:gap-6 mt-6 md:mt-8">
+          <button
+            type="button"
+            onClick={prev}
+            aria-label="Previous testimonial"
+            className="w-10 h-10 md:w-11 md:h-11 border border-architectural flex items-center justify-center text-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-colors"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          <div className="flex items-center gap-2">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => goTo(i)}
+                aria-label={`Go to testimonial ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  i === activeIndex
+                    ? "w-7 bg-brand-navy"
+                    : "w-2 bg-brand-accent/50 hover:bg-brand-accent"
+                }`}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={next}
+            aria-label="Next testimonial"
+            className="w-10 h-10 md:w-11 md:h-11 border border-architectural flex items-center justify-center text-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-colors"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+
+        <p className="text-center font-body text-[10px] md:text-xs text-accent mt-4 tracking-wider">
+          {activeIndex + 1} of {total}
+        </p>
       </div>
     </section>
   );

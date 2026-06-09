@@ -245,15 +245,16 @@ const highlightedSkills = new Set([
 ]);
 
 const navItems = [
-  { id: "work", label: "Work" },
   { id: "about", label: "About" },
+  { id: "beyond", label: "Beyond the Code" },
   { id: "skills", label: "Skills" },
-  { id: "contact", label: "Contact" },
+  { id: "work", label: "Work" },
+  { id: "testimonials", label: "Testimonials" },
 ];
 
 export default function PraisePortfolio() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [active, setActive] = useState("work");
+  const [active, setActive] = useState("about");
   const [showAll, setShowAll] = useState(false);
   const sectionsRef = useRef({});
 
@@ -286,7 +287,7 @@ export default function PraisePortfolio() {
 
   useEffect(() => {
     const onResize = () => {
-      if (window.innerWidth > 768) setMobileOpen(false);
+      if (window.innerWidth >= 1024) setMobileOpen(false);
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -344,18 +345,18 @@ export default function PraisePortfolio() {
         <header className="fixed top-0 w-full z-50 bg-brand-bg/90 backdrop-blur-md border-b border-architectural">
           <div className="flex justify-between items-center px-5 md:px-16 py-4 max-w-[1280px] mx-auto">
             <a
-              href="#work"
-              className="font-display text-xl md:text-2xl font-bold text-brand-navy tracking-tight"
+              href="#home"
+              className="font-display text-lg md:text-2xl font-bold text-brand-navy tracking-tight"
             >
               Praise Oluwasakin
             </a>
 
-            <nav className="hidden md:flex items-center gap-8">
+            <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
               {navItems.map((n) => (
                 <a
                   key={n.id}
                   href={`#${n.id}`}
-                  className={`font-body text-sm font-semibold tracking-wide transition-colors duration-300 ${
+                  className={`font-body text-xs xl:text-sm font-semibold tracking-wide transition-colors duration-300 ${
                     active === n.id
                       ? "text-brand-accent"
                       : "text-brand-navy hover:text-brand-accent"
@@ -375,14 +376,14 @@ export default function PraisePortfolio() {
             <button
               aria-label="Toggle menu"
               onClick={() => setMobileOpen((s) => !s)}
-              className="md:hidden text-brand-navy p-2"
+              className="lg:hidden text-brand-navy p-2"
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
 
           {mobileOpen && (
-            <div className="md:hidden px-5 pb-4 border-t border-architectural">
+            <div className="lg:hidden px-5 pb-4 border-t border-architectural">
               <div className="flex flex-col gap-1 pt-2">
                 {navItems.map((n) => (
                   <a
@@ -408,12 +409,12 @@ export default function PraisePortfolio() {
           )}
         </header>
 
-        <main className="flex-grow pt-32 pb-20 px-5 md:px-16 max-w-[1280px] mx-auto w-full">
+        <main className="flex-grow pt-24 md:pt-32 pb-16 md:pb-20 px-4 md:px-16 max-w-[1280px] mx-auto w-full">
           {/* Hero */}
-          <section id="work" className="mb-32">
+          <section id="home" className="mb-20 md:mb-32">
             <div className="fixed-grid">
               <div className="col-span-4 md:col-span-10 md:col-start-2">
-                <h1 className="font-display text-[36px] md:text-[72px] font-extrabold text-brand-navy mb-8 border-b border-architectural pb-8 leading-[1.1] tracking-tight">
+                <h1 className="font-display text-[28px] sm:text-[36px] md:text-[72px] font-extrabold text-brand-navy mb-6 md:mb-8 border-b border-architectural pb-6 md:pb-8 leading-[1.1] tracking-tight">
                   Transforming Static Designs into High-Converting Digital
                   Alchemies.
                 </h1>
@@ -445,7 +446,7 @@ export default function PraisePortfolio() {
           </section>
 
           {/* Stats */}
-          <section className="mb-32 border-y border-architectural py-12">
+          <section className="mb-20 md:mb-32 border-y border-architectural py-8 md:py-12">
             <div className="fixed-grid">
               <div className="col-span-2 md:col-span-3 border-r border-architectural pr-4">
                 <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
@@ -497,17 +498,17 @@ export default function PraisePortfolio() {
           </section>
 
           {/* About */}
-          <section id="about" className="mb-32">
+          <section id="about" className="mb-20 md:mb-32">
             <div className="fixed-grid">
               <div className="col-span-4 md:col-span-4">
-                <div className="mb-8 overflow-hidden border border-architectural grayscale hover:grayscale-0 transition-all duration-500">
+                <div className="mb-6 md:mb-8 overflow-hidden border border-architectural md:grayscale md:hover:grayscale-0 transition-all duration-500">
                   <img
                     src="/profile.webp"
                     alt="Praise Oluwasakin"
                     className="w-full h-auto object-cover object-top aspect-[4/5]"
                   />
                 </div>
-                <h2 className="font-display text-[32px] font-bold text-brand-navy mb-4">
+                <h2 className="font-display text-2xl md:text-[32px] font-bold text-brand-navy mb-4">
                   Background
                 </h2>
               </div>
@@ -530,7 +531,7 @@ export default function PraisePortfolio() {
           </section>
 
           {/* Beyond the Code */}
-          <section id="beyond" className="mb-32 border-t border-architectural pt-12">
+          <section id="beyond" className="mb-20 md:mb-32 border-t border-architectural pt-8 md:pt-12">
             <div className="fixed-grid">
               <div className="col-span-4 md:col-span-4">
                 <h2 className="font-display text-[32px] font-bold text-brand-navy mb-4">
@@ -538,44 +539,88 @@ export default function PraisePortfolio() {
                 </h2>
               </div>
               <div className="col-span-4 md:col-span-8">
-                <p className="font-body text-lg text-brand-navy leading-relaxed mb-6">
-                  Outside of client work, I serve as the Director of Skills
+                <p className="font-body text-lg text-brand-navy leading-relaxed mb-12">
+                  Outside of client work, I serve as Co-Director of Skills
                   &amp; Development at JCINOAU — Junior Chamber International
-                  Nigeria, Obafemi Awolowo University — where I co-lead programs
-                  that equip students with real, income-generating skills.
+                  Nigeria, Obafemi Awolowo University — alongside{" "}
+                  <strong>Loveth Oladejo</strong>, where we lead programs that
+                  equip students with practical, career-ready skills.
                 </p>
-                <p className="font-body text-base text-brand-navy leading-relaxed mb-12">
-                  As someone who built from the bottom, I find joy in carrying
-                  others along and watching them improve.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="border border-architectural p-6 bg-brand-bg hover:bg-brand-navy hover:text-brand-bg group transition-colors duration-300">
-                    <h3 className="font-display text-2xl font-semibold mb-2 group-hover:text-brand-bg text-brand-navy">
-                      Ignite Academy (2026)
+                <div className="grid grid-cols-1 gap-8">
+                  <div className="border border-architectural p-6 md:p-8 bg-brand-bg">
+                    <h3 className="font-display text-2xl font-semibold mb-2 text-brand-navy">
+                      Ignite Academy 2026
                     </h3>
-                    <p className="font-body text-xs text-accent group-hover:text-brand-accent uppercase mb-4 tracking-wider">
-                      Framework: Learn → Build → Position → Monetize
+                    <p className="font-body text-xs text-accent uppercase mb-4 tracking-wider">
+                      JCINOAU Skills &amp; Development Directorate · 6-Week
+                      Program
                     </p>
-                    <p className="font-body text-sm mb-4 opacity-90">
-                      A comprehensive hard-skills incubator focusing on Data
-                      Analysis, UI/UX Design, and Web Development. We guide
-                      students through a rigorous professional development track
-                      to turn technical proficiency into market value.
+                    <p className="font-body text-sm text-brand-navy leading-relaxed mb-4">
+                      Ignite Academy is more than a training program — it is a
+                      space where potential gets activated. Over 6 weeks,
+                      participants choose one core skill track and go deep with
+                      hands-on, practical learning they can actually use.
+                    </p>
+                    <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
+                      Core Skill Tracks
+                    </p>
+                    <p className="font-body text-sm text-brand-navy leading-relaxed mb-4">
+                      Video Editing · Graphic Design · Content Writing · Data
+                      Analysis · Social Media Management · Virtual Assistant
+                    </p>
+                    <p className="font-body text-sm text-brand-navy leading-relaxed mb-4">
+                      Beyond the core track, participants also receive sessions
+                      on building a personal brand, optimizing LinkedIn,
+                      managing money, and using AI to work smarter — everything
+                      needed to show up ready in today&apos;s world.
+                    </p>
+                    <p className="font-body text-sm text-brand-navy leading-relaxed">
+                      By the end of the program, participants won&apos;t just
+                      have a skill — they&apos;ll know how to use it, talk
+                      about it, and earn from it.
                     </p>
                   </div>
-                  <div className="border border-architectural p-6 bg-brand-bg hover:bg-brand-navy hover:text-brand-bg group transition-colors duration-300">
-                    <h3 className="font-display text-2xl font-semibold mb-2 group-hover:text-brand-bg text-brand-navy">
-                      Soft Skills Training (2025-2026)
+                  <div className="border border-architectural p-6 md:p-8 bg-brand-bg">
+                    <h3 className="font-display text-2xl font-semibold mb-2 text-brand-navy">
+                      Soft Skills Training (2025–2026)
                     </h3>
-                    <p className="font-body text-xs text-accent group-hover:text-brand-accent uppercase mb-4 tracking-wider">
-                      Role: Speaker Coordination &amp; Impact Assessment
+                    <p className="font-body text-xs text-accent uppercase mb-4 tracking-wider">
+                      JCINOAU Skills &amp; Development Directorate · JCINOAU
+                      Members &amp; OAU Students
                     </p>
-                    <p className="font-body text-sm mb-4 opacity-90">
-                      Focused on Leadership, Emotional Intelligence, and
-                      Critical Thinking. I manage expert guest relations and
-                      measure program efficacy to ensure students develop the
-                      interpersonal foundations required for high-level careers.
+                    <p className="font-body text-sm text-brand-navy leading-relaxed mb-4">
+                      The Soft Skills Training was organized for members of
+                      JCINOAU and OAU students to equip them with practical
+                      insights on what soft skills training is and how important
+                      it is in a professional setting. The session aimed to help
+                      participants understand that soft skills are just as
+                      important as hard skills.
                     </p>
+                    <p className="font-body text-xs text-accent uppercase mb-3 tracking-wider">
+                      Five Sessions · Five Speakers
+                    </p>
+                    <ul className="font-body text-sm text-brand-navy space-y-2">
+                      <li>
+                        <strong>Teamwork &amp; Conflict Resolution</strong> —
+                        20 December 2025
+                      </li>
+                      <li>
+                        <strong>Leadership &amp; Problem Solving</strong> — 9
+                        January 2026
+                      </li>
+                      <li>
+                        <strong>Communication &amp; Active Listening</strong> —
+                        17 January 2026
+                      </li>
+                      <li>
+                        <strong>Time Management &amp; Critical Thinking</strong> —
+                        23 January 2026
+                      </li>
+                      <li>
+                        <strong>Stress Management &amp; Decision Making</strong>{" "}
+                        — 31 January 2026
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -585,18 +630,18 @@ export default function PraisePortfolio() {
           {/* Skills */}
           <section
             id="skills"
-            className="mb-32 border border-architectural p-6 md:p-12"
+            className="mb-20 md:mb-32 border border-architectural p-4 md:p-12"
           >
-            <h2 className="font-display text-[32px] font-bold text-brand-navy mb-8 border-b border-architectural pb-4">
+            <h2 className="font-display text-xl md:text-[32px] font-bold text-brand-navy mb-4 md:mb-8 border-b border-architectural pb-3 md:pb-4">
               Technical Repertoire
             </h2>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-1.5 md:gap-3">
               {skills.map((skill) => {
                 const highlighted = highlightedSkills.has(skill);
                 return (
                   <span
                     key={skill}
-                    className={`border px-4 py-2 font-body text-xs uppercase tracking-wider ${
+                    className={`border px-2 py-1 md:px-4 md:py-2 font-body text-[9px] md:text-xs uppercase tracking-wide md:tracking-wider leading-tight ${
                       highlighted
                         ? "bg-brand-navy text-brand-bg border-brand-navy"
                         : "border-brand-accent text-accent"
@@ -610,27 +655,27 @@ export default function PraisePortfolio() {
           </section>
 
           {/* Projects */}
-          <section id="work" className="mb-32">
-            <div className="flex justify-between items-end mb-12 border-b border-architectural pb-4">
-              <h2 className="font-display text-[32px] font-bold text-brand-navy">
+          <section id="work" className="mb-20 md:mb-32">
+            <div className="flex justify-between items-end mb-6 md:mb-12 border-b border-architectural pb-3 md:pb-4 gap-3">
+              <h2 className="font-display text-xl md:text-[32px] font-bold text-brand-navy">
                 Selected Works
               </h2>
               {allProjects.length > 6 && (
                 <button
                   onClick={() => setShowAll((prev) => !prev)}
-                  className="font-body text-xs text-brand-navy hover:text-accent uppercase tracking-wider border-b border-transparent hover:border-accent transition-colors"
+                  className="font-body text-[10px] md:text-xs text-brand-navy hover:text-accent uppercase tracking-wider border-b border-transparent hover:border-accent transition-colors shrink-0"
                 >
                   {showAll
                     ? "Show Less"
-                    : `View All ${allProjects.length} Projects`}
+                    : `View All ${allProjects.length}`}
                 </button>
               )}
             </div>
-            <div className="fixed-grid">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 md:gap-5">
               {projectsToShow.map((p) => (
                 <article
                   key={p.title}
-                  className="col-span-4 border border-architectural flex flex-col group cursor-pointer"
+                  className="border border-architectural flex flex-col group cursor-pointer"
                   onClick={() => p.url && window.open(p.url, "_blank")}
                   onKeyDown={(e) =>
                     p.url &&
@@ -640,7 +685,7 @@ export default function PraisePortfolio() {
                   role={p.url ? "link" : "article"}
                   tabIndex={p.url ? 0 : undefined}
                 >
-                  <div className="h-64 bg-brand-navy/10 relative overflow-hidden border-b border-architectural">
+                  <div className="h-28 sm:h-36 md:h-64 bg-brand-navy/10 relative overflow-hidden border-b border-architectural">
                     {p.media ? (
                       <img
                         src={p.media}
@@ -658,23 +703,23 @@ export default function PraisePortfolio() {
                     <div
                       className={`fallback-icon absolute inset-0 flex items-center justify-center bg-brand-accent/20 ${p.media ? "hidden" : ""}`}
                     >
-                      <p.Icon className="w-12 h-12 text-brand-accent" />
+                      <p.Icon className="w-6 h-6 md:w-12 md:h-12 text-brand-accent" />
                     </div>
                   </div>
-                  <div className="p-6 flex-grow flex flex-col justify-between bg-brand-bg group-hover:bg-brand-navy transition-colors duration-300">
+                  <div className="p-2.5 md:p-6 flex-grow flex flex-col justify-between bg-brand-bg group-hover:bg-brand-navy transition-colors duration-300">
                     <div>
-                      <h3 className="font-display text-2xl font-semibold text-brand-navy group-hover:text-brand-bg transition-colors duration-300 mb-2">
+                      <h3 className="font-display text-[11px] sm:text-sm md:text-2xl font-semibold text-brand-navy group-hover:text-brand-bg transition-colors duration-300 mb-1 md:mb-2 line-clamp-2 md:line-clamp-none leading-tight">
                         {p.title}
                       </h3>
-                      <p className="font-body text-sm text-brand-navy/80 group-hover:text-brand-bg/80 transition-colors duration-300 line-clamp-3">
+                      <p className="hidden md:block font-body text-sm text-brand-navy/80 group-hover:text-brand-bg/80 transition-colors duration-300 line-clamp-3">
                         {p.desc}
                       </p>
                     </div>
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {p.tags.slice(0, 3).map((t) => (
+                    <div className="mt-2 md:mt-6 flex flex-wrap gap-1 md:gap-2">
+                      {p.tags.slice(0, 2).map((t) => (
                         <span
                           key={t}
-                          className="text-[10px] uppercase tracking-wider text-accent group-hover:text-brand-bg/50 border border-accent group-hover:border-brand-bg/50 px-2 py-1"
+                          className="text-[8px] md:text-[10px] uppercase tracking-wider text-accent group-hover:text-brand-bg/50 border border-accent group-hover:border-brand-bg/50 px-1 py-0.5 md:px-2 md:py-1"
                         >
                           {t}
                         </span>
@@ -827,7 +872,7 @@ export default function PraisePortfolio() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-5 md:px-16 py-20 max-w-[1280px] mx-auto">
             <div>
               <a
-                href="#work"
+                href="#home"
                 className="font-display text-[32px] font-bold text-brand-navy mb-4 block"
               >
                 Praise Oluwasakin

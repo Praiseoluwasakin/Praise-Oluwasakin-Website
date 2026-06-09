@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Praise Oluwasakin - Frontend &amp; Shopify Developer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#1f1c02",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#49473c",
+                        "inverse-surface": "#2b2f48",
+                        "on-tertiary-fixed-variant": "#304e23",
+                        "surface-dim": "#d5d8f9",
+                        "tertiary-fixed": "#c8edb3",
+                        "on-tertiary-container": "#4d6d3f",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#e2dfff",
+                        "surface-container-highest": "#dee0ff",
+                        "primary-fixed-dim": "#cfc79c",
+                        "inverse-on-surface": "#f0efff",
+                        "surface-container-low": "#f4f2ff",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#cbc6b9",
+                        "secondary-container": "#dfdcfe",
+                        "surface-tint": "#645f3c",
+                        "on-primary-container": "#6b6541",
+                        "on-error": "#ffffff",
+                        "background": "#fbf8ff",
+                        "secondary-fixed-dim": "#c5c3e4",
+                        "surface-container": "#ececff",
+                        "primary": "#645f3c",
+                        "on-surface": "#161a32",
+                        "on-secondary-fixed": "#191932",
+                        "outline": "#7a776b",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#fbf8ff",
+                        "on-primary-fixed-variant": "#4c4726",
+                        "on-tertiary-fixed": "#052100",
+                        "on-secondary-fixed-variant": "#44445f",
+                        "on-background": "#161a32",
+                        "tertiary-fixed-dim": "#add199",
+                        "primary-container": "#ece4b7",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#fbf8ff",
+                        "primary-fixed": "#ebe3b6",
+                        "on-secondary-container": "#61607c",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#c9eeb4",
+                        "surface-container-high": "#e5e6ff",
+                        "inverse-primary": "#cfc79c",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#dee0ff",
+                        "secondary": "#5c5c78",
+                        "tertiary": "#476739",
+                        "brand-navy": "#22223b",
+                        "brand-border": "#4a4e69",
+                        "brand-accent": "#9a8c98",
+                        "brand-cta": "#143109",
+                        "brand-bg": "#ece4b7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "none": "0px"
+                    },
+                    "spacing": {
+                        "lg": "48px",
+                        "xs": "8px",
+                        "base": "4px",
+                        "sm": "16px",
+                        "margin-desktop": "64px",
+                        "max-width": "1280px",
+                        "md": "24px",
+                        "gutter": "20px",
+                        "xl": "80px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Montserrat", "sans-serif"],
+                        "body-sm": ["Montserrat", "sans-serif"],
+                        "headline-lg-mobile": ["Syne", "sans-serif"],
+                        "display-lg": ["Syne", "sans-serif"],
+                        "body-md": ["Montserrat", "sans-serif"],
+                        "label-lg": ["Montserrat", "sans-serif"],
+                        "headline-lg": ["Syne", "sans-serif"],
+                        "headline-md": ["Syne", "sans-serif"],
+                        "body-lg": ["Montserrat", "sans-serif"],
+                        "headline-sm": ["Syne", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.03em", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #ece4b7;
+            color: #22223b;
+        }
+        
+        .border-architectural {
+            border-color: #4a4e69;
+        }
+
+        .text-accent {
+            color: #9a8c98;
+        }
+
+        .bg-cta {
+            background-color: #143109;
+        }
+        
+        /* Fixed Grid Utility */
+        .fixed-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .fixed-grid {
+                grid-template-columns: repeat(12, minmax(0, 1fr));
+            }
+        }
+
+        /* Focus state for inputs */
+        input:focus, textarea:focus {
+            outline: none;
+            border-bottom: 2px solid #22223b;
+            margin-bottom: -1px; /* prevent layout shift */
+        }
+
+        /* Carousel Animation */
+        .carousel-track {
+            display: flex;
+            width: max-content;
+            animation: scroll 20s linear infinite;
+        }
+        
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md min-h-screen selection:bg-brand-navy selection:text-brand-bg flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-[#ece4b7]/90 backdrop-blur-md border-b border-architectural">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-max-width mx-auto">
+<a class="font-headline-sm text-headline-sm font-bold text-brand-navy tracking-tight" href="#">Praise Oluwasakin</a>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-label-lg text-label-lg text-brand-navy hover:text-brand-accent transition-colors duration-300" href="#work">Work</a>
+<a class="font-label-lg text-label-lg text-brand-navy hover:text-brand-accent transition-colors duration-300" href="#about">About</a>
+<a class="font-label-lg text-label-lg text-brand-navy hover:text-brand-accent transition-colors duration-300" href="#skills">Skills</a>
+<a class="font-label-lg text-label-lg text-brand-navy hover:text-brand-accent transition-colors duration-300" href="#contact">Contact</a>
+<a class="px-6 py-2 bg-cta text-brand-bg font-label-lg text-label-lg hover:opacity-90 transition-opacity" href="#contact">Get in touch</a>
+</nav>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-brand-navy">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-grow pt-32 pb-margin-desktop px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto w-full">
+<!-- Hero Section -->
+<section class="mb-32">
+<div class="fixed-grid">
+<div class="col-span-4 md:col-span-10 md:col-start-2">
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-brand-navy mb-8 border-b border-architectural pb-8">
+                        Transforming Static Designs into High-Converting Digital Alchemies.
+                    </h1>
+<div class="flex flex-col md:flex-row gap-8 justify-between items-start">
+<p class="font-body-lg text-body-lg text-brand-navy max-w-2xl">
+                            Specializing in pixel-perfect frontend development and high-performance Shopify architectures for brands that demand excellence.
+                        </p>
+<div class="flex flex-wrap gap-4">
+<a class="inline-flex items-center gap-2 border border-brand-navy px-6 py-3 font-label-lg text-label-lg text-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-colors" href="#work">
+                                Explore Archives
+                                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<a class="inline-flex items-center gap-2 border border-brand-accent px-6 py-3 font-label-lg text-label-lg text-brand-navy hover:border-brand-navy transition-colors" download="" href="#">
+                                Download Resume
+                                <span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Quantifiable Impact -->
+<section class="mb-32 border-y border-architectural py-12">
+<div class="fixed-grid">
+<div class="col-span-2 md:col-span-3 border-r border-architectural pr-4">
+<p class="font-label-sm text-label-sm text-accent uppercase mb-2">Performance</p>
+<p class="font-headline-md text-headline-md text-brand-navy">+35%</p>
+<p class="font-body-sm text-body-sm text-brand-navy mt-1">Speed Score</p>
+</div>
+<div class="col-span-2 md:col-span-3 border-r border-architectural px-4">
+<p class="font-label-sm text-label-sm text-accent uppercase mb-2">Impact</p>
+<p class="font-headline-md text-headline-md text-brand-navy">$120K+</p>
+<p class="font-body-sm text-body-sm text-brand-navy mt-1">Revenue Generated</p>
+<p class="font-label-sm text-label-sm text-brand-navy mt-2 opacity-80">Boosting sales to $10K in &lt; 2 weeks via Klaviyo &amp; SEO management</p>
+</div>
+<div class="col-span-2 md:col-span-3 border-r border-architectural px-4 mt-8 md:mt-0">
+<p class="font-label-sm text-label-sm text-accent uppercase mb-2">Client</p>
+<p class="font-headline-md text-headline-md text-brand-navy">95%</p>
+<p class="font-body-sm text-body-sm text-brand-navy mt-1">Satisfaction</p>
+</div>
+<div class="col-span-2 md:col-span-3 pl-4 mt-8 md:mt-0">
+<p class="font-label-sm text-label-sm text-accent uppercase mb-2">Experience</p>
+<p class="font-headline-md text-headline-md text-brand-navy">7+</p>
+<p class="font-body-sm text-body-sm text-brand-navy mt-1">Years</p>
+</div>
+</div>
+</section>
+<!-- About/Bio -->
+<section class="mb-32" id="about">
+<div class="fixed-grid">
+<div class="col-span-4 md:col-span-4"><div class="mb-8 overflow-hidden border border-architectural grayscale hover:grayscale-0 transition-all duration-500">
+<img alt="Praise Oluwasakin" class="w-full h-auto object-cover aspect-[4/5]" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+</div>
+<h2 class="font-headline-md text-headline-md text-brand-navy mb-4">Background</h2>
+</div>
+<div class="col-span-4 md:col-span-8">
+<p class="font-body-lg text-body-lg text-brand-navy leading-relaxed mb-6">
+                        I am Praise Oluwasakin, a professional Frontend &amp; Shopify Developer and a student of Building at OAU. My dual background in structural architecture and digital engineering informs my approach to code: I build solid foundations that support scalable, aesthetically refined interfaces.
+                    </p>
+<p class="font-body-md text-body-md text-brand-navy leading-relaxed">
+                        I specialize in translating complex design systems into robust, high-performance web experiences. My work bridges the gap between meticulous editorial design and the rigorous demands of modern e-commerce architectures.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Beyond the Code -->
+<section class="mb-32 border-t border-architectural pt-12" id="beyond">
+<div class="fixed-grid">
+<div class="col-span-4 md:col-span-4">
+<h2 class="font-headline-md text-headline-md text-brand-navy mb-4">Beyond the Code</h2>
+</div>
+<div class="col-span-4 md:col-span-8">
+<p class="font-body-lg text-body-lg text-brand-navy leading-relaxed mb-6">
+                        Outside of client work, I serve as the Director of Skills &amp; Development at JCINOAU — Junior Chamber International Nigeria, Obafemi Awolowo University — where I co-lead programs that equip students with real, income-generating skills.
+                    </p>
+<p class="font-body-md text-body-md text-brand-navy leading-relaxed mb-12">
+                        As someone who built from the bottom, I find joy in carrying others along and watching them improve.
+                    </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8"><div class="border border-architectural p-6 bg-[#ece4b7] hover:bg-brand-navy hover:text-brand-bg group transition-colors duration-300">
+<h3 class="font-headline-sm text-headline-sm mb-2 group-hover:text-brand-bg text-brand-navy">Ignite Academy (2026)</h3>
+<p class="font-label-sm text-label-sm text-accent group-hover:text-brand-accent uppercase mb-4">Framework: Learn -&gt; Build -&gt; Position -&gt; Monetize</p>
+<p class="font-body-sm text-body-sm mb-4 opacity-90">A comprehensive hard-skills incubator focusing on Data Analysis, UI/UX Design, and Web Development. We guide students through a rigorous professional development track to turn technical proficiency into market value.</p>
+</div>
+<div class="border border-architectural p-6 bg-[#ece4b7] hover:bg-brand-navy hover:text-brand-bg group transition-colors duration-300">
+<h3 class="font-headline-sm text-headline-sm mb-2 group-hover:text-brand-bg text-brand-navy">Soft Skills Training (2025-2026)</h3>
+<p class="font-label-sm text-label-sm text-accent group-hover:text-brand-accent uppercase mb-4">Role: Speaker Coordination &amp; Impact Assessment</p>
+<p class="font-body-sm text-body-sm mb-4 opacity-90">Focused on Leadership, Emotional Intelligence, and Critical Thinking. I manage expert guest relations and measure program efficacy to ensure students develop the interpersonal foundations required for high-level careers.</p>
+</div></div>
+</div>
+</div>
+</section>
+<!-- Skills Section -->
+<section class="mb-32 border border-architectural p-6 md:p-12" id="skills">
+<h2 class="font-headline-md text-headline-md text-brand-navy mb-8 border-b border-architectural pb-4">Technical Repertoire</h2>
+<div class="flex flex-wrap gap-4">
+<span class="border border-brand-accent text-accent px-4 py-2 font-label-sm text-label-sm uppercase tracking-wider">HTML</span>
+<span class="border border-brand-accent text-accent px-4 py-2 font-label-sm text-label-sm uppercase tracking-wider">CSS</span>
+<span class="border border-brand-accent text-accent px-4 py-2 font-label-sm text-label-sm uppercase tracking-wider">JavaScript</span>
+<span class="border border-brand-accent text-accent px-4 py-2 font-label-sm text-label-sm uppercase tracking-wider">React</span>
+<span class="border border-brand-accent text-accent px-4 py-2 font-label-sm text-label-sm uppercase tracking-wider">Next.js</span>
+<span class="border border-brand-accent text-accent px-4 py-2 font-label-sm text-label-sm uppercase tracking-wider">Liquid</span>
+<span class="border border-brand-accent text-accent px-4 py-2 font-label-sm text-label-sm uppercase tracking-wider">Tailwind CSS</span>
+<span class="border border-brand-accent text-accent px-4 py-2 font-label-sm text-label-sm uppercase tracking-wider">Figma</span>
+<span class="border border-brand-accent text-accent px-4 py-2 font-label-sm text-label-sm uppercase tracking-wider">Shopify</span>
+<span class="border border-brand-accent text-accent px-4 py-2 font-label-sm text-label-sm uppercase tracking-wider bg-brand-navy text-brand-bg border-brand-navy">Klaviyo</span>
+<span class="border border-brand-accent text-accent px-4 py-2 font-label-sm text-label-sm uppercase tracking-wider bg-brand-navy text-brand-bg border-brand-navy">Google Search Console</span>
+<span class="border border-brand-accent text-accent px-4 py-2 font-label-sm text-label-sm uppercase tracking-wider bg-brand-navy text-brand-bg border-brand-navy">Performance Auditing</span>
+<span class="border border-brand-accent text-accent px-4 py-2 font-label-sm text-label-sm uppercase tracking-wider">SEO Optimization</span>
+<span class="border border-brand-accent text-accent px-4 py-2 font-label-sm text-label-sm uppercase tracking-wider">CRO</span>
+</div>
+</section>
+<!-- Selected Works -->
+<section class="mb-32" id="work">
+<div class="flex justify-between items-end mb-12 border-b border-architectural pb-4">
+<h2 class="font-headline-md text-headline-md text-brand-navy">Selected Works</h2>
+<a class="font-label-sm text-label-sm text-brand-navy hover:text-accent uppercase tracking-wider border-b border-transparent hover:border-accent transition-colors" href="#">View All 27 Projects</a>
+</div>
+<div class="fixed-grid">
+<!-- Project 1 -->
+<article class="col-span-4 border border-architectural flex flex-col group cursor-pointer">
+<div class="h-64 bg-brand-navy/10 relative overflow-hidden border-b border-architectural p-4">
+<div class="w-full h-full bg-brand-accent/20"></div>
+<!-- Placeholder for actual project image -->
+</div>
+<div class="p-6 flex-grow flex flex-col justify-between bg-[#ece4b7] group-hover:bg-brand-navy transition-colors duration-300">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-brand-navy group-hover:text-brand-bg transition-colors duration-300 mb-2">All In Lid</h3>
+<p class="font-body-sm text-body-sm text-brand-navy/80 group-hover:text-brand-bg/80 transition-colors duration-300">E-commerce Optimization</p>
+</div>
+<div class="mt-6 flex gap-2">
+<span class="text-[10px] uppercase tracking-wider text-accent group-hover:text-brand-bg/50 border border-accent group-hover:border-brand-bg/50 px-2 py-1">Shopify</span>
+</div>
+</div>
+</article>
+<!-- Project 2 -->
+<article class="col-span-4 border border-architectural flex flex-col group cursor-pointer">
+<div class="h-64 bg-brand-navy/10 relative overflow-hidden border-b border-architectural p-4">
+<div class="w-full h-full bg-brand-accent/20"></div>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-between bg-[#ece4b7] group-hover:bg-brand-navy transition-colors duration-300">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-brand-navy group-hover:text-brand-bg transition-colors duration-300 mb-2">Wancemo</h3>
+<p class="font-body-sm text-body-sm text-brand-navy/80 group-hover:text-brand-bg/80 transition-colors duration-300">Brand Identity &amp; Platform</p>
+</div>
+<div class="mt-6 flex gap-2">
+<span class="text-[10px] uppercase tracking-wider text-accent group-hover:text-brand-bg/50 border border-accent group-hover:border-brand-bg/50 px-2 py-1">Next.js</span>
+</div>
+</div>
+</article>
+<!-- Project 3 -->
+<article class="col-span-4 border border-architectural flex flex-col group cursor-pointer">
+<div class="h-64 bg-brand-navy/10 relative overflow-hidden border-b border-architectural p-4">
+<div class="w-full h-full bg-brand-accent/20"></div>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-between bg-[#ece4b7] group-hover:bg-brand-navy transition-colors duration-300">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-brand-navy group-hover:text-brand-bg transition-colors duration-300 mb-2">Eau Deals</h3>
+<p class="font-body-sm text-body-sm text-brand-navy/80 group-hover:text-brand-bg/80 transition-colors duration-300">High-Conversion Storefront</p>
+</div>
+<div class="mt-6 flex gap-2">
+<span class="text-[10px] uppercase tracking-wider text-accent group-hover:text-brand-bg/50 border border-accent group-hover:border-brand-bg/50 px-2 py-1">React</span>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Testimonials Carousel -->
+<section class="mb-32 overflow-hidden py-12 border-y border-architectural" id="testimonials">
+<h2 class="font-headline-md text-headline-md text-brand-navy mb-12 text-center">Client Endorsements</h2>
+<div class="relative w-full">
+<!-- Gradient masks for smooth edges -->
+<div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#ece4b7] to-transparent z-10 pointer-events-none"></div>
+<div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#ece4b7] to-transparent z-10 pointer-events-none"></div>
+<div class="carousel-track gap-8 px-4"><!-- Set 1 -->
+<div class="w-[400px] flex-shrink-0 border border-architectural p-8 bg-[#ece4b7]">
+<p class="font-body-md text-body-md text-brand-navy italic mb-6">"Praise has been an absolute game changer for All In Lid. He completely revamped our Shopify store, built smart cart upsells to push AOV, and set up our entire Klaviyo infrastructure from scratch."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-brand-navy flex items-center justify-center rounded-full text-brand-bg font-headline-sm">AIL</div>
+<div>
+<p class="font-label-lg text-label-lg text-brand-navy">All In Lid Team</p>
+<p class="font-label-sm text-label-sm text-accent">Shopify Store Owners</p>
+</div>
+</div>
+</div>
+<div class="w-[400px] flex-shrink-0 border border-architectural p-8 bg-[#ece4b7]">
+<p class="font-body-md text-body-md text-brand-navy italic mb-6">"Praise refactored the code structure, built the user dashboard, and integrated our backend REST API endpoints across the entire frontend. He's communicative and technical."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-brand-navy flex items-center justify-center rounded-full text-brand-bg font-headline-sm">OD</div>
+<div>
+<p class="font-label-lg text-label-lg text-brand-navy">Oluwadamilola</p>
+<p class="font-label-sm text-label-sm text-accent">Fullstack Developer</p>
+</div>
+</div>
+</div>
+<div class="w-[400px] flex-shrink-0 border border-architectural p-8 bg-[#ece4b7]">
+<p class="font-body-md text-body-md text-brand-navy italic mb-6">"Working with Praise was a breeze. His attention to detail in the frontend implementation of our design system was exceptional. Highly recommended for complex builds."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-brand-navy flex items-center justify-center rounded-full text-brand-bg font-headline-sm">FO</div>
+<div>
+<p class="font-label-lg text-label-lg text-brand-navy">Faith Olusakin</p>
+<p class="font-label-sm text-label-sm text-accent">Creative Director</p>
+</div>
+</div>
+</div>
+<div class="w-[400px] flex-shrink-0 border border-architectural p-8 bg-[#ece4b7]">
+<p class="font-body-md text-body-md text-brand-navy italic mb-6">"Praise transformed our slow-loading site into a high-performance machine. Our conversion rates saw an immediate lift after the performance auditing and fixes."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-brand-navy flex items-center justify-center rounded-full text-brand-bg font-headline-sm">OS</div>
+<div>
+<p class="font-label-lg text-label-lg text-brand-navy">Oluwaseyi</p>
+<p class="font-label-sm text-label-sm text-accent">E-commerce Manager</p>
+</div>
+</div>
+</div>
+<!-- Set 2 (Duplicated for seamless loop) -->
+<div class="w-[400px] flex-shrink-0 border border-architectural p-8 bg-[#ece4b7]">
+<p class="font-body-md text-body-md text-brand-navy italic mb-6">"Praise has been an absolute game changer for All In Lid..."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-brand-navy flex items-center justify-center rounded-full text-brand-bg font-headline-sm">AIL</div>
+<div>
+<p class="font-label-lg text-label-lg text-brand-navy">All In Lid Team</p>
+</div>
+</div>
+</div>
+<div class="w-[400px] flex-shrink-0 border border-architectural p-8 bg-[#ece4b7]">
+<p class="font-body-md text-body-md text-brand-navy italic mb-6">"Praise refactored the code structure..."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-brand-navy flex items-center justify-center rounded-full text-brand-bg font-headline-sm">OD</div>
+<div>
+<p class="font-label-lg text-label-lg text-brand-navy">Oluwadamilola</p>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="mb-16" id="contact">
+<div class="fixed-grid border border-architectural">
+<div class="col-span-4 md:col-span-5 p-8 md:p-12 border-b md:border-b-0 md:border-r border-architectural bg-brand-navy text-brand-bg">
+<h2 class="font-headline-md text-headline-md mb-6">Initiate Dialogue</h2>
+<p class="font-body-md text-body-md mb-12 text-brand-bg/80">Available for freelance opportunities and collaborative architectural digital builds.</p>
+<div class="space-y-6">
+<div>
+<p class="font-label-sm text-label-sm text-brand-accent uppercase mb-1">Upwork (Preferred)</p>
+<a class="font-body-md text-body-md hover:underline underline-offset-4" href="https://www.upwork.com/freelancers/~01f7c3f6c2fdd0c680" target="_blank">View Profile</a>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-brand-accent uppercase mb-1">WhatsApp</p>
+<a class="font-body-md text-body-md hover:underline underline-offset-4" href="https://wa.me/2349158418618" target="_blank">Connect Directly</a>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-brand-accent uppercase mb-1">iMessage / SMS</p>
+<a class="font-body-md text-body-md hover:underline underline-offset-4" href="sms:08139157598">Send a Message</a>
+</div>
+</div>
+</div>
+<div class="col-span-4 md:col-span-7 p-8 md:p-12">
+<form class="space-y-8">
+<div>
+<label class="block font-label-sm text-label-sm text-accent uppercase mb-2" for="name">Name</label>
+<input class="w-full bg-transparent border-b border-architectural py-2 font-body-md text-brand-navy transition-colors focus:border-brand-navy placeholder-accent/50" id="name" placeholder="Jane Doe" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-accent uppercase mb-2" for="email">Email Address</label>
+<input class="w-full bg-transparent border-b border-architectural py-2 font-body-md text-brand-navy transition-colors focus:border-brand-navy placeholder-accent/50" id="email" placeholder="jane@example.com" type="email"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-accent uppercase mb-2" for="details">Project Details</label>
+<textarea class="w-full bg-transparent border-b border-architectural py-2 font-body-md text-brand-navy transition-colors focus:border-brand-navy resize-none placeholder-accent/50" id="details" placeholder="Describe the architectural needs of your digital project..." rows="4"></textarea>
+</div>
+<button class="bg-cta text-brand-bg font-label-lg text-label-lg px-8 py-4 w-full md:w-auto hover:opacity-90 transition-opacity flex items-center justify-center gap-2" type="submit">
+                            Submit Inquiry
+                            <span class="material-symbols-outlined text-sm" data-icon="send">send</span>
+</button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-architectural bg-[#ece4b7]">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md px-margin-mobile md:px-margin-desktop py-xl max-w-max-width mx-auto">
+<div>
+<a class="font-headline-md text-headline-md font-bold text-brand-navy mb-4 block" href="#">Praise Oluwasakin</a>
+<p class="font-body-sm text-body-sm text-brand-navy/70">© 2024 Praise Oluwasakin. All rights reserved.</p>
+</div>
+<div class="flex flex-col gap-3">
+<a class="font-label-sm text-label-sm text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200" href="https://www.upwork.com/freelancers/~01f7c3f6c2fdd0c680" target="_blank">Upwork</a>
+<a class="font-label-sm text-label-sm text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200" href="https://wa.me/2349158418618" target="_blank">WhatsApp</a>
+<a class="font-label-sm text-label-sm text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200" href="sms:08139157598">iMessage/SMS</a>
+<span class="font-label-sm text-label-sm text-brand-navy/70">Lagos, Nigeria</span>
+</div>
+<div class="flex flex-col gap-3">
+<a class="font-label-sm text-label-sm text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200" href="https://www.linkedin.com/in/praise-oluwasakin-409306239/" target="_blank">LinkedIn</a>
+<a class="font-label-sm text-label-sm text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200" href="https://github.com/Praiseoluwasakin" target="_blank">GitHub</a>
+<a class="font-label-sm text-label-sm text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200" href="https://twitter.com/mayorcodes" target="_blank">X (Twitter)</a>
+<a class="font-label-sm text-label-sm text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200" href="https://instagram.com/mayor.codes" target="_blank">Instagram</a>
+</div>
+</div>
+</footer>
+</body></html>

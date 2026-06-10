@@ -391,11 +391,13 @@ export default function PraisePortfolio() {
               onClick={(e) => scrollToSection(e, "home")}
               className="flex items-center gap-2 font-display text-lg md:text-2xl font-bold text-brand-navy tracking-tight transition-opacity hover:opacity-80"
             >
-              <img
-                src="/PO-Logo.png"
-                alt="Logo"
-                className="w-5 h-5 md:w-6 h-6 object-contain animate-pulse-subtle"
-              />
+              <div className="bg-[#22223b] rounded-full p-1 flex items-center justify-center">
+                  <img
+                    src="/PO-Logo.png"
+                    alt="Logo"
+                    className="w-9 h-9 md:w-10 md:h-10 object-contain animate-pulse-subtle"
+                  />
+                </div>
               <span>Praise Oluwasakin</span>
             </a>
 
@@ -1078,11 +1080,13 @@ export default function PraisePortfolio() {
                 onClick={(e) => scrollToSection(e, "home")}
                 className="flex items-center gap-2 font-display text-[28px] md:text-[32px] font-bold text-brand-navy mb-4 transition-opacity hover:opacity-80"
               >
-                <img
-                  src="/PO-Logo.png"
-                  alt="Logo"
-                  className="w-8 h-8 object-contain animate-pulse-subtle"
-                />
+                <div className="bg-[#22223b] rounded-full p-1 flex items-center justify-center">
+                      <img
+                        src="/PO-Logo.png"
+                        alt="Logo"
+                        className="w-9 h-9 md:w-10 md:h-10 object-contain animate-pulse-subtle"
+                      />
+                    </div>
                 <span>Praise Oluwasakin</span>
               </a>
               <p className="font-body text-sm text-brand-navy/70 mb-2">

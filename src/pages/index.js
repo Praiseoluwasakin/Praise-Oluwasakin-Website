@@ -616,7 +616,7 @@ export default function PraisePortfolio() {
                   How I Architect Digital Products
                 </p>
                 <p className="font-body text-sm text-brand-navy/80 leading-relaxed mb-6">
-                  Every website is treated as an engineered structure. I don't "vibe-code" or guess. I design, test, optimize, and build with structural integrity to ensure every build achieves maximum business value and user satisfaction.
+                  Every website is treated as an engineered structure. I don&apos;t &quot;vibe-code&quot; or guess. I design, test, optimize, and build with structural integrity to ensure every build achieves maximum business value and user satisfaction.
                 </p>
               </div>
               <div className="col-span-4 md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -664,7 +664,7 @@ export default function PraisePortfolio() {
                     Customer-Centric Perspective
                   </h3>
                   <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
-                    I step directly into the customer's shoes to identify and eliminate design icks. I answer questions before they are asked, creating logical, friction-free customer journeys.
+                    I step directly into the customer&apos;s shoes to identify and eliminate design icks. I answer questions before they are asked, creating logical, friction-free customer journeys.
                   </p>
                 </div>
 

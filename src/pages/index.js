@@ -55,7 +55,7 @@ const featuredProjects = [
     desc: "Built and maintained the full website for Rhema Christian Church and Towers on Shopify. Developed dedicated pages for Men, Women, Youth, and Children ministries, a Branches directory with location and pastor details for 8+ branches, a Sunday Teachings blog with weekly sermon uploads, event announcements including the Women Aglow International Convention 2025, and an Online Christian Counseling section. Managed ongoing content updates across the entire site.",
     tags: ["Shopify", "Shopify Liquid", "PageFly", "Content Management"],
     url: "https://rhemachurchonline.org",
-    media: "/rhema-church.png",
+    media: "/rhema-website.png",
     Icon: Globe,
   },
   {
@@ -70,7 +70,7 @@ const featuredProjects = [
     title: "Eau Deals — Frontend & API Integration",
     desc: "Frontend development on a deals and offers platform built with React Vite and Tailwind CSS. Refactored a scattered codebase for maintainability, built the full user dashboard UI from Figma designs, and integrated all backend REST API endpoints — authentication flows, product listings, testimonials, and offer sections. Deployed on Vercel with backend on Render.",
     tags: ["React", "Vite", "Tailwind CSS", "REST API"],
-    url: "https://eau-deals-ruby.vercel.app",
+    url: "https://eau-deals.vercel.app",
     media: "/eau-deals.png",
     Icon: Globe,
   },
@@ -79,7 +79,7 @@ const featuredProjects = [
     desc: "Frontend build for a web application that helps users calculate the costs of having a baby. Delivered all UI fixes and feature updates, connected a custom REST API backend deployed on Render, and ensured clean data flow between frontend and backend. Delivered detailed PDF progress reports throughout the project lifecycle.",
     tags: ["React", "Tailwind CSS", "REST API"],
     url: "https://cost-to-baby.vercel.app",
-    media: "/cost-to-baby.png",
+    media: null,
     Icon: Calculator,
   },
   {
@@ -87,15 +87,15 @@ const featuredProjects = [
     desc: "Full Shopify store build for a vibrant lifestyle marketplace featuring 17 product categories including The Happy Brand apparel, jewelry, home decor, activewear, aquatic goods, and more. Implemented luminescent neon navigation styling, a custom HAPPY Brand category page, Exclusives section, and an energetic vacation-meets-streetwear aesthetic with Horizon theme.",
     tags: ["Shopify", "Horizon Theme", "Shopify Liquid", "E-commerce"],
     url: "",
-    media: "/happybrand.png",
+    media: null,
     Icon: ShoppingBag,
   },
   {
     title: "Golden Green Boutique — Women's Fashion Store",
     desc: "Shopify fashion store build for Golden Green Boutique featuring collections for clothing, shoes, accessories, and a full sorority shop with nine sorority dropdowns. Built with the Dawn theme, custom typography matching the brand guide, Instagram feed integration, and a Klaviyo email popup. Designed to match the aesthetic of shopruthiegrace.com with the brand's pink-and-green palette.",
     tags: ["Shopify", "Dawn Theme", "Klaviyo", "Instagram Feed"],
-    url: "",
-    media: "/goldengreen.png",
+    url: "https://www.shopgoldengreen.com",
+    media: "/golden-green.png",
     Icon: ShoppingBag,
   },
   {
@@ -103,7 +103,7 @@ const featuredProjects = [
     desc: "Shopify store build for a martial arts supply brand targeting men, women, children, and diverse communities. Designed and refined the Ryuu Gear brand identity including logo creation, set up the store using SaleHoo for dropshipping, and customized the theme with a strong, traditional-meets-modern aesthetic.",
     tags: ["Shopify", "Dropshipping", "SaleHoo", "Logo Design"],
     url: "",
-    media: "/ryuugear.png",
+    media: null,
     Icon: ShoppingBag,
   },
   {
@@ -111,7 +111,7 @@ const featuredProjects = [
     desc: "Shopify store for a contemporary painter and illustrator selling fine art prints and original artworks. Built product listings with size-based pricing, matched branding from the existing portfolio site using Above the Beyond Script and Poppins fonts, integrated a print-on-demand workflow with Stackhouse Printing, and added a mailing list popup for audience building.",
     tags: ["Shopify", "Print on Demand", "E-commerce", "Art Store"],
     url: "https://aniecaturner.com",
-    media: "/aniecaturner.png",
+    media: null,
     Icon: Palette,
   },
   {
@@ -119,7 +119,7 @@ const featuredProjects = [
     desc: "Shopify store work for Roros, an e-commerce brand based in Kenya. Handled product catalog management including sourcing and adding high-quality product images from supplier references, and maintaining accurate product listings across the store.",
     tags: ["Shopify", "E-commerce", "Product Management"],
     url: "https://roros.co.ke",
-    media: "/roros.png",
+    media: null,
     Icon: ShoppingBag,
   },
   {
@@ -127,7 +127,7 @@ const featuredProjects = [
     desc: "Shopify store build and maintenance for Ohm Med Spa using the Prestige theme. Set up all page templates, structured the storefront layout, and handled ongoing fixes and updates to keep the site running smoothly.",
     tags: ["Shopify", "Prestige Theme", "E-commerce"],
     url: "https://ohmmedspa.com",
-    media: "/ohmmedspa.png",
+    media: "/ohm-med-spa.png",
     Icon: ShoppingBag,
   },
   {
@@ -135,7 +135,7 @@ const featuredProjects = [
     desc: "Shopify store build for Okahisi, a fashion and t-shirt brand. Designed the storefront with a custom color palette and font pairing suited to the brand's aesthetic, structured the product catalog, and delivered a clean, conversion-ready shopping experience.",
     tags: ["Shopify", "Fashion E-commerce", "Theme Development"],
     url: "https://okihasi.com",
-    media: "/okahisi.png",
+    media: "/okihasi.png",
     Icon: ShoppingBag,
   },
   {
@@ -143,7 +143,7 @@ const featuredProjects = [
     desc: "Shopify storefront build for EcoStick Supply, delivering a clean, conversion-focused e-commerce experience. Built product collections, theme customization, and a seamless purchase flow designed to drive sales.",
     tags: ["Shopify", "E-commerce", "CRO"],
     url: "https://ecosticksupply.com",
-    media: "/ecosticksupply.png",
+    media: "/ecostickssupply.png",
     Icon: ShoppingBag,
   },
   {
@@ -151,7 +151,7 @@ const featuredProjects = [
     desc: "Fashion e-commerce Shopify store for Dola Fashion Collection. Delivered a styled, brand-consistent storefront with optimized product pages, collection layouts, and a seamless shopping experience.",
     tags: ["Shopify", "Fashion E-commerce", "Theme Development"],
     url: "https://dolafashioncollection.com",
-    media: "/dolafashion.png",
+    media: "/dolas-fashion-collection.png",
     Icon: ShoppingBag,
   },
   {
@@ -167,7 +167,7 @@ const featuredProjects = [
     desc: "Shopify storefront for Greenwich Play, built with a focus on clean UI, collection organization, and an enjoyable browsing experience tailored to the brand's audience.",
     tags: ["Shopify", "E-commerce", "Theme Development"],
     url: "https://shop.greenwichplay.com",
-    media: "/greenwichplay.png",
+    media: "/greenwich-play.png",
     Icon: ShoppingBag,
   },
 ];

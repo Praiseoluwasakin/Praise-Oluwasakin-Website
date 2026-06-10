@@ -392,7 +392,7 @@ export default function PraisePortfolio() {
               className="flex items-center gap-2 font-display text-lg md:text-2xl font-bold text-brand-navy tracking-tight transition-opacity hover:opacity-80"
             >
               <img
-                src="/favicon.ico"
+                src="/PO-Logo.png"
                 alt="Logo"
                 className="w-5 h-5 md:w-6 h-6 object-contain animate-pulse-subtle"
               />
@@ -480,219 +480,246 @@ export default function PraisePortfolio() {
           {/* Hero */}
           <section id="home" className="mb-20 md:mb-32">
             <ScrollReveal>
-            <div className="fixed-grid">
-              <div className="col-span-4 md:col-span-10 md:col-start-2">
-                <h1 className="font-display text-[28px] sm:text-[36px] md:text-[72px] font-extrabold text-brand-navy mb-6 md:mb-8 border-b border-architectural pb-6 md:pb-8 leading-[1.1] tracking-tight">
-                  Transforming Static Designs into High-Converting Digital
-                  Alchemies.
-                </h1>
-                <div className="flex flex-col md:flex-row gap-8 justify-between items-start">
-                  <p className="font-body text-lg text-brand-navy max-w-2xl leading-relaxed">
-                    Specializing in pixel-perfect frontend development and
-                    high-performance Shopify architectures for brands that
-                    demand excellence.
-                  </p>
-                  <div className="flex flex-wrap gap-4">
-                    <a
-                      href="#work"
-                      onClick={(e) => scrollToSection(e, "work")}
-                      className="inline-flex items-center gap-2 border border-brand-navy px-6 py-3 font-body text-sm font-semibold text-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-300"
-                    >
-                      Explore Archives
-                      <ArrowRight className="w-4 h-4" />
-                    </a>
-                    <button
-                      onClick={downloadResume}
-                      className="inline-flex items-center gap-2 border border-brand-accent px-6 py-3 font-body text-sm font-semibold text-brand-navy hover:border-brand-navy transition-colors"
-                    >
-                      Download Resume
-                      <Download className="w-4 h-4" />
-                    </button>
+              <div className="fixed-grid">
+                <div className="col-span-4 md:col-span-10 md:col-start-2">
+                  <h1 className="font-display text-[28px] sm:text-[36px] md:text-[72px] font-extrabold text-brand-navy mb-6 md:mb-8 border-b border-architectural pb-6 md:pb-8 leading-[1.1] tracking-tight">
+                    Transforming Static Designs into High-Converting Digital
+                    Alchemies.
+                  </h1>
+                  <div className="flex flex-col md:flex-row gap-8 justify-between items-start">
+                    <p className="font-body text-lg text-brand-navy max-w-2xl leading-relaxed">
+                      Specializing in pixel-perfect frontend development and
+                      high-performance Shopify architectures for brands that
+                      demand excellence.
+                    </p>
+                    <div className="flex flex-wrap gap-4">
+                      <a
+                        href="#work"
+                        onClick={(e) => scrollToSection(e, "work")}
+                        className="inline-flex items-center gap-2 border border-brand-navy px-6 py-3 font-body text-sm font-semibold text-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-300"
+                      >
+                        Explore Archives
+                        <ArrowRight className="w-4 h-4" />
+                      </a>
+                      <button
+                        onClick={downloadResume}
+                        className="inline-flex items-center gap-2 border border-brand-accent px-6 py-3 font-body text-sm font-semibold text-brand-navy hover:border-brand-navy transition-colors"
+                      >
+                        Download Resume
+                        <Download className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </ScrollReveal>
           </section>
 
           {/* Stats */}
           <section className="mb-20 md:mb-32 border-y border-architectural py-8 md:py-12">
             <ScrollReveal delay={80}>
-            <div className="fixed-grid">
-              <div className="col-span-2 md:col-span-3 border-r border-architectural pr-4">
-                <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
-                  Performance
-                </p>
-                <p className="font-display text-[32px] font-bold text-brand-navy">
-                  +35%
-                </p>
-                <p className="font-body text-sm text-brand-navy mt-1">
-                  Speed Score
-                </p>
+              <div className="fixed-grid">
+                <div className="col-span-2 md:col-span-3 border-r border-architectural pr-4">
+                  <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
+                    Performance
+                  </p>
+                  <p className="font-display text-[32px] font-bold text-brand-navy">
+                    +35%
+                  </p>
+                  <p className="font-body text-sm text-brand-navy mt-1">
+                    Speed Score
+                  </p>
+                </div>
+                <div className="col-span-2 md:col-span-3 border-r border-architectural px-4">
+                  <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
+                    Impact
+                  </p>
+                  <p className="font-display text-[32px] font-bold text-brand-navy">
+                    $120K+
+                  </p>
+                  <p className="font-body text-sm text-brand-navy mt-1">
+                    Revenue Generated
+                  </p>
+                  <p className="font-body text-xs text-brand-navy mt-2 opacity-80">
+                    Boosting sales to $10K in &lt; 2 weeks via Klaviyo &amp; SEO
+                    management
+                  </p>
+                </div>
+                <div className="col-span-2 md:col-span-3 border-r border-architectural px-4 mt-8 md:mt-0">
+                  <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
+                    Client
+                  </p>
+                  <p className="font-display text-[32px] font-bold text-brand-navy">
+                    95%
+                  </p>
+                  <p className="font-body text-sm text-brand-navy mt-1">
+                    Satisfaction
+                  </p>
+                </div>
+                <div className="col-span-2 md:col-span-3 pl-4 mt-8 md:mt-0">
+                  <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
+                    Experience
+                  </p>
+                  <p className="font-display text-[32px] font-bold text-brand-navy">
+                    7+
+                  </p>
+                  <p className="font-body text-sm text-brand-navy mt-1">
+                    Years
+                  </p>
+                </div>
               </div>
-              <div className="col-span-2 md:col-span-3 border-r border-architectural px-4">
-                <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
-                  Impact
-                </p>
-                <p className="font-display text-[32px] font-bold text-brand-navy">
-                  $120K+
-                </p>
-                <p className="font-body text-sm text-brand-navy mt-1">
-                  Revenue Generated
-                </p>
-                <p className="font-body text-xs text-brand-navy mt-2 opacity-80">
-                  Boosting sales to $10K in &lt; 2 weeks via Klaviyo &amp; SEO
-                  management
-                </p>
-              </div>
-              <div className="col-span-2 md:col-span-3 border-r border-architectural px-4 mt-8 md:mt-0">
-                <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
-                  Client
-                </p>
-                <p className="font-display text-[32px] font-bold text-brand-navy">
-                  95%
-                </p>
-                <p className="font-body text-sm text-brand-navy mt-1">
-                  Satisfaction
-                </p>
-              </div>
-              <div className="col-span-2 md:col-span-3 pl-4 mt-8 md:mt-0">
-                <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
-                  Experience
-                </p>
-                <p className="font-display text-[32px] font-bold text-brand-navy">
-                  7+
-                </p>
-                <p className="font-body text-sm text-brand-navy mt-1">Years</p>
-              </div>
-            </div>
             </ScrollReveal>
           </section>
 
           {/* About */}
           <section id="about" className="mb-20 md:mb-32">
             <ScrollReveal delay={100}>
-            <div className="fixed-grid">
-              <div className="col-span-4 md:col-span-4">
-                <div className="mb-6 md:mb-8 overflow-hidden border border-architectural md:grayscale md:hover:grayscale-0 transition-all duration-500">
-                  <img
-                    src="/profile.webp"
-                    alt="Praise Oluwasakin"
-                    className="w-full h-auto object-cover object-top aspect-[4/5]"
-                  />
+              <div className="fixed-grid">
+                <div className="col-span-4 md:col-span-4">
+                  <div className="mb-6 md:mb-8 overflow-hidden border border-architectural md:grayscale md:hover:grayscale-0 transition-all duration-500">
+                    <img
+                      src="/profile.webp"
+                      alt="Praise Oluwasakin"
+                      className="w-full h-auto object-cover object-top aspect-[4/5]"
+                    />
+                  </div>
+                  <h2 className="font-display text-2xl md:text-[32px] font-bold text-brand-navy mb-4">
+                    Background
+                  </h2>
                 </div>
-                <h2 className="font-display text-2xl md:text-[32px] font-bold text-brand-navy mb-4">
-                  Background
-                </h2>
+                <div className="col-span-4 md:col-span-8">
+                  <p className="font-body text-lg text-brand-navy leading-relaxed mb-6">
+                    I am Praise Oluwasakin, a professional Frontend &amp;
+                    Shopify Developer and a student of Building at OAU. My dual
+                    background in structural architecture and digital
+                    engineering informs my approach to code: I build solid
+                    foundations that support scalable, aesthetically refined
+                    interfaces.
+                  </p>
+                  <p className="font-body text-base text-brand-navy leading-relaxed">
+                    I specialize in translating complex design systems into
+                    robust, high-performance web experiences. My work bridges
+                    the gap between meticulous editorial design and the rigorous
+                    demands of modern e-commerce architectures.
+                  </p>
+                </div>
               </div>
-              <div className="col-span-4 md:col-span-8">
-                <p className="font-body text-lg text-brand-navy leading-relaxed mb-6">
-                  I am Praise Oluwasakin, a professional Frontend &amp; Shopify
-                  Developer and a student of Building at OAU. My dual background
-                  in structural architecture and digital engineering informs my
-                  approach to code: I build solid foundations that support
-                  scalable, aesthetically refined interfaces.
-                </p>
-                <p className="font-body text-base text-brand-navy leading-relaxed">
-                  I specialize in translating complex design systems into
-                  robust, high-performance web experiences. My work bridges the
-                  gap between meticulous editorial design and the rigorous
-                  demands of modern e-commerce architectures.
-                </p>
-              </div>
-            </div>
             </ScrollReveal>
           </section>
 
           {/* The Standard (Principles/What I Do) */}
-          <section id="standards" className="mb-20 md:mb-32 border-t border-architectural pt-8 md:pt-12">
+          <section
+            id="standards"
+            className="mb-20 md:mb-32 border-t border-architectural pt-8 md:pt-12"
+          >
             <ScrollReveal delay={100}>
-            <div className="fixed-grid">
-              <div className="col-span-4 md:col-span-4">
-                <h2 className="font-display text-2xl md:text-[32px] font-bold text-brand-navy mb-4">
-                  The Build Standard
-                </h2>
-                <p className="font-body text-xs text-accent uppercase mb-6 tracking-wider">
-                  How I Architect Digital Products
-                </p>
-                <p className="font-body text-sm text-brand-navy/80 leading-relaxed mb-6">
-                  Every website is treated as an engineered structure. I don&apos;t &quot;vibe-code&quot; or guess. I design, test, optimize, and build with structural integrity to ensure every build achieves maximum business value and user satisfaction.
-                </p>
+              <div className="fixed-grid">
+                <div className="col-span-4 md:col-span-4">
+                  <h2 className="font-display text-2xl md:text-[32px] font-bold text-brand-navy mb-4">
+                    The Build Standard
+                  </h2>
+                  <p className="font-body text-xs text-accent uppercase mb-6 tracking-wider">
+                    How I Architect Digital Products
+                  </p>
+                  <p className="font-body text-sm text-brand-navy/80 leading-relaxed mb-6">
+                    Every website is treated as an engineered structure. I
+                    don&apos;t &quot;vibe-code&quot; or guess. I design, test,
+                    optimize, and build with structural integrity to ensure
+                    every build achieves maximum business value and user
+                    satisfaction.
+                  </p>
+                </div>
+                <div className="col-span-4 md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
+                    <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
+                      <Zap className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
+                    </div>
+                    <h3 className="font-display text-lg font-semibold mb-2">
+                      Lighthouse Speed (≥ 90%)
+                    </h3>
+                    <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
+                      Latency is lost revenue. I optimize assets, bundle size,
+                      font delivery, and caching to consistently achieve 90%+
+                      performance scores in Lighthouse audits.
+                    </p>
+                  </div>
+
+                  <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
+                    <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
+                      <Search className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
+                    </div>
+                    <h3 className="font-display text-lg font-semibold mb-2">
+                      Google SEO &amp; Conversions
+                    </h3>
+                    <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
+                      A site is only useful if discovered. I implement
+                      structured markup, schema markup, semantic HTML, and
+                      Google Search Console to rank high and convert views into
+                      leads.
+                    </p>
+                  </div>
+
+                  <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
+                    <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
+                      <Smartphone className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
+                    </div>
+                    <h3 className="font-display text-lg font-semibold mb-2">
+                      True Multi-Device Responsiveness
+                    </h3>
+                    <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
+                      Responsive design is more than fluid columns. I verify tap
+                      targets, typography scaling, navigation menus, and media
+                      across all viewport ranges to eliminate poor mobile
+                      experiences.
+                    </p>
+                  </div>
+
+                  <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
+                    <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
+                      <Heart className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
+                    </div>
+                    <h3 className="font-display text-lg font-semibold mb-2">
+                      Customer-Centric Perspective
+                    </h3>
+                    <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
+                      I step directly into the customer&apos;s shoes to identify
+                      and eliminate design icks. I answer questions before they
+                      are asked, creating logical, friction-free customer
+                      journeys.
+                    </p>
+                  </div>
+
+                  <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
+                    <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
+                      <Activity className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
+                    </div>
+                    <h3 className="font-display text-lg font-semibold mb-2">
+                      Refined, Moderate Motion
+                    </h3>
+                    <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
+                      Too much animation ruins the experience. I design
+                      deliberate animations (such as reveal-on-scroll and
+                      micro-interactions) that direct attention and improve
+                      visual flow.
+                    </p>
+                  </div>
+
+                  <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
+                    <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
+                      <Layers className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
+                    </div>
+                    <h3 className="font-display text-lg font-semibold mb-2">
+                      Shopify E-Commerce CRO
+                    </h3>
+                    <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
+                      Maximizing storefront revenue requires deep architecture.
+                      I integrate marketing integrations, set up dynamic upsell
+                      patterns, and implement automated Klaviyo flows to grow
+                      your AOV.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className="col-span-4 md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
-                  <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
-                    <Zap className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
-                  </div>
-                  <h3 className="font-display text-lg font-semibold mb-2">
-                    Lighthouse Speed (≥ 90%)
-                  </h3>
-                  <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
-                    Latency is lost revenue. I optimize assets, bundle size, font delivery, and caching to consistently achieve 90%+ performance scores in Lighthouse audits.
-                  </p>
-                </div>
-
-                <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
-                  <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
-                    <Search className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
-                  </div>
-                  <h3 className="font-display text-lg font-semibold mb-2">
-                    Google SEO &amp; Conversions
-                  </h3>
-                  <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
-                    A site is only useful if discovered. I implement structured markup, schema markup, semantic HTML, and Google Search Console to rank high and convert views into leads.
-                  </p>
-                </div>
-
-                <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
-                  <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
-                    <Smartphone className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
-                  </div>
-                  <h3 className="font-display text-lg font-semibold mb-2">
-                    True Multi-Device Responsiveness
-                  </h3>
-                  <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
-                    Responsive design is more than fluid columns. I verify tap targets, typography scaling, navigation menus, and media across all viewport ranges to eliminate poor mobile experiences.
-                  </p>
-                </div>
-
-                <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
-                  <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
-                    <Heart className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
-                  </div>
-                  <h3 className="font-display text-lg font-semibold mb-2">
-                    Customer-Centric Perspective
-                  </h3>
-                  <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
-                    I step directly into the customer&apos;s shoes to identify and eliminate design icks. I answer questions before they are asked, creating logical, friction-free customer journeys.
-                  </p>
-                </div>
-
-                <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
-                  <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
-                    <Activity className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
-                  </div>
-                  <h3 className="font-display text-lg font-semibold mb-2">
-                    Refined, Moderate Motion
-                  </h3>
-                  <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
-                    Too much animation ruins the experience. I design deliberate animations (such as reveal-on-scroll and micro-interactions) that direct attention and improve visual flow.
-                  </p>
-                </div>
-
-                <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
-                  <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
-                    <Layers className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
-                  </div>
-                  <h3 className="font-display text-lg font-semibold mb-2">
-                    Shopify E-Commerce CRO
-                  </h3>
-                  <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
-                    Maximizing storefront revenue requires deep architecture. I integrate marketing integrations, set up dynamic upsell patterns, and implement automated Klaviyo flows to grow your AOV.
-                  </p>
-                </div>
-              </div>
-            </div>
             </ScrollReveal>
           </section>
 
@@ -702,94 +729,99 @@ export default function PraisePortfolio() {
             className="mb-20 md:mb-32 border-t border-architectural pt-8 md:pt-12"
           >
             <ScrollReveal delay={120}>
-            <div className="fixed-grid">
-              <div className="col-span-4 md:col-span-4">
-                <h2 className="font-display text-[32px] font-bold text-brand-navy mb-4">
-                  Beyond the Code
-                </h2>
-              </div>
-              <div className="col-span-4 md:col-span-8">
-                <p className="font-body text-lg text-brand-navy leading-relaxed mb-12">
-                  Outside of client work, I serve as Co-Director of Skills &amp;
-                  Development at JCINOAU — Junior Chamber International Nigeria,
-                  Obafemi Awolowo University — alongside{" "}
-                  <strong>Loveth Oladejo</strong>, where we lead programs that
-                  equip students with practical, career-ready skills.
-                </p>
-                <div className="grid grid-cols-1 gap-8">
-                  <div className="border border-architectural p-6 md:p-8 bg-brand-bg">
-                    <h3 className="font-display text-2xl font-semibold mb-2 text-brand-navy">
-                      Ignite Academy 2026
-                    </h3>
-                    <p className="font-body text-xs text-accent uppercase mb-4 tracking-wider">
-                      JCINOAU Skills &amp; Development Directorate · 6-Week
-                      Program
-                    </p>
-                    <p className="font-body text-sm text-brand-navy leading-relaxed mb-4">
-                      Ignite Academy is more than a training program — it is a
-                      space where potential gets activated. Over 6 weeks,
-                      participants choose one core skill track and go deep with
-                      hands-on, practical learning they can actually use.
-                    </p>
-                    <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
-                      Core Skill Tracks
-                    </p>
-                    <p className="font-body text-sm text-brand-navy leading-relaxed mb-4">
-                      Video Editing · Graphic Design · Content Writing · Data
-                      Analysis · Social Media Management · Virtual Assistant
-                    </p>
-                    <p className="font-body text-sm text-brand-navy leading-relaxed mb-4">
-                      Beyond the core track, participants also receive sessions
-                      on building a personal brand, optimizing LinkedIn,
-                      managing money, and using AI to work smarter — everything
-                      needed to show up ready in today&apos;s world.
-                    </p>
-                    <p className="font-body text-sm text-brand-navy leading-relaxed">
-                      By the end of the program, participants won&apos;t just
-                      have a skill — they&apos;ll know how to use it, talk about
-                      it, and earn from it.
-                    </p>
-                  </div>
-                  <div className="border border-architectural p-6 md:p-8 bg-brand-bg">
-                    <h3 className="font-display text-2xl font-semibold mb-2 text-brand-navy">
-                      Soft Skills Training (2025–2026)
-                    </h3>
-                    <p className="font-body text-xs text-accent uppercase mb-4 tracking-wider">
-                      JCINOAU Skills &amp; Development Directorate · JCINOAU
-                      Members &amp; OAU Students
-                    </p>
-                    <p className="font-body text-sm text-brand-navy leading-relaxed mb-4">
-                      The Soft Skills Training was organized for members of
-                      JCINOAU and OAU students to equip them with practical
-                      insights on what soft skills training is and how important
-                      it is in a professional setting. The session aimed to help
-                      participants understand that soft skills are just as
-                      important as hard skills.
-                    </p>
-                    <p className="font-body text-xs text-accent uppercase mb-3 tracking-wider">
-                      Five Sessions · Five Speakers
-                    </p>
-                    <ul className="font-body text-sm text-brand-navy space-y-2">
-                      <li>
-                        <strong>Teamwork &amp; Conflict Resolution</strong>
-                      </li>
-                      <li>
-                        <strong>Leadership &amp; Problem Solving</strong>
-                      </li>
-                      <li>
-                        <strong>Communication &amp; Active Listening</strong>
-                      </li>
-                      <li>
-                        <strong>Time Management &amp; Critical Thinking</strong>
-                      </li>
-                      <li>
-                        <strong>Stress Management &amp; Decision Making</strong>
-                      </li>
-                    </ul>
+              <div className="fixed-grid">
+                <div className="col-span-4 md:col-span-4">
+                  <h2 className="font-display text-[32px] font-bold text-brand-navy mb-4">
+                    Beyond the Code
+                  </h2>
+                </div>
+                <div className="col-span-4 md:col-span-8">
+                  <p className="font-body text-lg text-brand-navy leading-relaxed mb-12">
+                    Outside of client work, I serve as Co-Director of Skills
+                    &amp; Development at JCINOAU — Junior Chamber International
+                    Nigeria, Obafemi Awolowo University — alongside{" "}
+                    <strong>Loveth Oladejo</strong>, where we lead programs that
+                    equip students with practical, career-ready skills.
+                  </p>
+                  <div className="grid grid-cols-1 gap-8">
+                    <div className="border border-architectural p-6 md:p-8 bg-brand-bg">
+                      <h3 className="font-display text-2xl font-semibold mb-2 text-brand-navy">
+                        Ignite Academy 2026
+                      </h3>
+                      <p className="font-body text-xs text-accent uppercase mb-4 tracking-wider">
+                        JCINOAU Skills &amp; Development Directorate · 6-Week
+                        Program
+                      </p>
+                      <p className="font-body text-sm text-brand-navy leading-relaxed mb-4">
+                        Ignite Academy is more than a training program — it is a
+                        space where potential gets activated. Over 6 weeks,
+                        participants choose one core skill track and go deep
+                        with hands-on, practical learning they can actually use.
+                      </p>
+                      <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
+                        Core Skill Tracks
+                      </p>
+                      <p className="font-body text-sm text-brand-navy leading-relaxed mb-4">
+                        Video Editing · Graphic Design · Content Writing · Data
+                        Analysis · Social Media Management · Virtual Assistant
+                      </p>
+                      <p className="font-body text-sm text-brand-navy leading-relaxed mb-4">
+                        Beyond the core track, participants also receive
+                        sessions on building a personal brand, optimizing
+                        LinkedIn, managing money, and using AI to work smarter —
+                        everything needed to show up ready in today&apos;s
+                        world.
+                      </p>
+                      <p className="font-body text-sm text-brand-navy leading-relaxed">
+                        By the end of the program, participants won&apos;t just
+                        have a skill — they&apos;ll know how to use it, talk
+                        about it, and earn from it.
+                      </p>
+                    </div>
+                    <div className="border border-architectural p-6 md:p-8 bg-brand-bg">
+                      <h3 className="font-display text-2xl font-semibold mb-2 text-brand-navy">
+                        Soft Skills Training (2025–2026)
+                      </h3>
+                      <p className="font-body text-xs text-accent uppercase mb-4 tracking-wider">
+                        JCINOAU Skills &amp; Development Directorate · JCINOAU
+                        Members &amp; OAU Students
+                      </p>
+                      <p className="font-body text-sm text-brand-navy leading-relaxed mb-4">
+                        The Soft Skills Training was organized for members of
+                        JCINOAU and OAU students to equip them with practical
+                        insights on what soft skills training is and how
+                        important it is in a professional setting. The session
+                        aimed to help participants understand that soft skills
+                        are just as important as hard skills.
+                      </p>
+                      <p className="font-body text-xs text-accent uppercase mb-3 tracking-wider">
+                        Five Sessions · Five Speakers
+                      </p>
+                      <ul className="font-body text-sm text-brand-navy space-y-2">
+                        <li>
+                          <strong>Teamwork &amp; Conflict Resolution</strong>
+                        </li>
+                        <li>
+                          <strong>Leadership &amp; Problem Solving</strong>
+                        </li>
+                        <li>
+                          <strong>Communication &amp; Active Listening</strong>
+                        </li>
+                        <li>
+                          <strong>
+                            Time Management &amp; Critical Thinking
+                          </strong>
+                        </li>
+                        <li>
+                          <strong>
+                            Stress Management &amp; Decision Making
+                          </strong>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </ScrollReveal>
           </section>
 
@@ -799,101 +831,101 @@ export default function PraisePortfolio() {
             className="mb-20 md:mb-32 border border-architectural p-4 md:p-12"
           >
             <ScrollReveal delay={80}>
-            <h2 className="font-display text-xl md:text-[32px] font-bold text-brand-navy mb-4 md:mb-8 border-b border-architectural pb-3 md:pb-4">
-              Technical Repertoire
-            </h2>
-            <div className="flex flex-wrap gap-1.5 md:gap-3">
-              {skills.map((skill) => {
-                const highlighted = highlightedSkills.has(skill);
-                return (
-                  <span
-                    key={skill}
-                    className={`border px-2 py-1 md:px-4 md:py-2 font-body text-[9px] md:text-xs uppercase tracking-wide md:tracking-wider leading-tight ${
-                      highlighted
-                        ? "bg-brand-navy text-brand-bg border-brand-navy"
-                        : "border-brand-accent text-accent"
-                    }`}
-                  >
-                    {skill}
-                  </span>
-                );
-              })}
-            </div>
+              <h2 className="font-display text-xl md:text-[32px] font-bold text-brand-navy mb-4 md:mb-8 border-b border-architectural pb-3 md:pb-4">
+                Technical Repertoire
+              </h2>
+              <div className="flex flex-wrap gap-1.5 md:gap-3">
+                {skills.map((skill) => {
+                  const highlighted = highlightedSkills.has(skill);
+                  return (
+                    <span
+                      key={skill}
+                      className={`border px-2 py-1 md:px-4 md:py-2 font-body text-[9px] md:text-xs uppercase tracking-wide md:tracking-wider leading-tight ${
+                        highlighted
+                          ? "bg-brand-navy text-brand-bg border-brand-navy"
+                          : "border-brand-accent text-accent"
+                      }`}
+                    >
+                      {skill}
+                    </span>
+                  );
+                })}
+              </div>
             </ScrollReveal>
           </section>
 
           {/* Projects */}
           <section id="work" className="mb-20 md:mb-32">
             <ScrollReveal delay={100}>
-            <div className="flex justify-between items-end mb-6 md:mb-12 border-b border-architectural pb-3 md:pb-4 gap-3">
-              <h2 className="font-display text-xl md:text-[32px] font-bold text-brand-navy">
-                Selected Works
-              </h2>
-              {allProjects.length > 6 && (
-                <button
-                  onClick={() => setShowAll((prev) => !prev)}
-                  className="font-body text-[10px] md:text-xs text-brand-navy hover:text-accent uppercase tracking-wider border-b border-transparent hover:border-accent transition-colors shrink-0"
-                >
-                  {showAll ? "Show Less" : `View All ${allProjects.length}`}
-                </button>
-              )}
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 md:gap-5">
-              {projectsToShow.map((p) => (
-                <article
-                  key={p.title}
-                  className="border border-architectural flex flex-col group cursor-pointer"
-                  onClick={() => p.url && window.open(p.url, "_blank")}
-                  onKeyDown={(e) =>
-                    p.url && e.key === "Enter" && window.open(p.url, "_blank")
-                  }
-                  role={p.url ? "link" : "article"}
-                  tabIndex={p.url ? 0 : undefined}
-                >
-                  <div className="h-28 sm:h-36 md:h-64 bg-brand-navy/10 relative overflow-hidden border-b border-architectural">
-                    {p.media ? (
-                      <img
-                        src={p.media}
-                        alt={p.title}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.style.display = "none";
-                          e.target.parentElement
-                            .querySelector(".fallback-icon")
-                            ?.classList.remove("hidden");
-                        }}
-                      />
-                    ) : null}
-                    <div
-                      className={`fallback-icon absolute inset-0 flex items-center justify-center bg-brand-accent/20 ${p.media ? "hidden" : ""}`}
-                    >
-                      <p.Icon className="w-6 h-6 md:w-12 md:h-12 text-brand-accent" />
+              <div className="flex justify-between items-end mb-6 md:mb-12 border-b border-architectural pb-3 md:pb-4 gap-3">
+                <h2 className="font-display text-xl md:text-[32px] font-bold text-brand-navy">
+                  Selected Works
+                </h2>
+                {allProjects.length > 6 && (
+                  <button
+                    onClick={() => setShowAll((prev) => !prev)}
+                    className="font-body text-[10px] md:text-xs text-brand-navy hover:text-accent uppercase tracking-wider border-b border-transparent hover:border-accent transition-colors shrink-0"
+                  >
+                    {showAll ? "Show Less" : `View All ${allProjects.length}`}
+                  </button>
+                )}
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 md:gap-5">
+                {projectsToShow.map((p) => (
+                  <article
+                    key={p.title}
+                    className="border border-architectural flex flex-col group cursor-pointer"
+                    onClick={() => p.url && window.open(p.url, "_blank")}
+                    onKeyDown={(e) =>
+                      p.url && e.key === "Enter" && window.open(p.url, "_blank")
+                    }
+                    role={p.url ? "link" : "article"}
+                    tabIndex={p.url ? 0 : undefined}
+                  >
+                    <div className="h-28 sm:h-36 md:h-64 bg-brand-navy/10 relative overflow-hidden border-b border-architectural">
+                      {p.media ? (
+                        <img
+                          src={p.media}
+                          alt={p.title}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.style.display = "none";
+                            e.target.parentElement
+                              .querySelector(".fallback-icon")
+                              ?.classList.remove("hidden");
+                          }}
+                        />
+                      ) : null}
+                      <div
+                        className={`fallback-icon absolute inset-0 flex items-center justify-center bg-brand-accent/20 ${p.media ? "hidden" : ""}`}
+                      >
+                        <p.Icon className="w-6 h-6 md:w-12 md:h-12 text-brand-accent" />
+                      </div>
                     </div>
-                  </div>
-                  <div className="p-2.5 md:p-6 flex-grow flex flex-col justify-between bg-brand-bg group-hover:bg-brand-navy transition-colors duration-300">
-                    <div>
-                      <h3 className="font-display text-[11px] sm:text-sm md:text-2xl font-semibold text-brand-navy group-hover:text-brand-bg transition-colors duration-300 mb-1 md:mb-2 line-clamp-2 md:line-clamp-none leading-tight">
-                        {p.title}
-                      </h3>
-                      <p className="hidden md:block font-body text-sm text-brand-navy/80 group-hover:text-brand-bg/80 transition-colors duration-300 line-clamp-3">
-                        {p.desc}
-                      </p>
+                    <div className="p-2.5 md:p-6 flex-grow flex flex-col justify-between bg-brand-bg group-hover:bg-brand-navy transition-colors duration-300">
+                      <div>
+                        <h3 className="font-display text-[11px] sm:text-sm md:text-2xl font-semibold text-brand-navy group-hover:text-brand-bg transition-colors duration-300 mb-1 md:mb-2 line-clamp-2 md:line-clamp-none leading-tight">
+                          {p.title}
+                        </h3>
+                        <p className="hidden md:block font-body text-sm text-brand-navy/80 group-hover:text-brand-bg/80 transition-colors duration-300 line-clamp-3">
+                          {p.desc}
+                        </p>
+                      </div>
+                      <div className="mt-2 md:mt-6 flex flex-wrap gap-1 md:gap-2">
+                        {p.tags.slice(0, 2).map((t) => (
+                          <span
+                            key={t}
+                            className="text-[8px] md:text-[10px] uppercase tracking-wider text-accent group-hover:text-brand-bg/50 border border-accent group-hover:border-brand-bg/50 px-1 py-0.5 md:px-2 md:py-1"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                    <div className="mt-2 md:mt-6 flex flex-wrap gap-1 md:gap-2">
-                      {p.tags.slice(0, 2).map((t) => (
-                        <span
-                          key={t}
-                          className="text-[8px] md:text-[10px] uppercase tracking-wider text-accent group-hover:text-brand-bg/50 border border-accent group-hover:border-brand-bg/50 px-1 py-0.5 md:px-2 md:py-1"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
+                  </article>
+                ))}
+              </div>
             </ScrollReveal>
           </section>
 
@@ -904,135 +936,135 @@ export default function PraisePortfolio() {
           {/* Contact */}
           <section id="contact" className="mb-16">
             <ScrollReveal delay={80}>
-            <div className="fixed-grid border border-architectural">
-              <div className="col-span-4 md:col-span-5 p-8 md:p-12 border-b md:border-b-0 md:border-r border-architectural bg-brand-navy text-brand-bg">
-                <h2 className="font-display text-[32px] font-bold mb-6">
-                  Initiate Dialogue
-                </h2>
-                <p className="font-body text-base mb-12 text-brand-bg/80">
-                  Available for freelance opportunities and collaborative
-                  architectural digital builds.
-                </p>
-                <div className="space-y-6">
-                  <div>
-                    <p className="font-body text-xs text-brand-accent uppercase mb-1 tracking-wider">
-                      Upwork (Preferred)
-                    </p>
-                    <a
-                      className="font-body text-base hover:underline underline-offset-4"
-                      href="https://www.upwork.com/freelancers/~01f7c3f6c2fdd0c680"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View Profile
-                    </a>
-                  </div>
-                  <div>
-                    <p className="font-body text-xs text-brand-accent uppercase mb-1 tracking-wider">
-                      WhatsApp
-                    </p>
-                    <a
-                      className="font-body text-base hover:underline underline-offset-4"
-                      href="https://wa.me/2349158418618"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Connect Directly
-                    </a>
-                  </div>
-                  <div>
-                    <p className="font-body text-xs text-brand-accent uppercase mb-1 tracking-wider">
-                      iMessage / SMS
-                    </p>
-                    <a
-                      className="font-body text-base hover:underline underline-offset-4"
-                      href="sms:08139157598"
-                    >
-                      Send a Message
-                    </a>
-                  </div>
-                  <div>
-                    <p className="font-body text-xs text-brand-accent uppercase mb-1 tracking-wider">
-                      Email
-                    </p>
-                    <a
-                      className="font-body text-base hover:underline underline-offset-4"
-                      href="mailto:praiseoluwasakin@gmail.com"
-                    >
-                      praiseoluwasakin@gmail.com
-                    </a>
+              <div className="fixed-grid border border-architectural">
+                <div className="col-span-4 md:col-span-5 p-8 md:p-12 border-b md:border-b-0 md:border-r border-architectural bg-brand-navy text-brand-bg">
+                  <h2 className="font-display text-[32px] font-bold mb-6">
+                    Initiate Dialogue
+                  </h2>
+                  <p className="font-body text-base mb-12 text-brand-bg/80">
+                    Available for freelance opportunities and collaborative
+                    architectural digital builds.
+                  </p>
+                  <div className="space-y-6">
+                    <div>
+                      <p className="font-body text-xs text-brand-accent uppercase mb-1 tracking-wider">
+                        Upwork (Preferred)
+                      </p>
+                      <a
+                        className="font-body text-base hover:underline underline-offset-4"
+                        href="https://www.upwork.com/freelancers/~01f7c3f6c2fdd0c680"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Profile
+                      </a>
+                    </div>
+                    <div>
+                      <p className="font-body text-xs text-brand-accent uppercase mb-1 tracking-wider">
+                        WhatsApp
+                      </p>
+                      <a
+                        className="font-body text-base hover:underline underline-offset-4"
+                        href="https://wa.me/2349158418618"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Connect Directly
+                      </a>
+                    </div>
+                    <div>
+                      <p className="font-body text-xs text-brand-accent uppercase mb-1 tracking-wider">
+                        iMessage / SMS
+                      </p>
+                      <a
+                        className="font-body text-base hover:underline underline-offset-4"
+                        href="sms:08139157598"
+                      >
+                        Send a Message
+                      </a>
+                    </div>
+                    <div>
+                      <p className="font-body text-xs text-brand-accent uppercase mb-1 tracking-wider">
+                        Email
+                      </p>
+                      <a
+                        className="font-body text-base hover:underline underline-offset-4"
+                        href="mailto:praiseoluwasakin@gmail.com"
+                      >
+                        praiseoluwasakin@gmail.com
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-span-4 md:col-span-7 p-8 md:p-12">
-                <form
-                  action="https://formspree.io/f/xykdkokv"
-                  method="POST"
-                  className="space-y-8"
-                >
-                  <input
-                    type="hidden"
-                    name="_next"
-                    value="https://praise-oluwasakin-website.vercel.app/thanks"
-                  />
-                  <div>
-                    <label
-                      className="block font-body text-xs text-accent uppercase mb-2 tracking-wider"
-                      htmlFor="name"
-                    >
-                      Name
-                    </label>
-                    <input
-                      className="w-full bg-transparent border-b border-architectural py-2 font-body text-base text-brand-navy transition-colors placeholder-accent/50"
-                      id="name"
-                      name="name"
-                      placeholder="Jane Doe"
-                      type="text"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      className="block font-body text-xs text-accent uppercase mb-2 tracking-wider"
-                      htmlFor="email"
-                    >
-                      Email Address
-                    </label>
-                    <input
-                      className="w-full bg-transparent border-b border-architectural py-2 font-body text-base text-brand-navy transition-colors placeholder-accent/50"
-                      id="email"
-                      name="email"
-                      placeholder="jane@example.com"
-                      type="email"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      className="block font-body text-xs text-accent uppercase mb-2 tracking-wider"
-                      htmlFor="message"
-                    >
-                      Project Details
-                    </label>
-                    <textarea
-                      className="w-full bg-transparent border-b border-architectural py-2 font-body text-base text-brand-navy transition-colors resize-none placeholder-accent/50"
-                      id="message"
-                      name="message"
-                      placeholder="Describe the architectural needs of your digital project..."
-                      rows="4"
-                      required
-                    />
-                  </div>
-                  <button
-                    className="bg-cta text-brand-bg font-body text-sm font-semibold px-8 py-4 w-full md:w-auto hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
-                    type="submit"
+                <div className="col-span-4 md:col-span-7 p-8 md:p-12">
+                  <form
+                    action="https://formspree.io/f/xykdkokv"
+                    method="POST"
+                    className="space-y-8"
                   >
-                    Submit Inquiry
-                    <Send className="w-4 h-4" />
-                  </button>
-                </form>
+                    <input
+                      type="hidden"
+                      name="_next"
+                      value="https://praise-oluwasakin-website.vercel.app/thanks"
+                    />
+                    <div>
+                      <label
+                        className="block font-body text-xs text-accent uppercase mb-2 tracking-wider"
+                        htmlFor="name"
+                      >
+                        Name
+                      </label>
+                      <input
+                        className="w-full bg-transparent border-b border-architectural py-2 font-body text-base text-brand-navy transition-colors placeholder-accent/50"
+                        id="name"
+                        name="name"
+                        placeholder="Jane Doe"
+                        type="text"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label
+                        className="block font-body text-xs text-accent uppercase mb-2 tracking-wider"
+                        htmlFor="email"
+                      >
+                        Email Address
+                      </label>
+                      <input
+                        className="w-full bg-transparent border-b border-architectural py-2 font-body text-base text-brand-navy transition-colors placeholder-accent/50"
+                        id="email"
+                        name="email"
+                        placeholder="jane@example.com"
+                        type="email"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label
+                        className="block font-body text-xs text-accent uppercase mb-2 tracking-wider"
+                        htmlFor="message"
+                      >
+                        Project Details
+                      </label>
+                      <textarea
+                        className="w-full bg-transparent border-b border-architectural py-2 font-body text-base text-brand-navy transition-colors resize-none placeholder-accent/50"
+                        id="message"
+                        name="message"
+                        placeholder="Describe the architectural needs of your digital project..."
+                        rows="4"
+                        required
+                      />
+                    </div>
+                    <button
+                      className="bg-cta text-brand-bg font-body text-sm font-semibold px-8 py-4 w-full md:w-auto hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                      type="submit"
+                    >
+                      Submit Inquiry
+                      <Send className="w-4 h-4" />
+                    </button>
+                  </form>
+                </div>
               </div>
-            </div>
             </ScrollReveal>
           </section>
         </main>
@@ -1047,7 +1079,7 @@ export default function PraisePortfolio() {
                 className="flex items-center gap-2 font-display text-[28px] md:text-[32px] font-bold text-brand-navy mb-4 transition-opacity hover:opacity-80"
               >
                 <img
-                  src="/favicon.ico"
+                  src="/PO-Logo.png"
                   alt="Logo"
                   className="w-8 h-8 object-contain animate-pulse-subtle"
                 />

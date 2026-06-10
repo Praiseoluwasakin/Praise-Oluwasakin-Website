@@ -19,7 +19,21 @@ import {
   Calculator,
   ShoppingCart,
   Smartphone,
+  Zap,
+  Search,
+  Heart,
+  Layers,
+  Activity,
+  Code,
+  Linkedin,
+  Github,
+  Instagram,
+  Mail,
+  MessageCircle,
+  MessageSquare,
 } from "lucide-react";
+import { SiUpwork } from "react-icons/si";
+import { FaXTwitter } from "react-icons/fa6";
 
 export const metadata = {
   title: "Praise Oluwasakin | Frontend & Shopify Developer",
@@ -247,6 +261,7 @@ const highlightedSkills = new Set([
 
 const navItems = [
   { id: "about", label: "About" },
+  { id: "standards", label: "The Standard" },
   { id: "beyond", label: "Beyond the Code" },
   { id: "skills", label: "Skills" },
   { id: "work", label: "Work" },
@@ -374,9 +389,14 @@ export default function PraisePortfolio() {
             <a
               href="#home"
               onClick={(e) => scrollToSection(e, "home")}
-              className="font-display text-lg md:text-2xl font-bold text-brand-navy tracking-tight transition-opacity hover:opacity-80"
+              className="flex items-center gap-2 font-display text-lg md:text-2xl font-bold text-brand-navy tracking-tight transition-opacity hover:opacity-80"
             >
-              Praise Oluwasakin
+              <img
+                src="/favicon.ico"
+                alt="Logo"
+                className="w-5 h-5 md:w-6 h-6 object-contain animate-pulse-subtle"
+              />
+              <span>Praise Oluwasakin</span>
             </a>
 
             <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
@@ -579,6 +599,98 @@ export default function PraisePortfolio() {
                   gap between meticulous editorial design and the rigorous
                   demands of modern e-commerce architectures.
                 </p>
+              </div>
+            </div>
+            </ScrollReveal>
+          </section>
+
+          {/* The Standard (Principles/What I Do) */}
+          <section id="standards" className="mb-20 md:mb-32 border-t border-architectural pt-8 md:pt-12">
+            <ScrollReveal delay={100}>
+            <div className="fixed-grid">
+              <div className="col-span-4 md:col-span-4">
+                <h2 className="font-display text-2xl md:text-[32px] font-bold text-brand-navy mb-4">
+                  The Build Standard
+                </h2>
+                <p className="font-body text-xs text-accent uppercase mb-6 tracking-wider">
+                  How I Architect Digital Products
+                </p>
+                <p className="font-body text-sm text-brand-navy/80 leading-relaxed mb-6">
+                  Every website is treated as an engineered structure. I don't "vibe-code" or guess. I design, test, optimize, and build with structural integrity to ensure every build achieves maximum business value and user satisfaction.
+                </p>
+              </div>
+              <div className="col-span-4 md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
+                  <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
+                    <Zap className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
+                  </div>
+                  <h3 className="font-display text-lg font-semibold mb-2">
+                    Lighthouse Speed (≥ 90%)
+                  </h3>
+                  <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
+                    Latency is lost revenue. I optimize assets, bundle size, font delivery, and caching to consistently achieve 90%+ performance scores in Lighthouse audits.
+                  </p>
+                </div>
+
+                <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
+                  <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
+                    <Search className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
+                  </div>
+                  <h3 className="font-display text-lg font-semibold mb-2">
+                    Google SEO &amp; Conversions
+                  </h3>
+                  <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
+                    A site is only useful if discovered. I implement structured markup, schema markup, semantic HTML, and Google Search Console to rank high and convert views into leads.
+                  </p>
+                </div>
+
+                <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
+                  <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
+                    <Smartphone className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
+                  </div>
+                  <h3 className="font-display text-lg font-semibold mb-2">
+                    True Multi-Device Responsiveness
+                  </h3>
+                  <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
+                    Responsive design is more than fluid columns. I verify tap targets, typography scaling, navigation menus, and media across all viewport ranges to eliminate poor mobile experiences.
+                  </p>
+                </div>
+
+                <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
+                  <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
+                    <Heart className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
+                  </div>
+                  <h3 className="font-display text-lg font-semibold mb-2">
+                    Customer-Centric Perspective
+                  </h3>
+                  <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
+                    I step directly into the customer's shoes to identify and eliminate design icks. I answer questions before they are asked, creating logical, friction-free customer journeys.
+                  </p>
+                </div>
+
+                <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
+                  <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
+                    <Activity className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
+                  </div>
+                  <h3 className="font-display text-lg font-semibold mb-2">
+                    Refined, Moderate Motion
+                  </h3>
+                  <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
+                    Too much animation ruins the experience. I design deliberate animations (such as reveal-on-scroll and micro-interactions) that direct attention and improve visual flow.
+                  </p>
+                </div>
+
+                <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
+                  <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
+                    <Layers className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
+                  </div>
+                  <h3 className="font-display text-lg font-semibold mb-2">
+                    Shopify E-Commerce CRO
+                  </h3>
+                  <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
+                    Maximizing storefront revenue requires deep architecture. I integrate marketing integrations, set up dynamic upsell patterns, and implement automated Klaviyo flows to grow your AOV.
+                  </p>
+                </div>
               </div>
             </div>
             </ScrollReveal>
@@ -932,75 +1044,127 @@ export default function PraisePortfolio() {
               <a
                 href="#home"
                 onClick={(e) => scrollToSection(e, "home")}
-                className="font-display text-[32px] font-bold text-brand-navy mb-4 block transition-opacity hover:opacity-80"
+                className="flex items-center gap-2 font-display text-[28px] md:text-[32px] font-bold text-brand-navy mb-4 transition-opacity hover:opacity-80"
               >
-                Praise Oluwasakin
+                <img
+                  src="/favicon.ico"
+                  alt="Logo"
+                  className="w-8 h-8 object-contain animate-pulse-subtle"
+                />
+                <span>Praise Oluwasakin</span>
               </a>
-              <p className="font-body text-sm text-brand-navy/70">
+              <p className="font-body text-sm text-brand-navy/70 mb-2">
                 © {new Date().getFullYear()} Praise Oluwasakin. All rights
                 reserved.
               </p>
-            </div>
-            <div className="flex flex-col gap-3">
-              <a
-                className="font-body text-xs text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200"
-                href="https://www.upwork.com/freelancers/~01f7c3f6c2fdd0c680"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Upwork
-              </a>
-              <a
-                className="font-body text-xs text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200"
-                href="https://wa.me/2349158418618"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                WhatsApp
-              </a>
-              <a
-                className="font-body text-xs text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200"
-                href="sms:08139157598"
-              >
-                iMessage/SMS
-              </a>
-              <span className="font-body text-xs text-brand-navy/70">
+              <span className="font-body text-xs text-brand-navy/60">
                 Lagos, Nigeria
               </span>
             </div>
             <div className="flex flex-col gap-3">
+              <span className="font-body text-xs text-accent uppercase tracking-wider mb-2 font-bold">
+                Quick Navigation
+              </span>
+              {navItems.map((n) => (
+                <a
+                  key={n.id}
+                  href={`#${n.id}`}
+                  onClick={(e) => scrollToSection(e, n.id)}
+                  className="font-body text-xs text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200 w-fit"
+                >
+                  {n.label}
+                </a>
+              ))}
               <a
-                className="font-body text-xs text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200"
-                href="https://www.linkedin.com/in/praise-oluwasakin-409306239/"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#contact"
+                onClick={(e) => scrollToSection(e, "contact")}
+                className="font-body text-xs text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200 w-fit"
               >
-                LinkedIn
+                Get in Touch
               </a>
-              <a
-                className="font-body text-xs text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200"
-                href="https://github.com/Praiseoluwasakin"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub
-              </a>
-              <a
-                className="font-body text-xs text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200"
-                href="https://twitter.com/mayorcodes"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                X (Twitter)
-              </a>
-              <a
-                className="font-body text-xs text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200"
-                href="https://instagram.com/mayor.codes"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Instagram
-              </a>
+            </div>
+            <div className="flex flex-col gap-3">
+              <span className="font-body text-xs text-accent uppercase tracking-wider mb-2 font-bold">
+                Connect
+              </span>
+              <div className="flex flex-wrap gap-2 max-w-[280px]">
+                <a
+                  className="w-10 h-10 flex items-center justify-center border border-architectural hover:border-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-200"
+                  href="https://www.linkedin.com/in/praise-oluwasakin-409306239/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="LinkedIn"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a
+                  className="w-10 h-10 flex items-center justify-center border border-architectural hover:border-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-200"
+                  href="https://github.com/Praiseoluwasakin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="GitHub"
+                  aria-label="GitHub"
+                >
+                  <Github className="w-5 h-5" />
+                </a>
+                <a
+                  className="w-10 h-10 flex items-center justify-center border border-architectural hover:border-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-200"
+                  href="https://www.upwork.com/freelancers/~01f7c3f6c2fdd0c680"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Upwork"
+                  aria-label="Upwork"
+                >
+                  <SiUpwork className="w-5 h-5" />
+                </a>
+                <a
+                  className="w-10 h-10 flex items-center justify-center border border-architectural hover:border-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-200"
+                  href="https://wa.me/2349158418618"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="WhatsApp"
+                  aria-label="WhatsApp"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                </a>
+                <a
+                  className="w-10 h-10 flex items-center justify-center border border-architectural hover:border-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-200"
+                  href="sms:08139157598"
+                  title="iMessage / SMS"
+                  aria-label="iMessage / SMS"
+                >
+                  <MessageSquare className="w-5 h-5" />
+                </a>
+                <a
+                  className="w-10 h-10 flex items-center justify-center border border-architectural hover:border-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-200"
+                  href="mailto:praiseoluwasakin@gmail.com"
+                  title="Email"
+                  aria-label="Email"
+                >
+                  <Mail className="w-5 h-5" />
+                </a>
+                <a
+                  className="w-10 h-10 flex items-center justify-center border border-architectural hover:border-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-200"
+                  href="https://twitter.com/mayorcodes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="X (Twitter)"
+                  aria-label="X (Twitter)"
+                >
+                  <FaXTwitter className="w-5 h-5" />
+                </a>
+                <a
+                  className="w-10 h-10 flex items-center justify-center border border-architectural hover:border-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-200"
+                  href="https://instagram.com/mayor.codes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Instagram"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-5 h-5" />
+                </a>
+              </div>
             </div>
           </div>
         </footer>

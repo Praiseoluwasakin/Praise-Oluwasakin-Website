@@ -496,6 +496,15 @@ export default function PraisePortfolio() {
                     </p>
                     <div className="flex flex-wrap gap-4">
                       <a
+                        href="https://www.upwork.com/freelancers/~01f7c3f6c2fdd0c680"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-cta text-brand-bg px-6 py-3 font-body text-sm font-semibold hover:opacity-90 transition-all duration-300 hover:translate-y-[-1px]"
+                      >
+                        Hire on Upwork
+                        <SiUpwork className="w-4 h-4" />
+                      </a>
+                      <a
                         href="#work"
                         onClick={(e) => scrollToSection(e, "work")}
                         className="inline-flex items-center gap-2 border border-brand-navy px-6 py-3 font-body text-sm font-semibold text-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-300"

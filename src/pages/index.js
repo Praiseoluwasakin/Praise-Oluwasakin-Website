@@ -392,12 +392,12 @@ export default function PraisePortfolio() {
               className="flex items-center gap-2 font-display text-lg md:text-2xl font-bold text-brand-navy tracking-tight transition-opacity hover:opacity-80"
             >
               <div className="bg-[#22223b] rounded-full p-1 flex items-center justify-center">
-                  <img
-                    src="/PO-Logo.png"
-                    alt="Logo"
-                    className="w-9 h-9 md:w-10 md:h-10 object-contain animate-pulse-subtle"
-                  />
-                </div>
+                <img
+                  src="/PO-Logo.png"
+                  alt="Logo"
+                  className="w-9 h-9 md:w-10 md:h-10 object-contain animate-pulse-subtle"
+                />
+              </div>
               <span>Praise Oluwasakin</span>
             </a>
 
@@ -501,8 +501,8 @@ export default function PraisePortfolio() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 bg-cta text-brand-bg px-6 py-3 font-body text-sm font-semibold hover:opacity-90 transition-all duration-300 hover:translate-y-[-1px]"
                       >
-                        Hire on Upwork
                         <SiUpwork className="w-4 h-4" />
+                        Hire on Upwork
                       </a>
                       <a
                         href="#work"
@@ -1090,12 +1090,12 @@ export default function PraisePortfolio() {
                 className="flex items-center gap-2 font-display text-[28px] md:text-[32px] font-bold text-brand-navy mb-4 transition-opacity hover:opacity-80"
               >
                 <div className="bg-[#22223b] rounded-full p-1 flex items-center justify-center">
-                      <img
-                        src="/PO-Logo.png"
-                        alt="Logo"
-                        className="w-9 h-9 md:w-10 md:h-10 object-contain animate-pulse-subtle"
-                      />
-                    </div>
+                  <img
+                    src="/PO-Logo.png"
+                    alt="Logo"
+                    className="w-9 h-9 md:w-10 md:h-10 object-contain animate-pulse-subtle"
+                  />
+                </div>
                 <span>Praise Oluwasakin</span>
               </a>
               <p className="font-body text-sm text-brand-navy/70 mb-2">

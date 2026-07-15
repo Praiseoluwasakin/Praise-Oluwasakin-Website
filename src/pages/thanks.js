@@ -10,6 +10,8 @@ export default function ThanksPage() {
           name="description"
           content="Thanks for reaching out to Praise Oluwasakin. I’ll review your message and get back to you shortly."
         />
+        <meta name="author" content="Praise Ibukunoluwa Oluwasakin" />
+        <meta name="keywords" content="Praise Oluwasakin, Praise Ibukunoluwa Oluwasakin, Praise Ibukunoluwa, Ibukunoluwa, Ibukunoluwa Oluwasakin, Frontend Developer, Shopify Developer, Shopify Expert, Portfolio" />
       </Head>
       <div className="min-h-screen bg-slate-950 bg-[radial-gradient(circle_at_top,_#1d4ed8_0,_transparent_55%),radial-gradient(circle_at_bottom,_#0f172a_0,_transparent_55%)] flex items-center justify-center px-6">
         <div className="max-w-md w-full bg-slate-900/80 border border-slate-800 rounded-3xl shadow-[0_20px_70px_rgba(15,23,42,0.8)] p-8 text-slate-100">

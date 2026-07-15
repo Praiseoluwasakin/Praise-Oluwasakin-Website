@@ -6,7 +6,8 @@ export default function Document() {
       <Head>
         {/* Global meta tags */}
         <meta charSet="UTF-8" />
-        <meta name="author" content="Praise Oluwasakin" />
+        <meta name="author" content="Praise Ibukunoluwa Oluwasakin" />
+        <meta name="keywords" content="Praise Oluwasakin, Praise Ibukunoluwa Oluwasakin, Praise Ibukunoluwa, Ibukunoluwa, Ibukunoluwa Oluwasakin, Frontend Developer, Shopify Developer, Shopify Expert, Portfolio" />
         <meta name="google-site-verification" content="_ps4i9Ooms-ueYZZZGNSBqmjEQFVFUpf32GDRvKOudI" />
 
         {/* Open Graph defaults */}

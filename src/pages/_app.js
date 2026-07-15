@@ -18,7 +18,7 @@ const DEFAULT_SEO = {
         url: "https://praise-oluwasakin-website.vercel.app/profile.webp",
         width: 1200,
         height: 630,
-        alt: "Praise Oluwasakin Portfolio Preview",
+        alt: "Praise Oluwasakin (Praise Ibukunoluwa Oluwasakin) Portfolio Preview",
       },
     ],
     site_name: "Praise Oluwasakin Portfolio",
@@ -28,6 +28,16 @@ const DEFAULT_SEO = {
     site: "@mayorcodes",
     cardType: "summary_large_image",
   },
+  additionalMetaTags: [
+    {
+      name: "keywords",
+      content: "Praise Oluwasakin, Praise Ibukunoluwa Oluwasakin, Praise Ibukunoluwa, Ibukunoluwa, Ibukunoluwa Oluwasakin, Frontend Developer, Shopify Developer, Shopify Expert, React, Next.js, Tailwind CSS, Shopify Liquid",
+    },
+    {
+      name: "author",
+      content: "Praise Ibukunoluwa Oluwasakin",
+    },
+  ],
 };
 
 export default function App({ Component, pageProps }) {
@@ -43,6 +53,15 @@ export default function App({ Component, pageProps }) {
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Praise Oluwasakin",
+              givenName: "Praise",
+              additionalName: "Ibukunoluwa",
+              familyName: "Oluwasakin",
+              alternateName: [
+                "Praise Ibukunoluwa Oluwasakin",
+                "Praise Ibukunoluwa",
+                "Ibukunoluwa Oluwasakin",
+                "Ibukunoluwa"
+              ],
               url: "https://praise-oluwasakin-website.vercel.app/",
               sameAs: [
                 "https://twitter.com/mayorcodes",

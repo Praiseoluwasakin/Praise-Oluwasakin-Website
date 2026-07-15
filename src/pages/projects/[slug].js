@@ -33,6 +33,16 @@ export default function ProjectPage({ project }) {
               ]
             : undefined,
         }}
+        additionalMetaTags={[
+          {
+            name: "keywords",
+            content: `${project.title}, Praise Oluwasakin, Praise Ibukunoluwa Oluwasakin, Praise Ibukunoluwa, Ibukunoluwa, Ibukunoluwa Oluwasakin, Frontend Developer, Shopify Developer, Shopify Expert, Portfolio`,
+          },
+          {
+            name: "author",
+            content: "Praise Ibukunoluwa Oluwasakin",
+          },
+        ]}
       />
 
       <main className="min-h-screen py-12 px-6">

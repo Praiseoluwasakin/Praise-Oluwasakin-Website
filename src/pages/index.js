@@ -356,7 +356,7 @@ export default function PraisePortfolio() {
               url: "https://praise-oluwasakin-website.vercel.app/profile.webp",
               width: 1200,
               height: 630,
-              alt: "Praise Oluwasakin Portfolio",
+              alt: "Praise Oluwasakin (Praise Ibukunoluwa Oluwasakin) Portfolio Preview",
             },
           ],
           site_name: "Praise Oluwasakin Portfolio",
@@ -366,6 +366,16 @@ export default function PraisePortfolio() {
           site: "@mayorcodes",
           cardType: "summary_large_image",
         }}
+        additionalMetaTags={[
+          {
+            name: "keywords",
+            content: "Praise Oluwasakin, Praise Ibukunoluwa Oluwasakin, Praise Ibukunoluwa, Ibukunoluwa, Ibukunoluwa Oluwasakin, Frontend Developer, Shopify Developer, Shopify Expert, React, Next.js, Tailwind CSS, Shopify Liquid",
+          },
+          {
+            name: "author",
+            content: "Praise Ibukunoluwa Oluwasakin",
+          },
+        ]}
       />
 
       <Head>
@@ -374,6 +384,8 @@ export default function PraisePortfolio() {
           name="description"
           content="Frontend & Shopify developer specializing in pixel-perfect development and high-performance e-commerce architectures."
         />
+        <meta name="author" content="Praise Ibukunoluwa Oluwasakin" />
+        <meta name="keywords" content="Praise Oluwasakin, Praise Ibukunoluwa Oluwasakin, Praise Ibukunoluwa, Ibukunoluwa, Ibukunoluwa Oluwasakin, Frontend Developer, Shopify Developer, Shopify Expert, React, Next.js, Tailwind CSS, Shopify Liquid" />
       </Head>
 
       <div className="min-h-screen bg-brand-bg font-body text-brand-navy selection:bg-brand-navy selection:text-brand-bg flex flex-col">
@@ -590,7 +602,7 @@ export default function PraisePortfolio() {
                   <div className="mb-6 md:mb-8 overflow-hidden border border-architectural md:grayscale md:hover:grayscale-0 transition-all duration-500">
                     <img
                       src="/profile.webp"
-                      alt="Praise Oluwasakin"
+                      alt="Praise Oluwasakin (Praise Ibukunoluwa Oluwasakin) - Frontend & Shopify Developer"
                       className="w-full h-auto object-cover object-top aspect-[4/5]"
                     />
                   </div>

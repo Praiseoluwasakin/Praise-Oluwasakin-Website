@@ -12,6 +12,16 @@ export default function Projects({ projects }) {
         title="Projects — Praise Oluwasakin"
         description="Selected projects and case studies by Praise Oluwasakin. Custom Shopify themes, Next.js sites, and e-commerce builds."
         canonical="https://praise-oluwasakin-website.vercel.app/projects"
+        additionalMetaTags={[
+          {
+            name: "keywords",
+            content: "Praise Oluwasakin, Praise Ibukunoluwa Oluwasakin, Praise Ibukunoluwa, Ibukunoluwa, Ibukunoluwa Oluwasakin, Frontend Developer, Shopify Developer, Shopify Expert, Portfolio",
+          },
+          {
+            name: "author",
+            content: "Praise Ibukunoluwa Oluwasakin",
+          },
+        ]}
       />
 
       <main className="min-h-screen py-12 px-6">

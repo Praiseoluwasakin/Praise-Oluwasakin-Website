@@ -31,9 +31,14 @@ import {
   Mail,
   MessageCircle,
   MessageSquare,
+  BookOpen,
+  Calendar,
+  Clock,
 } from "lucide-react";
 import { SiUpwork } from "react-icons/si";
 import { FaXTwitter } from "react-icons/fa6";
+import { blogPosts } from "../data/blog";
+import Link from "next/link";
 
 export const metadata = {
   title: "Praise Oluwasakin | Frontend & Shopify Developer",
@@ -265,6 +270,7 @@ const navItems = [
   { id: "beyond", label: "Beyond the Code" },
   { id: "skills", label: "Skills" },
   { id: "work", label: "Work" },
+  { id: "blog", label: "Blog" },
   { id: "testimonials", label: "Testimonials" },
 ];
 
@@ -274,6 +280,95 @@ export default function PraisePortfolio() {
   const [showAll, setShowAll] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const sectionsRef = useRef({});
+
+  // Blog & Form States
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [formStatus, setFormStatus] = useState({ submitting: false, success: false, error: null });
+  const blogDialogRef = useRef(null);
+  const successDialogRef = useRef(null);
+
+  const openBlog = (post) => {
+    setSelectedPost(post);
+    if (blogDialogRef.current) {
+      blogDialogRef.current.showModal();
+    }
+  };
+
+  const closeBlog = () => {
+    if (blogDialogRef.current) {
+      blogDialogRef.current.close();
+    }
+    setSelectedPost(null);
+  };
+
+  const handleBlogBackdropClick = (e) => {
+    if (e.target === blogDialogRef.current) {
+      const rect = blogDialogRef.current.getBoundingClientRect();
+      const isInDialog = (
+        rect.top <= e.clientY &&
+        e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX &&
+        e.clientX <= rect.left + rect.width
+      );
+      if (!isInDialog) {
+        closeBlog();
+      }
+    }
+  };
+
+  const handleSuccessBackdropClick = (e) => {
+    if (e.target === successDialogRef.current) {
+      const rect = successDialogRef.current.getBoundingClientRect();
+      const isInDialog = (
+        rect.top <= e.clientY &&
+        e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX &&
+        e.clientX <= rect.left + rect.width
+      );
+      if (!isInDialog) {
+        successDialogRef.current.close();
+      }
+    }
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus({ submitting: true, success: false, error: null });
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xykdkokv", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setFormStatus({ submitting: false, success: true, error: null });
+        form.reset();
+        if (successDialogRef.current) {
+          successDialogRef.current.showModal();
+        }
+      } else {
+        const data = await response.json();
+        setFormStatus({
+          submitting: false,
+          success: false,
+          error: data.error || "Something went wrong. Please try again.",
+        });
+      }
+    } catch (err) {
+      setFormStatus({
+        submitting: false,
+        success: false,
+        error: "Network error. Please check your connection and try again.",
+      });
+    }
+  };
 
   const projectsToShow = showAll ? allProjects : allProjects.slice(0, 6);
 
@@ -952,6 +1047,57 @@ export default function PraisePortfolio() {
             </ScrollReveal>
           </section>
 
+          {/* Blog Section */}
+          <section id="blog" className="mb-20 md:mb-32 border-t border-architectural pt-8 md:pt-12">
+            <ScrollReveal delay={80}>
+              <div className="flex justify-between items-end mb-6 md:mb-12 border-b border-architectural pb-3 md:pb-4 gap-3">
+                <div>
+                  <h2 className="font-display text-xl md:text-[32px] font-bold text-brand-navy">
+                    E-Commerce & Frontend Insights
+                  </h2>
+                  <p className="font-body text-xs text-accent uppercase tracking-wider mt-1.5">
+                    Metaphor-driven storybooks explaining digital builds
+                  </p>
+                </div>
+                <Link href="/blog" className="font-body text-[10px] md:text-xs text-brand-navy hover:text-accent uppercase tracking-wider border-b border-transparent hover:border-accent transition-colors shrink-0">
+                  Explore All Articles
+                </Link>
+              </div>
+
+              {/* Blog Grid of 3 Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                {blogPosts.slice(0, 3).map((post) => (
+                  <article
+                    key={post.slug}
+                    onClick={() => openBlog(post)}
+                    className="border border-architectural p-6 flex flex-col justify-between bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group cursor-pointer"
+                  >
+                    <div>
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-[9px] uppercase tracking-wider text-accent group-hover:text-brand-bg/60 border border-accent group-hover:border-brand-bg/60 px-2 py-0.5">
+                          {post.category}
+                        </span>
+                        <span className="text-[10px] text-brand-navy/60 group-hover:text-brand-bg/50">
+                          {post.readTime}
+                        </span>
+                      </div>
+                      <h3 className="font-display text-lg md:text-xl font-bold mb-2 group-hover:text-brand-bg transition-colors duration-300 leading-tight">
+                        {post.title}
+                      </h3>
+                      <p className="font-body text-xs md:text-sm text-brand-navy/80 group-hover:text-brand-bg/85 line-clamp-4 leading-relaxed">
+                        {post.excerpt}
+                      </p>
+                    </div>
+                    <div className="mt-6 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-brand-navy group-hover:text-brand-accent transition-colors pt-4 border-t border-architectural/40 group-hover:border-brand-bg/20">
+                      <span>Read Storybook</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </ScrollReveal>
+          </section>
+
           <ScrollReveal delay={120}>
             <Testimonials />
           </ScrollReveal>
@@ -1021,15 +1167,9 @@ export default function PraisePortfolio() {
                 </div>
                 <div className="col-span-4 md:col-span-7 p-8 md:p-12">
                   <form
-                    action="https://formspree.io/f/xykdkokv"
-                    method="POST"
+                    onSubmit={handleFormSubmit}
                     className="space-y-8"
                   >
-                    <input
-                      type="hidden"
-                      name="_next"
-                      value="https://praise-oluwasakin-website.vercel.app/thanks"
-                    />
                     <div>
                       <label
                         className="block font-body text-xs text-accent uppercase mb-2 tracking-wider"
@@ -1078,11 +1218,17 @@ export default function PraisePortfolio() {
                         required
                       />
                     </div>
+                    {formStatus.error && (
+                      <p className="text-red-600 font-body text-xs">
+                        {formStatus.error}
+                      </p>
+                    )}
                     <button
                       className="bg-cta text-brand-bg font-body text-sm font-semibold px-8 py-4 w-full md:w-auto hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
                       type="submit"
+                      disabled={formStatus.submitting}
                     >
-                      Submit Inquiry
+                      {formStatus.submitting ? "Submitting Inquiry..." : "Submit Inquiry"}
                       <Send className="w-4 h-4" />
                     </button>
                   </form>
@@ -1225,6 +1371,159 @@ export default function PraisePortfolio() {
             </div>
           </div>
         </footer>
+
+        {/* Blog Reader Modal */}
+        <dialog
+          ref={blogDialogRef}
+          onClick={handleBlogBackdropClick}
+          className="w-full max-w-4xl bg-brand-bg border border-architectural text-brand-navy p-0 focus:outline-none backdrop:bg-brand-navy/85 backdrop:backdrop-blur-sm shadow-2xl rounded-none fixed inset-0 my-auto"
+        >
+          {selectedPost && (
+            <div className="flex flex-col max-h-[85vh] md:max-h-[90vh]">
+              {/* Sticky Modal Header */}
+              <div className="flex justify-between items-center px-6 py-4 border-b border-architectural bg-brand-bg sticky top-0 z-10">
+                <div className="flex items-center gap-2">
+                  <BookOpen className="w-5 h-5 text-brand-accent" />
+                  <span className="font-display text-xs uppercase tracking-widest font-semibold text-brand-navy/60">
+                    Storybook Metaphor: {selectedPost.metaphor}
+                  </span>
+                </div>
+                <button
+                  onClick={closeBlog}
+                  className="p-1.5 hover:bg-brand-navy hover:text-brand-bg border border-architectural text-brand-navy transition-colors flex items-center justify-center focus:outline-none"
+                  aria-label="Close dialog"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Scrollable Blog Content */}
+              <div className="p-6 md:p-12 overflow-y-auto max-w-3xl mx-auto leading-relaxed">
+                <div className="flex flex-wrap gap-4 items-center mb-6 text-xs text-brand-navy/60">
+                  <span className="bg-brand-navy/5 border border-architectural px-3 py-1 uppercase tracking-wider text-brand-navy font-semibold">
+                    {selectedPost.category}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Calendar className="w-3.5 h-3.5" />
+                    {selectedPost.date}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Clock className="w-3.5 h-3.5" />
+                    {selectedPost.readTime}
+                  </span>
+                </div>
+
+                <h2 className="font-display text-2xl md:text-[38px] leading-[1.15] font-extrabold text-brand-navy mb-8">
+                  {selectedPost.title}
+                </h2>
+
+                {/* Render Story Elements */}
+                <div className="space-y-6 text-base md:text-lg">
+                  {selectedPost.content.map((block, idx) => {
+                    if (block.type === "heading") {
+                      return (
+                        <h3 key={idx} className="font-display text-xl md:text-2xl font-bold text-brand-navy pt-6 mb-2 border-b border-architectural/25 pb-2">
+                          {block.text}
+                        </h3>
+                      );
+                    }
+                    if (block.type === "paragraph") {
+                      return (
+                        <p key={idx} className="text-brand-navy/90 leading-relaxed font-body">
+                          {block.text}
+                        </p>
+                      );
+                    }
+                    if (block.type === "quote") {
+                      return (
+                        <blockquote key={idx} className="border-l-4 border-brand-navy bg-brand-navy/5 p-6 font-display italic text-brand-navy font-medium my-6">
+                          “{block.text}”
+                        </blockquote>
+                      );
+                    }
+                    if (block.type === "list") {
+                      return (
+                        <ul key={idx} className="list-decimal pl-6 space-y-3 text-brand-navy/90 font-body">
+                          {block.items.map((item, keyIdx) => (
+                            <li key={keyIdx} className="leading-relaxed">
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      );
+                    }
+                    if (block.type === "cta") {
+                      return (
+                        <div key={idx} className="mt-12 p-8 border border-brand-navy bg-brand-navy text-brand-bg flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
+                          <div className="max-w-xl">
+                            <h3 className="font-display text-lg font-bold mb-2 text-brand-accent">
+                              Architect Your Store for Growth
+                            </h3>
+                            <p className="font-body text-xs md:text-sm text-brand-bg/85 leading-relaxed">
+                              {block.text}
+                            </p>
+                          </div>
+                          <button
+                            onClick={() => {
+                              closeBlog();
+                              const el = document.getElementById("contact");
+                              if (el) {
+                                const offset = window.innerWidth >= 768 ? 88 : 76;
+                                const top = el.getBoundingClientRect().top + window.scrollY - offset;
+                                window.scrollTo({ top, behavior: "smooth" });
+                              }
+                            }}
+                            className="px-6 py-3 bg-cta text-brand-bg font-body text-xs uppercase tracking-wider font-semibold border border-brand-bg hover:opacity-90 transition-all duration-300 w-full md:w-auto text-center shrink-0"
+                          >
+                            Initiate Dialogue
+                          </button>
+                        </div>
+                      );
+                    }
+                    return null;
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
+        </dialog>
+
+        {/* Success Popup Modal */}
+        <dialog
+          ref={successDialogRef}
+          onClick={handleSuccessBackdropClick}
+          className="w-full max-w-md bg-brand-bg border border-architectural text-brand-navy p-8 focus:outline-none backdrop:bg-brand-navy/85 backdrop:backdrop-blur-sm shadow-2xl rounded-none fixed inset-0 my-auto"
+        >
+          <div className="relative">
+            <button
+              onClick={() => successDialogRef.current.close()}
+              className="absolute top-[-10px] right-[-10px] p-1 hover:bg-brand-navy hover:text-brand-bg border border-architectural text-brand-navy transition-colors flex items-center justify-center focus:outline-none"
+              aria-label="Close success popup"
+            >
+              <X className="w-4 h-4" />
+            </button>
+            <div className="flex flex-col items-center text-center mt-2">
+              <div className="w-12 h-12 rounded-full border border-brand-navy flex items-center justify-center mb-4">
+                <Send className="w-6 h-6 text-brand-navy" />
+              </div>
+              <h3 className="font-display text-2xl font-bold mb-3">
+                Inquiry Initiated
+              </h3>
+              <p className="font-body text-sm text-brand-navy/80 leading-relaxed mb-4">
+                I have received your message and will review it. I usually reply within 24 hours.
+              </p>
+              <p className="font-body text-xs text-brand-navy/60 leading-relaxed border-t border-architectural/50 pt-4 w-full">
+                For urgent matters, feel free to reach out directly via WhatsApp or email at <a href="mailto:praiseoluwasakin@gmail.com" className="underline hover:text-brand-accent">praiseoluwasakin@gmail.com</a>.
+              </p>
+              <button
+                onClick={() => successDialogRef.current.close()}
+                className="mt-6 w-full py-3 bg-cta text-brand-bg font-body text-sm font-semibold hover:opacity-90 transition-opacity"
+              >
+                Close Window
+              </button>
+            </div>
+          </div>
+        </dialog>
       </div>
     </>
   );

@@ -225,31 +225,31 @@ export default function BlogListingPage() {
                 <article
                   key={post.slug}
                   onClick={() => openPost(post)}
-                  className="card-modern border border-brand-navy/10 rounded-xl flex flex-col justify-between p-6 bg-white/40 hover:bg-white/80 transition-all duration-400 group cursor-pointer shadow-[0_4px_24px_-8px_rgba(34,34,59,0.08)] hover:shadow-[0_20px_40px_-12px_rgba(34,34,59,0.15)]"
+                  className="border border-architectural flex flex-col justify-between p-6 bg-brand-bg hover:bg-brand-navy hover:-translate-y-1 transition-all duration-500 group cursor-pointer"
                 >
                   <div>
                     <div className="flex justify-between items-center mb-4">
-                      <span className="text-[10px] uppercase tracking-wider text-brand-accent font-semibold border border-brand-accent group-hover:border-brand-bg/30 group-hover:text-brand-bg/60 px-2.5 py-1">
+                      <span className="text-[10px] uppercase tracking-wider text-brand-accent font-semibold border border-brand-accent px-2.5 py-1 transition-colors duration-500">
                         {post.category}
                       </span>
-                      <span className="text-xs text-brand-navy/60 flex items-center gap-1 font-medium bg-brand-navy/5 px-2 py-1 rounded-md">
+                      <span className="text-xs text-brand-navy/60 group-hover:text-brand-bg/60 flex items-center gap-1 font-medium bg-brand-navy/5 group-hover:bg-brand-bg/10 px-2 py-1 rounded-md transition-colors duration-500">
                         <Clock className="w-3.5 h-3.5" />
                         {post.readTime}
                       </span>
                     </div>
 
-                    <h2 className="font-display text-xl md:text-2xl font-bold mb-3 text-brand-navy group-hover:text-brand-cta transition-colors duration-300 leading-tight">
+                    <h2 className="font-display text-xl md:text-2xl font-bold mb-3 text-brand-navy group-hover:text-brand-bg transition-colors duration-500 leading-tight">
                       {post.title}
                     </h2>
                     
-                    <p className="font-body text-sm text-brand-navy/70 group-hover:text-brand-navy/90 transition-colors duration-300 line-clamp-4 leading-relaxed mb-6">
+                    <p className="font-body text-sm text-brand-navy/70 group-hover:text-brand-bg/80 transition-colors duration-500 line-clamp-4 leading-relaxed mb-6">
                       {post.excerpt}
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-2 text-sm font-bold tracking-wide text-brand-navy group-hover:text-brand-cta transition-colors pt-4 border-t border-brand-navy/10 mt-auto">
+                  <div className="flex items-center gap-2 text-sm font-bold tracking-wide text-brand-navy group-hover:text-brand-bg transition-colors pt-4 border-t border-brand-navy/10 group-hover:border-brand-bg/20 mt-auto duration-500">
                     <span>Read Article</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1.5" />
+                    <ArrowRight className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" />
                   </div>
                 </article>
               ))}
@@ -262,10 +262,10 @@ export default function BlogListingPage() {
         <dialog
           ref={dialogRef}
           onClick={handleBackdropClick}
-          className="w-full max-w-4xl bg-brand-bg border border-architectural text-brand-navy p-0 focus:outline-none backdrop:bg-brand-navy/85 backdrop:backdrop-blur-sm shadow-2xl rounded-none fixed inset-0 my-auto"
+          className="w-full h-full md:h-[95vh] md:max-w-5xl m-auto bg-brand-bg border-none md:border md:border-architectural text-brand-navy p-0 focus:outline-none backdrop:bg-brand-navy/85 backdrop:backdrop-blur-sm shadow-2xl md:rounded-xl fixed inset-0 overflow-hidden animate-fade-in-up"
         >
           {selectedPost && (
-            <div className="flex flex-col max-h-[85vh] md:max-h-[90vh]">
+            <div className="flex flex-col h-full">
               {/* Sticky Modal Header */}
               <div className="flex justify-between items-center px-6 py-4 border-b border-architectural bg-brand-bg sticky top-0 z-10">
                 <div className="flex items-center gap-2">
@@ -283,8 +283,7 @@ export default function BlogListingPage() {
                 </button>
               </div>
 
-              {/* Scrollable Blog Content */}
-              <div className="p-6 md:p-12 overflow-y-auto max-w-3xl mx-auto leading-relaxed">
+              <div className="p-6 md:p-12 overflow-y-auto flex-grow max-w-3xl mx-auto leading-relaxed">
                 <div className="flex flex-wrap gap-4 items-center mb-6 text-xs text-brand-navy/60">
                   <span className="bg-brand-navy/5 border border-architectural px-3 py-1 uppercase tracking-wider text-brand-navy font-semibold">
                     {selectedPost.category}

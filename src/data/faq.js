@@ -4,7 +4,7 @@ export const faqs = [
   {
     id: "cost-shopify-expert",
     question: "How Much Does It Cost to Hire a Shopify Expert?",
-    answer: "The cost to hire a Shopify expert varies widely depending on scope. For basic theme setups, it might range from $500 to $1,500. For custom development, performance optimization, and advanced integrations (like Klaviyo), the investment typically runs between $2,000 and $10,000+. Hiring an expert ensures high code quality, speed optimization, and a conversion-focused design that yields long-term ROI."
+    answer: "The cost to hire a Shopify expert depends heavily on the negotiation with the developer, the exact scope of the project, and the professional's level of expertise. Just like wine tastes better with age, an experienced developer brings refined skills that naturally command a premium. Hiring an expert ensures high code quality, speed optimization, and a conversion-focused design that yields long-term ROI, making it a highly tailored investment rather than a fixed price tag."
   },
   {
     id: "shopify-email-vs-klaviyo",
@@ -49,6 +49,6 @@ export const faqs = [
   {
     id: "diy-vs-developer",
     question: "DIY Shopify Customization vs Hiring a Developer: Cost Breakdown",
-    answer: "While DIY is practically free upfront, the hidden costs include monthly fees for clunky apps, slow load times, and low conversion rates due to poor user experience. Hiring a professional developer requires an upfront investment ($2,000+), but pays off quickly through custom, fast-loading code that converts visitors at a significantly higher rate."
+    answer: "While DIY is practically free upfront, the hidden costs include monthly fees for clunky apps, slow load times, and low conversion rates due to poor user experience. Hiring a professional developer requires an upfront investment, but pays off quickly through custom, fast-loading code that converts visitors at a significantly higher rate."
   }
 ];

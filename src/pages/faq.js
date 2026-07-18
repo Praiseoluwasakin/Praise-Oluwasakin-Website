@@ -90,12 +90,12 @@ export default function FAQPage() {
               <span>Praise Oluwasakin</span>
             </Link>
 
-            <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
+            <nav className="hidden lg:flex items-center gap-3 xl:gap-6">
               {navItems.map((n) => (
                 <Link
                   key={n.id}
                   href={n.path}
-                  className={`font-body text-xs xl:text-sm font-semibold tracking-wide transition-colors duration-300 ${
+                  className={`font-body whitespace-nowrap text-[11px] xl:text-xs font-semibold tracking-wide transition-colors duration-300 ${
                     n.id === "faq"
                       ? "text-brand-accent border-b border-brand-accent"
                       : "text-brand-navy hover:text-brand-accent"
@@ -106,7 +106,7 @@ export default function FAQPage() {
               ))}
               <Link
                 href="/#contact"
-                className="px-6 py-2 bg-cta text-brand-bg font-body text-sm font-semibold hover:opacity-90 transition-all duration-300 hover:translate-y-[-1px]"
+                className="whitespace-nowrap px-4 xl:px-6 py-2 bg-cta text-brand-bg font-body text-[11px] xl:text-xs font-semibold hover:opacity-90 transition-all duration-300 hover:translate-y-[-1px]"
               >
                 Get in touch
               </Link>

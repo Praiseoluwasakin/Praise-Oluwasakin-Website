@@ -1,23 +1,19 @@
 import Head from "next/head";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { NextSeo } from "next-seo";
-import { blogPosts } from "../data/blog";
 import Link from "next/link";
+import { faqs } from "../data/faq";
 import {
   Menu,
   X,
-  ArrowRight,
-  BookOpen,
-  ArrowLeft,
-  Calendar,
-  Clock,
-  ExternalLink,
+  ChevronDown,
   Linkedin,
   Github,
   Instagram,
   Mail,
   MessageCircle,
-  MessageSquare
+  MessageSquare,
+  HelpCircle
 } from "lucide-react";
 import { SiUpwork } from "react-icons/si";
 import { FaXTwitter } from "react-icons/fa6";
@@ -33,11 +29,11 @@ const navItems = [
   { id: "testimonials", label: "Testimonials", path: "/#testimonials" },
 ];
 
-export default function BlogListingPage() {
+export default function FAQPage() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [selectedPost, setSelectedPost] = useState(null);
-  const dialogRef = useRef(null);
+  const [openFaq, setOpenFaq] = useState(null);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -47,62 +43,28 @@ export default function BlogListingPage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Open blog modal
-  const openPost = (post) => {
-    setSelectedPost(post);
-    if (dialogRef.current) {
-      dialogRef.current.showModal();
-    }
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
   };
 
-  // Close blog modal
-  const closePost = () => {
-    if (dialogRef.current) {
-      dialogRef.current.close();
-    }
-    setSelectedPost(null);
-  };
-
-  // Light-dismiss click outside dialog content fallback
-  const handleBackdropClick = (e) => {
-    if (e.target === dialogRef.current) {
-      const rect = dialogRef.current.getBoundingClientRect();
-      const isInDialog = (
-        rect.top <= e.clientY &&
-        e.clientY <= rect.top + rect.height &&
-        rect.left <= e.clientX &&
-        e.clientX <= rect.left + rect.width
-      );
-      if (!isInDialog) {
-        closePost();
-      }
-    }
-  };
+  const displayedFaqs = showAll ? faqs : faqs.slice(0, 5);
 
   return (
     <>
       <NextSeo
-        title="Blog & E-commerce Insights | Praise Oluwasakin"
-        description="Read narrative-driven articles on Shopify optimization, Klaviyo automation flows, Google SEO ranking, and Figma-to-React development."
-        canonical="https://praise-oluwasakin-website.vercel.app/blog"
+        title="Frequently Asked Questions | Praise Oluwasakin"
+        description="Answers to common questions about Shopify development, Klaviyo email marketing, pricing, and e-commerce growth strategies."
+        canonical="https://praise-oluwasakin-website.vercel.app/faq"
         additionalMetaTags={[
           {
             name: "keywords",
-            content: "Praise Oluwasakin, Shopify Blog, Shopify Speed optimization, Klaviyo email flows, Shopify SEO, WooCommerce vs Shopify Nigeria, Figma to React, Freelance Developer Blog",
-          },
-          {
-            name: "author",
-            content: "Praise Ibukunoluwa Oluwasakin",
+            content: "Shopify Developer FAQ, E-commerce FAQ, Klaviyo vs Shopify Email, Cost to hire Shopify Expert, Shopify Platform Migration",
           },
         ]}
       />
 
       <Head>
-        <title>Blog & Insights | Praise Oluwasakin</title>
-        <meta
-          name="description"
-          content="Narrative-driven guides on e-commerce strategy, high-speed Shopify stores, Klaviyo workflows, and React frontend engineering by Praise Oluwasakin."
-        />
+        <title>Frequently Asked Questions | Praise Oluwasakin</title>
       </Head>
 
       <div className="min-h-screen bg-brand-bg font-body text-brand-navy selection:bg-brand-navy selection:text-brand-bg flex flex-col">
@@ -134,7 +96,7 @@ export default function BlogListingPage() {
                   key={n.id}
                   href={n.path}
                   className={`font-body text-xs xl:text-sm font-semibold tracking-wide transition-colors duration-300 ${
-                    n.id === "blog"
+                    n.id === "faq"
                       ? "text-brand-accent border-b border-brand-accent"
                       : "text-brand-navy hover:text-brand-accent"
                   }`}
@@ -182,7 +144,7 @@ export default function BlogListingPage() {
                     key={n.id}
                     href={n.path}
                     className={`mobile-nav-link px-3 py-3 font-body text-sm font-semibold rounded-sm ${
-                      n.id === "blog"
+                      n.id === "faq"
                         ? "text-brand-accent bg-brand-navy/5"
                         : "text-brand-navy hover:text-brand-accent"
                     }`}
@@ -202,176 +164,86 @@ export default function BlogListingPage() {
         </header>
 
         {/* Main Content */}
-        <main className="flex-grow pt-24 md:pt-32 pb-16 md:pb-24 px-4 md:px-16 max-w-[1280px] mx-auto w-full">
+        <main className="flex-grow pt-32 md:pt-40 pb-20 md:pb-32 px-4 md:px-16 max-w-4xl mx-auto w-full">
           
           {/* Header Title */}
-          <section className="mb-12 md:mb-20 text-center max-w-4xl mx-auto flex flex-col items-center">
-            <span className="font-body text-xs text-brand-accent uppercase tracking-widest font-semibold block mb-4 border border-brand-accent/30 px-4 py-1.5 rounded-full bg-brand-accent/5 animate-fade-in-up">
-              E-Commerce & Frontend Chronicles
-            </span>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-[64px] font-extrabold text-brand-navy mb-6 leading-[1.1] tracking-tight animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-              The Storybook of E-Commerce Architectures
+          <section className="mb-16 md:mb-24 text-center flex flex-col items-center">
+            <div className="bg-brand-navy/5 p-3 rounded-2xl mb-6 inline-flex animate-fade-in-up">
+              <HelpCircle className="w-8 h-8 text-brand-accent" />
+            </div>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-[56px] font-extrabold text-brand-navy mb-6 leading-[1.1] tracking-tight animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+              Frequently Asked Questions
             </h1>
-            <p className="font-body text-base md:text-xl text-brand-navy/80 max-w-2xl leading-relaxed animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-              Complex topics broken down through physical metaphors: car engines, rubber ducks, Lagos apartments, and Balogun storefronts.
+            <p className="font-body text-lg md:text-xl text-brand-navy/70 max-w-2xl leading-relaxed animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+              Clear answers on Shopify growth, hiring costs, email marketing, and technical architecture.
             </p>
-            <div className="w-24 h-[2px] bg-brand-accent/40 mt-8 mb-4"></div>
           </section>
 
-          {/* Blog Grid */}
-          <section className="mb-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {blogPosts.map((post) => (
-                <article
-                  key={post.slug}
-                  onClick={() => openPost(post)}
-                  className="card-modern border border-brand-navy/10 rounded-xl flex flex-col justify-between p-6 bg-white/40 hover:bg-white/80 transition-all duration-400 group cursor-pointer shadow-[0_4px_24px_-8px_rgba(34,34,59,0.08)] hover:shadow-[0_20px_40px_-12px_rgba(34,34,59,0.15)]"
+          {/* FAQ Accordion */}
+          <section className="animate-fade-in-up" style={{ animationDelay: '300ms' }}>
+            <div className="space-y-4">
+              {displayedFaqs.map((faq, index) => (
+                <div 
+                  key={faq.id} 
+                  className={`border transition-all duration-300 rounded-xl overflow-hidden bg-white/40 ${
+                    openFaq === index 
+                      ? "border-brand-navy shadow-[0_8px_30px_rgb(0,0,0,0.08)]" 
+                      : "border-brand-navy/10 hover:border-brand-accent/50"
+                  }`}
                 >
-                  <div>
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-[10px] uppercase tracking-wider text-brand-accent font-semibold border border-brand-accent group-hover:border-brand-bg/30 group-hover:text-brand-bg/60 px-2.5 py-1">
-                        {post.category}
-                      </span>
-                      <span className="text-xs text-brand-navy/60 flex items-center gap-1 font-medium bg-brand-navy/5 px-2 py-1 rounded-md">
-                        <Clock className="w-3.5 h-3.5" />
-                        {post.readTime}
-                      </span>
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    className="w-full flex justify-between items-center p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
+                    aria-expanded={openFaq === index}
+                    aria-controls={`faq-answer-${index}`}
+                  >
+                    <span className={`font-display text-lg md:text-xl font-bold pr-8 transition-colors ${
+                      openFaq === index ? "text-brand-navy" : "text-brand-navy/80"
+                    }`}>
+                      {faq.question}
+                    </span>
+                    <span className={`flex-shrink-0 transition-transform duration-300 ease-in-out bg-brand-navy/5 p-2 rounded-full ${
+                      openFaq === index ? "rotate-180 bg-brand-navy text-white" : "text-brand-navy/60"
+                    }`}>
+                      <ChevronDown className="w-5 h-5" />
+                    </span>
+                  </button>
+                  
+                  <div 
+                    id={`faq-answer-${index}`}
+                    className={`grid transition-all duration-300 ease-in-out ${
+                      openFaq === index ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="p-6 pt-0 border-t border-brand-navy/5 font-body text-base text-brand-navy/75 leading-relaxed bg-brand-bg/20">
+                        {faq.answer}
+                      </div>
                     </div>
-
-                    <h2 className="font-display text-xl md:text-2xl font-bold mb-3 text-brand-navy group-hover:text-brand-cta transition-colors duration-300 leading-tight">
-                      {post.title}
-                    </h2>
-                    
-                    <p className="font-body text-sm text-brand-navy/70 group-hover:text-brand-navy/90 transition-colors duration-300 line-clamp-4 leading-relaxed mb-6">
-                      {post.excerpt}
-                    </p>
                   </div>
-
-                  <div className="flex items-center gap-2 text-sm font-bold tracking-wide text-brand-navy group-hover:text-brand-cta transition-colors pt-4 border-t border-brand-navy/10 mt-auto">
-                    <span>Read Article</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1.5" />
-                  </div>
-                </article>
+                </div>
               ))}
+            </div>
+
+            {/* See More / See Less Toggle */}
+            <div className="mt-12 flex justify-center">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="group relative inline-flex items-center justify-center px-8 py-3.5 font-body text-sm font-semibold tracking-wide text-brand-navy bg-transparent border-2 border-brand-navy/20 hover:border-brand-navy transition-all duration-300 rounded-full overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  {showAll ? "Show Less" : "See More FAQs"}
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showAll ? "rotate-180" : "group-hover:translate-y-1"}`} />
+                </span>
+                <div className="absolute inset-0 h-full w-0 bg-brand-navy/5 transition-all duration-300 ease-out group-hover:w-full z-0"></div>
+              </button>
             </div>
           </section>
 
         </main>
 
-        {/* Blog Reader Modal */}
-        <dialog
-          ref={dialogRef}
-          onClick={handleBackdropClick}
-          className="w-full max-w-4xl bg-brand-bg border border-architectural text-brand-navy p-0 focus:outline-none backdrop:bg-brand-navy/85 backdrop:backdrop-blur-sm shadow-2xl rounded-none fixed inset-0 my-auto"
-        >
-          {selectedPost && (
-            <div className="flex flex-col max-h-[85vh] md:max-h-[90vh]">
-              {/* Sticky Modal Header */}
-              <div className="flex justify-between items-center px-6 py-4 border-b border-architectural bg-brand-bg sticky top-0 z-10">
-                <div className="flex items-center gap-2">
-                  <BookOpen className="w-5 h-5 text-brand-accent" />
-                  <span className="font-display text-xs uppercase tracking-widest font-semibold text-brand-navy/60">
-                    Storybook Metaphor: {selectedPost.metaphor}
-                  </span>
-                </div>
-                <button
-                  onClick={closePost}
-                  className="p-1.5 hover:bg-brand-navy hover:text-brand-bg border border-architectural text-brand-navy transition-colors flex items-center justify-center focus:outline-none"
-                  aria-label="Close dialog"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Scrollable Blog Content */}
-              <div className="p-6 md:p-12 overflow-y-auto max-w-3xl mx-auto leading-relaxed">
-                <div className="flex flex-wrap gap-4 items-center mb-6 text-xs text-brand-navy/60">
-                  <span className="bg-brand-navy/5 border border-architectural px-3 py-1 uppercase tracking-wider text-brand-navy font-semibold">
-                    {selectedPost.category}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5" />
-                    {selectedPost.date}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5" />
-                    {selectedPost.readTime}
-                  </span>
-                </div>
-
-                <h1 className="font-display text-2xl md:text-[38px] leading-[1.15] font-extrabold text-brand-navy mb-8">
-                  {selectedPost.title}
-                </h1>
-
-                {/* Render Story Elements */}
-                <div className="space-y-6 text-base md:text-lg">
-                  {selectedPost.content.map((block, idx) => {
-                    if (block.type === "heading") {
-                      return (
-                        <h2 key={idx} className="font-display text-xl md:text-2xl font-bold text-brand-navy pt-6 mb-2 border-b border-architectural/25 pb-2">
-                          {block.text}
-                        </h2>
-                      );
-                    }
-                    if (block.type === "paragraph") {
-                      return (
-                        <p key={idx} className="text-brand-navy/90 leading-relaxed font-body">
-                          {block.text}
-                        </p>
-                      );
-                    }
-                    if (block.type === "quote") {
-                      return (
-                        <blockquote key={idx} className="border-l-4 border-brand-navy bg-brand-navy/5 p-6 font-display italic text-brand-navy font-medium my-6">
-                          “{block.text}”
-                        </blockquote>
-                      );
-                    }
-                    if (block.type === "list") {
-                      return (
-                        <ul key={idx} className="list-decimal pl-6 space-y-3 text-brand-navy/90 font-body">
-                          {block.items.map((item, keyIdx) => (
-                            <li key={keyIdx} className="leading-relaxed">
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      );
-                    }
-                    if (block.type === "cta") {
-                      return (
-                        <div key={idx} className="mt-12 p-8 border border-brand-navy bg-brand-navy text-brand-bg flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
-                          <div className="max-w-xl">
-                            <h3 className="font-display text-lg font-bold mb-2 text-brand-accent">
-                              Architect Your Store for Growth
-                            </h3>
-                            <p className="font-body text-xs md:text-sm text-brand-bg/85 leading-relaxed">
-                              {block.text}
-                            </p>
-                          </div>
-                          <a
-                            href={block.target}
-                            onClick={() => {
-                              closePost();
-                              window.location.hash = "contact";
-                            }}
-                            className="px-6 py-3 bg-cta text-brand-bg font-body text-xs uppercase tracking-wider font-semibold border border-brand-bg hover:opacity-90 transition-all duration-300 w-full md:w-auto text-center shrink-0"
-                          >
-                            Initiate Dialogue
-                          </a>
-                        </div>
-                      );
-                    }
-                    return null;
-                  })}
-                </div>
-              </div>
-            </div>
-          )}
-        </dialog>
-
         {/* Footer */}
-        <footer className="w-full border-t border-architectural bg-brand-bg">
+        <footer className="w-full border-t border-architectural bg-brand-bg mt-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-5 md:px-16 py-20 max-w-[1280px] mx-auto">
             <div>
               <Link

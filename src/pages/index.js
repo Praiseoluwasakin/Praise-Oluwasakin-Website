@@ -265,13 +265,14 @@ const highlightedSkills = new Set([
 ]);
 
 const navItems = [
-  { id: "about", label: "About" },
-  { id: "standards", label: "The Standard" },
-  { id: "beyond", label: "Beyond the Code" },
-  { id: "skills", label: "Skills" },
-  { id: "work", label: "Work" },
-  { id: "blog", label: "Blog" },
-  { id: "testimonials", label: "Testimonials" },
+  { id: "about", label: "About", path: "#about" },
+  { id: "standards", label: "The Standard", path: "#standards" },
+  { id: "beyond", label: "Beyond the Code", path: "#beyond" },
+  { id: "skills", label: "Skills", path: "#skills" },
+  { id: "work", label: "Work", path: "#work" },
+  { id: "blog", label: "Blog", path: "#blog" },
+  { id: "faq", label: "FAQ", path: "/faq" },
+  { id: "testimonials", label: "Testimonials", path: "#testimonials" },
 ];
 
 export default function PraisePortfolio() {
@@ -510,10 +511,10 @@ export default function PraisePortfolio() {
 
             <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
               {navItems.map((n) => (
-                <a
+                <Link
                   key={n.id}
-                  href={`#${n.id}`}
-                  onClick={(e) => scrollToSection(e, n.id)}
+                  href={n.path}
+                  onClick={n.path.startsWith("#") ? (e) => scrollToSection(e, n.id) : undefined}
                   className={`font-body text-xs xl:text-sm font-semibold tracking-wide transition-colors duration-300 ${
                     active === n.id
                       ? "text-brand-accent"
@@ -521,7 +522,7 @@ export default function PraisePortfolio() {
                   }`}
                 >
                   {n.label}
-                </a>
+                </Link>
               ))}
               <a
                 href="#contact"
@@ -560,10 +561,10 @@ export default function PraisePortfolio() {
             <div className="mobile-nav-inner px-5 pb-4">
               <div className="flex flex-col gap-1 pt-2">
                 {navItems.map((n) => (
-                  <a
+                  <Link
                     key={n.id}
-                    href={`#${n.id}`}
-                    onClick={(e) => scrollToSection(e, n.id)}
+                    href={n.path}
+                    onClick={n.path.startsWith("#") ? (e) => scrollToSection(e, n.id) : undefined}
                     className={`mobile-nav-link px-3 py-3 font-body text-sm font-semibold rounded-sm ${
                       active === n.id
                         ? "text-brand-accent bg-brand-navy/5"
@@ -571,7 +572,7 @@ export default function PraisePortfolio() {
                     }`}
                   >
                     {n.label}
-                  </a>
+                  </Link>
                 ))}
                 <a
                   href="#contact"
